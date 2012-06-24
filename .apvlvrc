@@ -1,0 +1,4 @@
+" vim: filetype=vim
+
+"set continuous=no
+set scrollbar=yes

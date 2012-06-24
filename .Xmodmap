@@ -1,0 +1,12 @@
+!!!! (shell-command "xmodmap ~/.Xmodmap")
+!!!! Ubuntuでは~/.xinitrcに設定を
+!!!! 書き加える必要は無いようだ
+
+!! Caps Lock -> Ctrl
+keycode 66 = Control_L
+clear Lock
+add Control = Control_L
+
+!! Xmonad用に無変換キーをMod3にする
+clear mod3
+add mod3 = Muhenkan

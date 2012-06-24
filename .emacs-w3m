@@ -1,0 +1,19 @@
+; -*- emacs-lisp -*-
+; vim: filetype=lisp
+
+;; Homepage
+;(setq w3m-home-page "www.google.co.jp")
+;(setq w3m-home-page "www.yahoo.co.jp")
+(setq w3m-home-page "www.hatena.ne.jp")
+
+;; Cooky
+(setq w3m-use-cookies t)
+;; Bookmark File
+;(setq w3m-bookmark-file "~/.w3m/bookmark.html")
+
+;; Defaultで画像表示
+(auto-image-file-mode t)
+(setq w3m-default-display-inline-images t)
+
+;(setq w3m-search-default-engine "google-ja")
+;(autoload 'w3m-weather "w3m-weather" "Display weather report." t)

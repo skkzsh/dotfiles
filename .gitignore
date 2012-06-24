@@ -1,0 +1,15 @@
+# general
+.DS_Store
+
+# Emacs
+*.elc
+
+# Vim
+*~
+.*.swp
+
+# C
+*.[oa]
+
+# Python
+*.pyc

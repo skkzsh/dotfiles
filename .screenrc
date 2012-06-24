@@ -1,0 +1,74 @@
+### euc jis sjis utf-8
+defutf8 on
+defkanji utf-8
+encoding utf-8 utf-8
+defencoding utf-8
+
+### Prefixキーの変更
+escape ^t^t
+#escape ^z^z
+#escape ^Zz
+
+### ウィンドウ操作でEmacs風キーバインド
+### screen上でEmacsを使うと競合するので注意
+#bindkey ^x command -c EMACS 
+#bind -c EMACS o focus
+#bindkey ^t focus
+#bindkey ^z focus
+#bind -c EMACS 0 remove
+#bind -c EMACS 1 only
+#bind -c EMACS 2 split
+#bind -c EMACS 3 split -v
+#bind -c EMACS \^ resize + 
+#bind -c EMACS '^' colon 'resize +'
+#bind -c EMACS k kill
+#bind -c EMACS ^c quit
+#bind -c EMACS ^f screen  
+#bind -c EMACS b select
+#bind -c EMACS ^b windowlist
+#bind -c EMACS ^b windowlist -b
+#bind -c EMACS ^b windows
+#bind -c EMACS ^w title
+
+### コピーモードでEmacs風キーバインド
+#markkeys h=^b:l=^f:$=^e:^d=^v:#:^u=^z
+### ペースト
+#bindkey ^y paste .
+### デフォルトではvi風キーバインド
+### ヴィジュアルモード
+#markkeys " "=v
+
+### Window List
+bind w windowlist -b
+
+### Window切替
+#bindkey ^ next
+
+### シェル
+#shell -$SHELL
+
+### オートデタッチ
+#autodetach on
+
+### ビジュアルベルを無効
+vbell off
+
+### スタートアップメニューの削除
+startup_message off
+
+#wrap on
+
+### ステータスラインに端末一覧を表示
+hardstatus alwayslastline "%w"
+#caption always "%w"
+
+### 256色
+defbce "on"
+term xterm-256color
+
+### Terminalと同じように
+### lessを終了後に画面に残さない
+altscreen on
+
+### マウス
+#termcapinfo xterm* ti@:te@

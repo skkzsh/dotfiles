@@ -1,0 +1,17 @@
+[user]
+	name = skkzsh
+	email = skkzsh@myopera.com
+[core]
+	excludesfile = ~/.gitignore
+[color]
+	ui = auto
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+	unstage = reset HEAD --
+	last = log -1 HEAD
+	di = diff
+[github]
+	user = skkzsh

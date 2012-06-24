@@ -1,0 +1,103 @@
+##### Conky, a system monitor
+
+alignment bottom_right 
+background no
+border_width 1
+cpu_avg_samples 2
+default_color white
+default_outline_color white
+default_shade_color white
+draw_borders no
+draw_graph_borders yes
+draw_outline no
+draw_shades no
+use_xft yes
+xftfont DejaVu Sans Mono:size=8.5
+gap_x 5
+gap_y 60
+minimum_size 5 5
+net_avg_samples 2
+no_buffers yes
+out_to_console no
+out_to_stderr no
+extra_newline no
+own_window yes
+#own_window no
+own_window_class Conky
+### own_window いずれを選択しても問題あり
+### なのでsedで問題回避
+#-> DesktopをClickすると消える
+#own_window_type desktop 
+#-> KDEで非表示, 自動起動で最前面
+## XMONAD_START 
+#own_window_type override 
+## XMONAD_END
+#-> xmonadで最大化
+## NOT_XMONAD_START
+own_window_type normal
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager 
+## NOT_XMONAD_END
+stippled_borders 0
+update_interval 1.0
+uppercase no
+use_spacer none
+show_graph_scale no
+show_graph_range no
+double_buffer yes ## ちらつきを無くす
+#own_window_transparent yes
+#own_window_colour red
+
+TEXT
+### Title ###
+${color grey}${font DejaVu Sans Mono:size=11}$alignc $nodename $font
+${color darkgrey}$hr
+### CPUs ###
+${if_existing /proc/cpuinfo processor	: 0}${color grey}[CPU0]$color ${freq}MHz $alignr ${color orange} ${cpu cpu1}%
+$color ${cpugraph cpu1 33f5f5 f0ff33} ${endif}${if_existing /proc/cpuinfo processor	: 1} 
+${color grey}[CPU1]$color ${freq}MHz $alignr ${color orange} ${cpu cpu2}%
+$color ${cpugraph cpu2 33f5f5 f0ff33} ${endif} ${if_existing /proc/cpuinfo processor	: 2} 
+${color grey}[CPU2]$color ${freq}MHz $alignr ${color orange} ${cpu cpu3}%
+$color ${cpugraph cpu3 33f5f5 f0ff33} ${endif} ${if_existing /proc/cpuinfo processor	: 3} 
+${color grey}[CPU3]$color ${freq}MHz $alignr ${color orange} ${cpu cpu4}%
+$color ${cpugraph cpu4 33f5f5 f0ff33} ${endif} 
+### Memory ###
+${color grey}[RAM]$color ${color lightblue}$mem$color/$memmax $alignr ${color lightblue} $memperc% 
+$color ${membar 4}
+${color grey}[Swap]$color ${color lightblue}$swap$color/$swapmax $alignr ${color lightblue} $swapperc% 
+$color ${swapbar 4}
+${color darkgrey}$hr
+### UpTime ###
+${color grey}[Uptime]${color darkgreen} $uptime
+### File System ###
+${color grey}[FS] $color${fs_used /}/${fs_size /} ${fs_bar 6 /}
+### Disk ###
+${if_existing /etc/fstab sdb1}${color grey}[Disk] W:${color darkgreen}${diskio_write /dev/sdb1}${alignr}${color grey}R:${color darkgreen}${diskio_read /dev/sdb1}
+${color grey} ${diskiograph_write /dev/sdb1 20,100 33f5f5 f0ff33 -t} ${diskiograph_read /dev/sdb1 20,100 33f5f5 f0ff33 -t} ${endif}${if_existing /etc/fstab sda1}${color grey}[Disk] W:${color darkgreen}${diskio_write /dev/sda1}${alignr}${color grey}R:${color darkgreen}${diskio_read /dev/sda1}
+${color grey} ${diskiograph_write /dev/sda1 20,100 33f5f5 f0ff33 -t} ${diskiograph_read /dev/sda1 20,100 33f5f5 f0ff33 -t} ${endif}
+### Network ###
+${if_existing /proc/net/route eth0} ${color grey}[Eth]${addr eth0} 
+Up:${color darkgreen}${upspeed eth0} ${alignr}${color grey}Down:${color darkgreen}${downspeed eth0}
+${color grey} ${upspeedgraph eth0 20,100 33f5f5 f0ff33 -t} ${downspeedgraph eth0 20,100 33f5f5 f0ff33 -t} ${endif}${if_existing /proc/net/route eth3} ${color grey}[Eth]${addr eth3} 
+Up:${color darkgreen}${upspeed eth3} ${alignr}${color grey}Down:${color darkgreen}${downspeed eth3}
+${color grey} ${upspeedgraph eth3 20,100 33f5f5 f0ff33 -t} ${downspeedgraph eth3 20,100 33f5f5 f0ff33 -t} ${endif}${if_existing /proc/net/route wlan0}${color grey}[WLAN]${addr wlan0}
+Up:${color darkgreen}${upspeed wlan0} ${alignr}${color grey}Down:${color darkgreen}${downspeed wlan0}
+${color grey} ${upspeedgraph wlan0 20,100 33f5f5 f0ff33 -t} ${downspeedgraph wlan0 20,100 33f5f5 f0ff33 -t} ${endif}${if_existing /proc/net/route wlan1}${color grey}[WLAN]${addr wlan1}
+Up:${color darkgreen}${upspeed wlan1} ${alignr}${color grey}Down:${color darkgreen}${downspeed wlan1}
+${color grey} ${upspeedgraph wlan1 20,100 33f5f5 f0ff33 -t} ${downspeedgraph wlan1 20,100 33f5f5 f0ff33 -t} ${endif}${if_existing /proc/net/route wlan2}${color grey}[WLAN]${addr wlan2}
+Up:${color darkgreen}${upspeed wlan2} ${alignr}${color grey}Down:${color darkgreen}${downspeed wlan2}
+${color grey} ${upspeedgraph wlan2 20,100 33f5f5 f0ff33 -t} ${downspeedgraph wlan2 20,100 33f5f5 f0ff33 -t} ${endif}
+${color darkgrey}$hr
+### Processes ###
+${color grey}[Ps]${color darkgreen} $processes  ${color grey}[Run]${color darkgreen} $running_processes
+${color grey}[Highest CPU]       CPU%   MEM%
+${color lightgrey} ${top name 1} ${color orange}${top cpu 1} ${color lightblue}${top mem 1}
+${color lightgrey} ${top name 2} ${color orange}${top cpu 2} ${color lightblue}${top mem 2}
+${color lightgrey} ${top name 3} ${color orange}${top cpu 3} ${color lightblue}${top mem 3}
+${color lightgrey} ${top name 4} ${color orange}${top cpu 4} ${color lightblue}${top mem 4}
+${color lightgrey} ${top name 5} ${color orange}${top cpu 5} ${color lightblue}${top mem 5}
+${color grey}[Highest MEM]       CPU%   MEM%
+${color lightgrey} ${top_mem name 1} ${color orange}${top_mem cpu 1} ${color lightblue}${top_mem mem 1}
+${color lightgrey} ${top_mem name 2} ${color orange}${top_mem cpu 2} ${color lightblue}${top_mem mem 2}
+${color lightgrey} ${top_mem name 3} ${color orange}${top_mem cpu 3} ${color lightblue}${top_mem mem 3}
+${color lightgrey} ${top_mem name 4} ${color orange}${top_mem cpu 4} ${color lightblue}${top_mem mem 4}
+${color lightgrey} ${top_mem name 5} ${color orange}${top_mem cpu 5} ${color lightblue}${top_mem mem 5}
