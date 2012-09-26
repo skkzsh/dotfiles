@@ -75,15 +75,17 @@ ${if_existing /etc/fstab sdb1}${color grey}[Disk] W:${color darkgreen}${diskio_w
 ${color grey} ${diskiograph_write /dev/sdb1 20,100 33f5f5 f0ff33 -t} ${diskiograph_read /dev/sdb1 20,100 33f5f5 f0ff33 -t} ${endif}${if_existing /etc/fstab sda1}${color grey}[Disk] W:${color darkgreen}${diskio_write /dev/sda1}${alignr}${color grey}R:${color darkgreen}${diskio_read /dev/sda1}
 ${color grey} ${diskiograph_write /dev/sda1 20,100 33f5f5 f0ff33 -t} ${diskiograph_read /dev/sda1 20,100 33f5f5 f0ff33 -t} ${endif}
 ### Network ###
-${if_existing /proc/net/route eth0} ${color grey}[Eth]${addr eth0} 
+${if_existing /proc/net/route eth0} ${color grey}[Eth0]${addr eth0} 
 Up:${color darkgreen}${upspeed eth0} ${alignr}${color grey}Down:${color darkgreen}${downspeed eth0}
-${color grey} ${upspeedgraph eth0 20,100 33f5f5 f0ff33 -t} ${downspeedgraph eth0 20,100 33f5f5 f0ff33 -t} ${endif}${if_existing /proc/net/route eth3} ${color grey}[Eth]${addr eth3} 
+${color grey} ${upspeedgraph eth0 20,100 33f5f5 f0ff33 -t} ${downspeedgraph eth0 20,100 33f5f5 f0ff33 -t} ${endif}${if_existing /proc/net/route eth3} ${color grey}[Eth3]${addr eth3} 
 Up:${color darkgreen}${upspeed eth3} ${alignr}${color grey}Down:${color darkgreen}${downspeed eth3}
-${color grey} ${upspeedgraph eth3 20,100 33f5f5 f0ff33 -t} ${downspeedgraph eth3 20,100 33f5f5 f0ff33 -t} ${endif}${if_existing /proc/net/route wlan0}${color grey}[WLAN]${addr wlan0}
+${color grey} ${upspeedgraph eth3 20,100 33f5f5 f0ff33 -t} ${downspeedgraph eth3 20,100 33f5f5 f0ff33 -t} ${endif}${if_existing /proc/net/route eth4} ${color grey}[Eth4]${addr eth4} 
+Up:${color darkgreen}${upspeed eth4} ${alignr}${color grey}Down:${color darkgreen}${downspeed eth4}
+${color grey} ${upspeedgraph eth4 20,100 33f5f5 f0ff33 -t} ${downspeedgraph eth4 20,100 33f5f5 f0ff33 -t} ${endif}${if_existing /proc/net/route wlan0}${color grey}[WLAN0]${addr wlan0}
 Up:${color darkgreen}${upspeed wlan0} ${alignr}${color grey}Down:${color darkgreen}${downspeed wlan0}
-${color grey} ${upspeedgraph wlan0 20,100 33f5f5 f0ff33 -t} ${downspeedgraph wlan0 20,100 33f5f5 f0ff33 -t} ${endif}${if_existing /proc/net/route wlan1}${color grey}[WLAN]${addr wlan1}
+${color grey} ${upspeedgraph wlan0 20,100 33f5f5 f0ff33 -t} ${downspeedgraph wlan0 20,100 33f5f5 f0ff33 -t} ${endif}${if_existing /proc/net/route wlan1}${color grey}[WLAN1]${addr wlan1}
 Up:${color darkgreen}${upspeed wlan1} ${alignr}${color grey}Down:${color darkgreen}${downspeed wlan1}
-${color grey} ${upspeedgraph wlan1 20,100 33f5f5 f0ff33 -t} ${downspeedgraph wlan1 20,100 33f5f5 f0ff33 -t} ${endif}${if_existing /proc/net/route wlan2}${color grey}[WLAN]${addr wlan2}
+${color grey} ${upspeedgraph wlan1 20,100 33f5f5 f0ff33 -t} ${downspeedgraph wlan1 20,100 33f5f5 f0ff33 -t} ${endif}${if_existing /proc/net/route wlan2}${color grey}[WLAN2]${addr wlan2}
 Up:${color darkgreen}${upspeed wlan2} ${alignr}${color grey}Down:${color darkgreen}${downspeed wlan2}
 ${color grey} ${upspeedgraph wlan2 20,100 33f5f5 f0ff33 -t} ${downspeedgraph wlan2 20,100 33f5f5 f0ff33 -t} ${endif}
 ${color darkgrey}$hr
