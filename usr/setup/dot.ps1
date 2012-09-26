@@ -4,17 +4,13 @@
 
 ### Setting
 
-## å…±æœ‰å…ƒã®è¨­å®šFilesã®Dirctory
+## ‹¤—LŒ³‚ÌÝ’èFiles‚ÌDirctory
 $unix_dir = "$ENV:HOMEPATH\Repository\bitbucket\unix_files"
-if ("$ENV:COMPUTERNAME" -eq 'KOSUKE-PC') {
-    $prefix_dropbox = "$ENV:HOMEPATH\Documents\Dropbox"
-} else {
-    $prefix_dropbox = "$ENV:HOMEPATH\Dropbox"
-}
+$prefix_dropbox = "$ENV:HOMEPATH\Dropbox"
 $setting = "$dropbox\setting"
 $vim = 'C:\vim73-kaoriya-win32'
 
-## å…±æœ‰å…ƒã®å„Directoryã§å…±æœ‰ã•ã›ã‚‹Filesã®List
+## ‹¤—LŒ³‚ÌŠeDirectory‚Å‹¤—L‚³‚¹‚éFiles‚ÌList
 $bashrc = '.profile', '.bashrc', '.bash_aliases', '.inputrc', '.bash_env'
 $zshrc = '.zshrc', '.zprofile', '.zsh_aliases'
 
