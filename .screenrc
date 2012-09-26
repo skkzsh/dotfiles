@@ -4,14 +4,72 @@ defkanji utf-8
 encoding utf-8 utf-8
 defencoding utf-8
 
-### Prefixキーの変更
+### Prefix Keyの変更
 escape ^t^t
 #escape ^z^z
 #escape ^Zz
 
+### Window List
+bind w windowlist -b
+
+### Window切替
+# bindkey ^ next
+
+### Shell
+# shell -$SHELL
+
+### Auto Detach
+# autodetach on
+
+### Visual Bell
+vbell off
+
+### Startup Message
+startup_message off
+
+#wrap on
+
+### Status Line
+## Simple
+# hardstatus alwayslastline "%w"
+# caption always "%w"
+## Normal
+# hardstatus alwayslastline "%-w%{= wk}%n %t%{-}%+w %= @%H"
+hardstatus alwayslastline "%-w%{= ck}%n %t%{-}%+w %= @%H"
+## Another Way
+# shelltitle "$ |bash"
+# shelltitle "$ |zsh"
+# hardstatus alwayslastline "%-w%{= wk}%n %t%{-}%+w %= @%H"
+
+
+### emacs -nwで256色
+# defbce "on"
+# term xterm-256color
+
+### Terminalと同じように
+### lessを終了後に画面に残さない
+altscreen on
+
+### Mouse
+#termcapinfo xterm* ti@:te@
+
+## 後方Scrollの長さ (Default: 100)
+defscrollback 1000
+
+## ~秒idleだとblankerprg
+# idle 1200
+# blankerprg fortune literature
+## 自作Command
+# blankerprg repeatsl.sh
+# blankerprg while : ; do echo; fortune; sleep 5; done
+# blankerprg while : ; do echo; fortune; sleep 5; done
+# blankerprg while : ; do echo; sl; sleep 5; done
+# blankerprg while : ; do fortune; done
+
+
 ### ウィンドウ操作でEmacs風キーバインド
 ### screen上でEmacsを使うと競合するので注意
-#bindkey ^x command -c EMACS 
+#bindkey ^x command -c EMACS
 #bind -c EMACS o focus
 #bindkey ^t focus
 #bindkey ^z focus
@@ -19,11 +77,11 @@ escape ^t^t
 #bind -c EMACS 1 only
 #bind -c EMACS 2 split
 #bind -c EMACS 3 split -v
-#bind -c EMACS \^ resize + 
+#bind -c EMACS \^ resize +
 #bind -c EMACS '^' colon 'resize +'
 #bind -c EMACS k kill
 #bind -c EMACS ^c quit
-#bind -c EMACS ^f screen  
+#bind -c EMACS ^f screen
 #bind -c EMACS b select
 #bind -c EMACS ^b windowlist
 #bind -c EMACS ^b windowlist -b
@@ -38,37 +96,12 @@ escape ^t^t
 ### ヴィジュアルモード
 #markkeys " "=v
 
-### Window List
-bind w windowlist -b
 
-### Window切替
-#bindkey ^ next
-
-### シェル
-#shell -$SHELL
-
-### オートデタッチ
-#autodetach on
-
-### ビジュアルベルを無効
-vbell off
-
-### スタートアップメニューの削除
-startup_message off
-
-#wrap on
-
-### ステータスラインに端末一覧を表示
-hardstatus alwayslastline "%w"
-#caption always "%w"
-
-### 256色
-defbce "on"
-term xterm-256color
-
-### Terminalと同じように
-### lessを終了後に画面に残さない
-altscreen on
-
-### マウス
-#termcapinfo xterm* ti@:te@
+### Mac
+# git pull git://git.savannah.gnu.org/screen.git
+# cd src
+# ./autogen.sh
+# ./configure --enable-colors256 --prefix=/usr/local
+# make
+# make install
+# 起動時にErrorが出るなら /var/run/utmp -> /var/run/utmpx にln -s
