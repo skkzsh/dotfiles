@@ -1,17 +1,19 @@
 [user]
-	name = skkzsh
-	email = skkzsh@myopera.com
+    name = skkzsh
+    email = skkzsh@myopera.com
 [core]
-	excludesfile = ~/.gitignore
+    excludesfile = ~/.gitignore
+    pager = less -R -x4
+    ; pager = lv -c
 [color]
-	ui = auto
+    ui = auto
 [alias]
-	co = checkout
-	br = branch
-	ci = commit
-	st = status
-	unstage = reset HEAD --
-	last = log -1 HEAD
-	di = diff
+    co = checkout
+    br = branch
+    ci = commit
+    st = status
+    unstage = reset HEAD --
+    last = log -1 HEAD
+    di = diff
 [github]
-	user = skkzsh
+    user = skkzsh
