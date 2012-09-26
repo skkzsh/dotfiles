@@ -1,0 +1,1 @@
+wget https://github.com/lapis25/dotfiles/blob/master/.zsh/functions/_perlbrew

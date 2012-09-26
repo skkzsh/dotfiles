@@ -1,0 +1,33 @@
+## Bash Alias
+[ -f ~/.bash_aliases ] && . ~/.bash_aliases
+
+
+## Global Alias
+alias -g L='| less'
+alias -g G='| grep'
+alias -g S='| wc'
+alias -g A='| xargs'
+# alias -g H='| head'
+# alias -g T='| tail'
+# alias -g S='| sed'
+alias -g N='> /dev/null'
+alias -g H=--help
+alias -g V=--version
+alias -g ....=../..
+alias -g ......=../../..
+
+
+## Suffix Alias
+
+alias -s eps=gv
+
+case `uname` in
+    Linux)
+        alias -s dvi=xdvi
+        alias -s pdf=apvlv
+        ;;
+    Darwin)
+        alias -s dvi='open -a Mxdvi'
+        alias -s pdf='open -a Preview'
+        ;;
+esac
