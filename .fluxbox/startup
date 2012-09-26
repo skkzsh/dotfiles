@@ -17,20 +17,20 @@
 
 ### Start if Exist. ###
 ## Dropbox
-[ -x /usr/bin/dropbox ] && dropbox start -i &
+[ -x "`which dropbox 2> /dev/null`" ] && dropbox start -i &
 ## Network
-[ -x /usr/bin/nm-applet ] && nm-applet -sm-disable &
+[ -x "`which nm-applet 2> /dev/null`" ] && nm-applet -sm-disable &
 
 ## Keyring
 # if [ -e /usr/bin/gnome-keyring-daemon ]; then
-# 	# GPGパスワードエージェント
-# 	gnome-keyring-daemon --start --components=gpg & 
-# 	# SSH鍵エージェント
-# 	gnome-keyring-daemon --start --components=ssh & 
-# 	# シークレットストレージサービス
-# 	gnome-keyring-daemon --start --components=secrets & 
-# 	# 証明書および鍵を格納するストレージ
-# 	gnome-keyring-daemon --start --components=pkcs11 & 
+#     # GPGパスワードエージェント
+#     gnome-keyring-daemon --start --components=gpg &
+#     # SSH鍵エージェント
+#     gnome-keyring-daemon --start --components=ssh &
+#     # シークレットストレージサービス
+#     gnome-keyring-daemon --start --components=secrets &
+#     # 証明書および鍵を格納するストレージ
+#     gnome-keyring-daemon --start --components=pkcs11 &
 # fi
 ## 起動させるApplication
 list='gnome-volume-control-applet gnome-sound-applet gnome-power-manager gnome-screensaver conky'
@@ -38,7 +38,7 @@ list='gnome-volume-control-applet gnome-sound-applet gnome-power-manager gnome-s
 # gnome-settings-daemon &
 # system-config-printer-applet &
 for app in $list; do
-	[ -x /usr/bin/$app ] && $app &
+    [ -x "`which $app 2> /dev/null`" ] && $app &
 done
 
 # ssh-agent
@@ -46,10 +46,10 @@ done
 # keychain
 
 # if [ -x /usr/bin/gnome-keyring-daemon ] ; then
-# 	eval “`gnome-keyring-daemon`”
-# 	export GNOME_KEYRING_SOCKET
-# 	export SSH_AUTH_SOCK
-# 	export GNOME_KEYRING_PID
+#     eval “`gnome-keyring-daemon`”
+#     export GNOME_KEYRING_SOCKET
+#     export SSH_AUTH_SOCK
+#     export GNOME_KEYRING_PID
 # fi
 
 ## 設定ファイル共有時の注意
@@ -58,6 +58,8 @@ done
 ## 使用ユーザ名がそれ以外である場合は
 ## ln -s /home/hoge /home/user
 ## とか?
+
+[ -x "`which xcompmgr 2> /dev/null`" ] && xcompmgr -n &
 
 # And last but not least we start fluxbox.
 # Because it is the last app you have to run it with ''exec'' before it.

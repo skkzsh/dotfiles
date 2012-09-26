@@ -107,8 +107,8 @@ Mod3 l :NextWorkspace
 # send the current window to previous/next workspace
 #Mod4 Left :SendToPrevWorkspace
 #Mod4 Right :SendToNextWorkspace
-Mod1 Shift Left :SendToPrevWorkspace
-Mod1 Shift Right :SendToNextWorkspace
+# Mod1 Shift Left :SendToPrevWorkspace
+# Mod1 Shift Right :SendToNextWorkspace
 Mod3 Shift h :SendToPrevWorkspace
 Mod3 Shift l :SendToNextWorkspace
 
@@ -224,29 +224,29 @@ Control Mod1 t :ExecCommand gnome-terminal
 Control Mod1 Shift t :ExecCommand mlterm
 Mod3 Shift Return :ExecCommand xterm
 Control Shift Escape :ExecCommand gnome-system-monitor
-Control Mod1 Shift a :ExecCommand gksu synaptic
-Control Mod1 Shift b :ExecCommand thunderbird
-Control Mod1 Shift c :ExecCommand nm-connection-editor
-#Control Mod1 Shift d :ExecCommand 
+# Control Mod1 Shift a :ExecCommand gksu synaptic
+# Control Mod1 Shift b :ExecCommand thunderbird
+# Control Mod1 Shift c :ExecCommand nm-connection-editor
+Control Mod1 Shift d :ExecCommand tsclient
 Control Mod1 Shift e :ExecCommand emacs
 Control Mod1 Shift f :ExecCommand firefox
-#Control Mod1 Shift g :ExecCommand 
-#Control Mod1 Shift h :ExecCommand 
-#Control Mod1 Shift i :ExecCommand 
-#Control Mod1 Shift j :ExecCommand 
-#Control Mod1 Shift k :ExecCommand 
+#Control Mod1 Shift g :ExecCommand
+#Control Mod1 Shift h :ExecCommand
+#Control Mod1 Shift i :ExecCommand
+#Control Mod1 Shift j :ExecCommand
+#Control Mod1 Shift k :ExecCommand
 Control Mod1 Shift l :ExecCommand libreoffice
 Control Mod1 Shift m :ExecCommand mendeleydesktop
 Control Mod1 Shift n :ExecCommand nautilus --no-desktop
 Control Mod1 Shift o :ExecCommand opera
-Control Mod1 Shift p :ExecCommand gnome-network-properties
-#Control Mod1 Shift q :ExecCommand 
-Control Mod1 Shift r :ExecCommand tsclient
+# Control Mod1 Shift p :ExecCommand gnome-network-properties
+Control Mod1 Shift q :ExecCommand opera-next
+Control Mod1 Shift r :ExecCommand remmina
 #Control Mod1 Shift s :ExecCommand quicksynergy
 Control Mod1 Shift s :ExecCommand skype
-#Control Mod1 Shift u :ExecCommand 
+#Control Mod1 Shift u :ExecCommand
 Control Mod1 Shift v :ExecCommand gvim
-Control Mod1 Shift w :ExecCommand gksu wireshark
-Control Mod1 Shift x :ExecCommand /usr/NX/bin/nxclient
-#Control Mod1 Shift y :ExecCommand 
-#Control Mod1 Shift z :ExecCommand 
+# Control Mod1 Shift w :ExecCommand gksu wireshark
+# Control Mod1 Shift x :ExecCommand /usr/NX/bin/nxclient
+#Control Mod1 Shift y :ExecCommand
+#Control Mod1 Shift z :ExecCommand
