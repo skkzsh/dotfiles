@@ -1,0 +1,12 @@
+[submodule ".zsh/plugin/oh-my-zsh"]
+	path = .zsh/plugin/oh-my-zsh
+	url = https://github.com/robbyrussell/oh-my-zsh.git
+[submodule ".zsh/plugin/zaw"]
+	path = .zsh/plugin/zaw
+	url = https://github.com/zsh-users/zaw.git
+[submodule ".zsh/plugin/zsh-lovers"]
+	path = .zsh/plugin/zsh-lovers
+	url = https://github.com/grml/zsh-lovers.git
+[submodule ".zsh/plugin/auto-fu.zsh"]
+	path = .zsh/plugin/auto-fu.zsh
+	url = https://github.com/hchbaw/auto-fu.zsh.git
