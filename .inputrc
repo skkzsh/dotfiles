@@ -1,29 +1,41 @@
-## 補完時に大文字・小文字を区別しない
+## bind -vで確認
+
+## 補完時の大文字・小文字の区別
 set completion-ignore-case on
-## Directory名の補完時に最後にSlashを付ける
+## Directory名の補完時に最後にSlashを付けるか
 # set mark-directories on
 ## History Search
-"\C-n":history-search-forward
-"\C-p":history-search-backward
+"\C-n": history-search-forward
+"\C-p": history-search-backward
+"\C-[n": history-search-forward 
+"\C-[p": history-search-backward
 ## 直ちに補完候補を一覧
 set show-all-if-ambiguous on
 ## tilde展開
-# expand-tilde off
+# set expand-tilde off
+## すべての補完候補を表示するか問い合わせる数 (Default: 100)
+set completion-query-items 300
+## Beep音 (Mac)
+set bell-style none
+## meta
+# set meta-flag on
+# set output-meta on
+# set input-meta on
+# set convert-meta off
 
 ### Key Bind
+### bind -sで確認
 ### 入力支援に使うようにしよう
 $if Bash
-	## Pipe
-	"\C-xg": " | grep"
-	"\C-xl": " | less"
-	## Option
-	#"\C-xh": " --help"
-	## Directory
-	"\C-xh": " ~/"
-	"\C-xd": " ~/Dropbox/"
-	"\C-xe": " ~/.emacs.d/"
-	"\C-xo": " ~/.opera/"
-	## su
-	#"\C-xi": "sudo /etc/init.d/"
+    ## Pipe
+    "\C-[L": " | less"
+    "\C-[G": " | grep"
+    "\C-[W": " | wc"
+    "\C-[A": " | xargs"
+    ## Redirect
+    "\C-[N": " > /dev/null"
+    ## Option
+    "\C-[H": " --help"
+    ## su
+    "\C-[I": "sudo /etc/init.d/"
 $endif
-
