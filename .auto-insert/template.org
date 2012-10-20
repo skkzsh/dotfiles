@@ -1,0 +1,7 @@
+#+TITLE:
+#+AUTHOR: skkzsh
+#+LANGUAGE: ja
+#+OPTIONS: toc:nil author:nil creator:nil timestamp:nil num:nil \n:t
+#+STYLE: <link rel="stylesheet" type="text/css" href="http://skkzsh.github.com/style_sheet/org/org.css" title="org">
+
+# Last Modified: <
