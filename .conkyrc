@@ -12,7 +12,12 @@ draw_graph_borders yes
 draw_outline no
 draw_shades no
 use_xft yes
-xftfont DejaVu Sans Mono:size=8.5
+xftfont DejaVu Sans Mono:size=9
+# xftfont Inconsolata:size=11
+# xftfont Monaco:size=10
+# xftfont Ricty:size=11
+# xftfont Migu 1M:size=10
+# xftfont Osaka:size=9
 gap_x 5
 gap_y 60
 minimum_size 5 5
@@ -59,7 +64,15 @@ $color ${cpugraph cpu2 33f5f5 f0ff33} ${endif} ${if_existing /proc/cpuinfo proce
 ${color grey}[CPU2]$color ${freq}MHz $alignr ${color orange} ${cpu cpu3}%
 $color ${cpugraph cpu3 33f5f5 f0ff33} ${endif} ${if_existing /proc/cpuinfo processor	: 3} 
 ${color grey}[CPU3]$color ${freq}MHz $alignr ${color orange} ${cpu cpu4}%
-$color ${cpugraph cpu4 33f5f5 f0ff33} ${endif} 
+$color ${cpugraph cpu4 33f5f5 f0ff33} ${endif} ${if_existing /proc/cpuinfo processor	: 4} 
+${color grey}[CPU4]$color ${freq}MHz $alignr ${color orange} ${cpu cpu5}%
+$color ${cpugraph cpu5 33f5f5 f0ff33} ${endif} ${if_existing /proc/cpuinfo processor	: 5} 
+${color grey}[CPU5]$color ${freq}MHz $alignr ${color orange} ${cpu cpu6}%
+$color ${cpugraph cpu6 33f5f5 f0ff33} ${endif} ${if_existing /proc/cpuinfo processor	: 6} 
+${color grey}[CPU6]$color ${freq}MHz $alignr ${color orange} ${cpu cpu7}%
+$color ${cpugraph cpu7 33f5f5 f0ff33} ${endif} ${if_existing /proc/cpuinfo processor	: 7} 
+${color grey}[CPU7]$color ${freq}MHz $alignr ${color orange} ${cpu cpu8}%
+$color ${cpugraph cpu8 33f5f5 f0ff33} ${endif}
 ### Memory ###
 ${color grey}[RAM]$color ${color lightblue}$mem$color/$memmax $alignr ${color lightblue} $memperc% 
 $color ${membar 4}
@@ -67,39 +80,47 @@ ${color grey}[Swap]$color ${color lightblue}$swap$color/$swapmax $alignr ${color
 $color ${swapbar 4}
 ${color darkgrey}$hr
 ### UpTime ###
-${color grey}[Uptime]${color darkgreen} $uptime
+${color grey}[Uptime]${color lightgreen} $uptime
 ### File System ###
 ${color grey}[FS] $color${fs_used /}/${fs_size /} ${fs_bar 6 /}
 ### Disk ###
-${if_existing /etc/fstab sdb1}${color grey}[Disk] W:${color darkgreen}${diskio_write /dev/sdb1}${alignr}${color grey}R:${color darkgreen}${diskio_read /dev/sdb1}
-${color grey} ${diskiograph_write /dev/sdb1 20,100 33f5f5 f0ff33 -t} ${diskiograph_read /dev/sdb1 20,100 33f5f5 f0ff33 -t} ${endif}${if_existing /etc/fstab sda1}${color grey}[Disk] W:${color darkgreen}${diskio_write /dev/sda1}${alignr}${color grey}R:${color darkgreen}${diskio_read /dev/sda1}
+${if_existing /etc/fstab sdb1}${color grey}[Disk] W:${color lightgreen}${diskio_write /dev/sdb1}${alignr}${color grey}R:${color lightgreen}${diskio_read /dev/sdb1}
+${color grey} ${diskiograph_write /dev/sdb1 20,100 33f5f5 f0ff33 -t} ${diskiograph_read /dev/sdb1 20,100 33f5f5 f0ff33 -t} ${endif}${if_existing /etc/fstab sda1}${color grey}[Disk] W:${color lightgreen}${diskio_write /dev/sda1}${alignr}${color grey}R:${color lightgreen}${diskio_read /dev/sda1}
 ${color grey} ${diskiograph_write /dev/sda1 20,100 33f5f5 f0ff33 -t} ${diskiograph_read /dev/sda1 20,100 33f5f5 f0ff33 -t} ${endif}
 ### Network ###
-${if_existing /proc/net/route eth0} ${color grey}[Eth0]${addr eth0} 
-Up:${color darkgreen}${upspeed eth0} ${alignr}${color grey}Down:${color darkgreen}${downspeed eth0}
-${color grey} ${upspeedgraph eth0 20,100 33f5f5 f0ff33 -t} ${downspeedgraph eth0 20,100 33f5f5 f0ff33 -t} ${endif}${if_existing /proc/net/route eth3} ${color grey}[Eth3]${addr eth3} 
-Up:${color darkgreen}${upspeed eth3} ${alignr}${color grey}Down:${color darkgreen}${downspeed eth3}
-${color grey} ${upspeedgraph eth3 20,100 33f5f5 f0ff33 -t} ${downspeedgraph eth3 20,100 33f5f5 f0ff33 -t} ${endif}${if_existing /proc/net/route eth4} ${color grey}[Eth4]${addr eth4} 
-Up:${color darkgreen}${upspeed eth4} ${alignr}${color grey}Down:${color darkgreen}${downspeed eth4}
-${color grey} ${upspeedgraph eth4 20,100 33f5f5 f0ff33 -t} ${downspeedgraph eth4 20,100 33f5f5 f0ff33 -t} ${endif}${if_existing /proc/net/route wlan0}${color grey}[WLAN0]${addr wlan0}
-Up:${color darkgreen}${upspeed wlan0} ${alignr}${color grey}Down:${color darkgreen}${downspeed wlan0}
-${color grey} ${upspeedgraph wlan0 20,100 33f5f5 f0ff33 -t} ${downspeedgraph wlan0 20,100 33f5f5 f0ff33 -t} ${endif}${if_existing /proc/net/route wlan1}${color grey}[WLAN1]${addr wlan1}
-Up:${color darkgreen}${upspeed wlan1} ${alignr}${color grey}Down:${color darkgreen}${downspeed wlan1}
-${color grey} ${upspeedgraph wlan1 20,100 33f5f5 f0ff33 -t} ${downspeedgraph wlan1 20,100 33f5f5 f0ff33 -t} ${endif}${if_existing /proc/net/route wlan2}${color grey}[WLAN2]${addr wlan2}
-Up:${color darkgreen}${upspeed wlan2} ${alignr}${color grey}Down:${color darkgreen}${downspeed wlan2}
+${if_existing /proc/net/route eth0}${color grey}[Eth0]$color ${addr eth0} 
+${color grey}Up:${color lightgreen}${upspeed eth0} ${alignr}${color grey}Down:${color lightgreen}${downspeed eth0}
+${color grey} ${upspeedgraph eth0 20,100 33f5f5 f0ff33 -t} ${downspeedgraph eth0 20,100 33f5f5 f0ff33 -t} ${endif}${if_existing /proc/net/route eth3} ${color grey}[Eth3]$color ${addr eth3} 
+${color grey}Up:${color lightgreen}${upspeed eth3} ${alignr}${color grey}Down:${color lightgreen}${downspeed eth3}
+${color grey} ${upspeedgraph eth3 20,100 33f5f5 f0ff33 -t} ${downspeedgraph eth3 20,100 33f5f5 f0ff33 -t} ${endif}${if_existing /proc/net/route eth4} ${color grey}[Eth4]$color ${addr eth4} 
+${color grey}Up:${color lightgreen}${upspeed eth4} ${alignr}${color grey}Down:${color lightgreen}${downspeed eth4}
+${color grey} ${upspeedgraph eth4 20,100 33f5f5 f0ff33 -t} ${downspeedgraph eth4 20,100 33f5f5 f0ff33 -t} ${endif}${if_existing /proc/net/route wlan0}${color grey}[WLAN0]$color ${addr wlan0}
+${color grey}Up:${color lightgreen}${upspeed wlan0} ${alignr}${color grey}Down:${color lightgreen}${downspeed wlan0}
+${color grey} ${upspeedgraph wlan0 20,100 33f5f5 f0ff33 -t} ${downspeedgraph wlan0 20,100 33f5f5 f0ff33 -t} ${endif}${if_existing /proc/net/route wlan1}${color grey}[WLAN1]$color ${addr wlan1}
+${color grey}Up:${color lightgreen}${upspeed wlan1} ${alignr}${color grey}Down:${color lightgreen}${downspeed wlan1}
+${color grey} ${upspeedgraph wlan1 20,100 33f5f5 f0ff33 -t} ${downspeedgraph wlan1 20,100 33f5f5 f0ff33 -t} ${endif}${if_existing /proc/net/route wlan2}${color grey}[WLAN2]$color ${addr wlan2}
+${color grey}Up:${color lightgreen}${upspeed wlan2} ${alignr}${color grey}Down:${color lightgreen}${downspeed wlan2}
 ${color grey} ${upspeedgraph wlan2 20,100 33f5f5 f0ff33 -t} ${downspeedgraph wlan2 20,100 33f5f5 f0ff33 -t} ${endif}
+${color grey}[Global]$color ${texeci 3600 curl ip.appspot.com}
+${texeci 3600 curl ifconfig.me/host}
+# [Global] ${execi 3600 curl ifconfig.me/ip | tail}
+# [Global] ${execi 3600 wget -O - http://www.myglobalip.com/myip | tail}
 ${color darkgrey}$hr
 ### Processes ###
-${color grey}[Ps]${color darkgreen} $processes  ${color grey}[Run]${color darkgreen} $running_processes
+${color grey}[Ps]${color lightgreen} $processes  ${color grey}[Run]${color lightgreen} $running_processes
 ${color grey}[Highest CPU]       CPU%   MEM%
-${color lightgrey} ${top name 1} ${color orange}${top cpu 1} ${color lightblue}${top mem 1}
-${color lightgrey} ${top name 2} ${color orange}${top cpu 2} ${color lightblue}${top mem 2}
-${color lightgrey} ${top name 3} ${color orange}${top cpu 3} ${color lightblue}${top mem 3}
-${color lightgrey} ${top name 4} ${color orange}${top cpu 4} ${color lightblue}${top mem 4}
-${color lightgrey} ${top name 5} ${color orange}${top cpu 5} ${color lightblue}${top mem 5}
+${color lightgreen} ${top name 1} ${color orange}${top cpu 1} ${color lightblue}${top mem 1}
+${color lightgreen} ${top name 2} ${color orange}${top cpu 2} ${color lightblue}${top mem 2}
+${color lightgreen} ${top name 3} ${color orange}${top cpu 3} ${color lightblue}${top mem 3}
+${color lightgreen} ${top name 4} ${color orange}${top cpu 4} ${color lightblue}${top mem 4}
+${color lightgreen} ${top name 5} ${color orange}${top cpu 5} ${color lightblue}${top mem 5}
 ${color grey}[Highest MEM]       CPU%   MEM%
-${color lightgrey} ${top_mem name 1} ${color orange}${top_mem cpu 1} ${color lightblue}${top_mem mem 1}
-${color lightgrey} ${top_mem name 2} ${color orange}${top_mem cpu 2} ${color lightblue}${top_mem mem 2}
-${color lightgrey} ${top_mem name 3} ${color orange}${top_mem cpu 3} ${color lightblue}${top_mem mem 3}
-${color lightgrey} ${top_mem name 4} ${color orange}${top_mem cpu 4} ${color lightblue}${top_mem mem 4}
-${color lightgrey} ${top_mem name 5} ${color orange}${top_mem cpu 5} ${color lightblue}${top_mem mem 5}
+${color lightgreen} ${top_mem name 1} ${color orange}${top_mem cpu 1} ${color lightblue}${top_mem mem 1}
+${color lightgreen} ${top_mem name 2} ${color orange}${top_mem cpu 2} ${color lightblue}${top_mem mem 2}
+${color lightgreen} ${top_mem name 3} ${color orange}${top_mem cpu 3} ${color lightblue}${top_mem mem 3}
+${color lightgreen} ${top_mem name 4} ${color orange}${top_mem cpu 4} ${color lightblue}${top_mem mem 4}
+${color lightgreen} ${top_mem name 5} ${color orange}${top_mem cpu 5} ${color lightblue}${top_mem mem 5}
+### Weather ###
+# ${if_existing /usr/local/bin/weather.sh}${color darkgrey}$hr
+# ${color grey}[Weather]$color
+# ${texeci 3600 weather.sh}${endif}
