@@ -12,6 +12,7 @@ $makeindex  = 'mendex';
 $dvipdf  = 'dvipdfmx %O %S';
 $dvips  = 'dvipsk';
 # $pdf_mode = 3;
+# $pdflatex  = 'pdfplatex';
 
 if($^O eq "linux") {
     $dvi_previewer ='xdvi';
