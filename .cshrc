@@ -16,11 +16,11 @@ set savehist=(20000 merge)
     set autoexpand
 ## Directory名だけでcd
     set implicitcd=verbose
-## 
+##
 # set autocorrect
-## 
+##
 # set colorcat
-## 
+##
 # set correct=cmd
 ## ask before `rm *' command
     set rmstar
@@ -41,7 +41,7 @@ set savehist=(20000 merge)
 # Pipe
     bindkey -s '^xg' ' | grep'
     bindkey -s '^xl' ' | less'
-# Option 
+# Option
 #bindkey -s '^xh': ' --help'
 # Directory
     bindkey -s '^xh' ' ~/'
@@ -62,8 +62,8 @@ set savehist=(20000 merge)
     endsw
 
 ### Aliases
-    if ( -f ~/.csh_aliases ) then
-    source ~/.csh_aliases
+    if ( -f ~/.csh/conf/alias.csh ) then
+    source ~/.csh/conf/alias.csh
     endif
 
 ### Proxy
@@ -87,11 +87,11 @@ set savehist=(20000 merge)
 #module load matlab/R2011b
 #module load matlab/R2010b
     breaksw
-    default: 
+    default:
     breaksw
     endsw
 
     breaksw
-    default: 
+    default:
     breaksw
     endsw

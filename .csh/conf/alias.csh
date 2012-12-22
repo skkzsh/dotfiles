@@ -1,6 +1,3 @@
-# -*- shell-script -*-
-# vim: filetype=csh
-
 ### Basic
 alias ..    'cd ..'
 alias cd..  'cd ..'
