@@ -1,8 +1,4 @@
-# -*- shell-script -*-
-# vim: filetype=zsh
-
 # bashrc, zshrcの共通設定
-# TODO: File名を変える
 
 
 ### Ctrl-sによる画面出力停止を無効にして,
@@ -16,10 +12,15 @@ case "$TERM" in
     *)     LANG=ja_JP.utf-8 ;;
 esac
 
-
+# VimはAlias定義の後
+# OSごとのSetting
 case "`uname`" in
     Darwin)
         VISUAL=vim
+        # CLICOLOR=1
+        # LSCOLORS=DxGxcxdxCxegedabagacad
+        # LSCOLORS=gxfxcxdxbxegedabagacad
+        # LSCOLORS=ExFxCxDxBxegedabagacad
         ;;
     ## Windowsの環境変数でPAGERを指定している場合は
     ## 上書きしたいため
@@ -34,6 +35,15 @@ case "`uname`" in
     *) ;;
 esac
 
+## DistributionごとのSetting
+if [ -f /etc/issue.net ]; then
+    case "`cat /etc/issue.net`" in
+        Ubuntu*)
+            export EDITOR=vim
+            ;;
+        *)  ;;
+    esac
+fi
 
 ### perlbrew (perlbrew env)
 [ -d "$HOME/perl5/perlbrew" ] && . "$HOME/perl5/perlbrew/etc/bashrc"
@@ -53,10 +63,10 @@ fi
 
 
 ### rbenv (brew info rbenv)
+## TODO: rbenvがない場合OSによってstdoutに出たりstderrに出たり違う?
+which rbenv > /dev/null 2>&1 && eval "$(rbenv init -)"
+
 if [ -n "$BASH_VERSION" ]; then
-
-    which rbenv > /dev/null 2>&1 && eval "$(rbenv init -)"
-
     case "`uname`" in
 
         Linux)
@@ -75,40 +85,39 @@ if [ -n "$BASH_VERSION" ]; then
 
         *) ;;
     esac
-
-elif [ -n "$ZSH_VERSION" ]; then
-    ## TODO: rbenvがない場合OSによってstdoutに出たりstderrに出たり違う?
-    which rbenv > /dev/null 2>&1 && eval "$(rbenv init -)"
 fi
 
 
 ### autojump
+# fpath=(~/.autojump/functions $fpath) # compinitより前に
 case "`uname`" in
 
     Linux | CYGWIN* | MINGW32*)
-        # case $SHELL in
-        # esac
-        if [ -n "$BASH_VERSION" ]; then
-            [[ -s ~/.autojump/etc/profile.d/autojump.bash ]] && . ~/.autojump/etc/profile.d/autojump.bash
-        elif [ -n "$ZSH_VERSION" ]; then
-            if [ -d ~/.autojump ]; then
+        if [ -f ~/.autojump/etc/profile.d/autojump.sh ]; then
+            if [ -n "$ZSH_VERSION" ]; then
                 . ~/.autojump/etc/profile.d/autojump.zsh
-                # fpath=(~/.autojump/functions $fpath) # compinitより前に
+            elif [ -n "$BASH_VERSION" ]; then
+                . ~/.autojump/etc/profile.d/autojump.bash
             fi
         fi
         ;;
 
     Darwin)
-        ## brew info autojump
         if which brew > /dev/null ; then
-            if [ -f `brew --prefix`/etc/autojump ]; then
-                . `brew --prefix`/etc/autojump
+            ## brew info autojump
+            if [ -f `brew --prefix`/etc/autojump.sh ]; then
+                if [ -n "$ZSH_VERSION" ]; then
+                    . `brew --prefix`/etc/autojump.zsh
+                elif [ -n "$BASH_VERSION" ]; then
+                    . `brew --prefix`/etc/autojump.bash
+                fi
             fi
         fi
         ;;
 
     *) ;;
 esac
+
 
 ### z
 # case "`uname`" in
@@ -195,16 +204,18 @@ fi
 
 ### Super Computer
 case "$host" in
-    xe-000? | ap-000?)
-        ## CPU TimeとMemory等のLimit解除
-        # ulimit -v 4194304
-        # ulimit -t 72000
+    xe-000* | ap-000*)
         VISUAL=vim
 
+        module unload emacs/23.4
+        ## CPU TimeとMemory等のLimit解除
+        ulimit -v 4194304
+        ulimit -t 72000
+
         case "$host" in
-            ap-000?)
+            ap-000*)
                 ## Module
-                # module load matlab/R2012a
+                module load matlab/R2012a
                 # module load matlab/R2011b
                 # module load matlab/R2010b
                 ;;

@@ -1,6 +1,3 @@
-# -*- shell-script -*-
-# vim: filetype=sh
-
 # enable color support of ls and also add handy aliases
 if which dircolors > /dev/null ; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -10,6 +7,9 @@ if which dircolors > /dev/null ; then
     alias grep='grep --color=always'
     alias fgrep='fgrep --color=always'
     alias egrep='egrep --color=always'
+
+# elif which gdircolors > /dev/null ; then
+#     test -r ~/.dircolors && eval "$(gdircolors -b ~/.dircolors)" || eval "$(gdircolors -b)"
 fi
 
 case "`uname`" in
@@ -63,9 +63,10 @@ case "`uname`" in
 
         if which brew > /dev/null ; then
             if [ -d "`brew --cellar emacs`" ]; then
-                alias emacs23="`brew --cellar emacs`/23.3b/Emacs.app/Contents/MacOS/Emacs"
-                alias emacs24="`brew --cellar emacs`/24.1/Emacs.app/Contents/MacOS/Emacs"
+                alias emacs24="`brew --prefix emacs`/Emacs.app/Contents/MacOS/Emacs"
                 alias emacs='emacs24'
+                # alias emacs23="`brew --cellar emacs`/23.3b/Emacs.app/Contents/MacOS/Emacs"
+                # alias emacs24="`brew --cellar emacs`/24.1/Emacs.app/Contents/MacOS/Emacs"
             fi
             # which gsed > /dev/null && alias sed=gsed
         fi
@@ -114,6 +115,7 @@ alias cmx='chmod +x'
 # alias ='ln -s'
 # alias ='rdesktop'
 alias su-='su -'
+#alias crontab -i
 ### Network
 alias p=ping
 # alias ic=ifconfig

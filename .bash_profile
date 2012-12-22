@@ -54,6 +54,9 @@ if [ -d "$HOME/.nodebrew" ] ; then
 fi
 
 ### TeX
+# kpsewhich -var-value TEXMF*
+# kpsewhich --expand-path=$TEXMF*
+# kpsewhich --expand-path='$TEXMF*' # Mac
 case "`uname`" in
     Darwin)
         # TEXINPUTS=~/texmf/ptex:~/texmf/tex:$TEXINPUTS
@@ -61,6 +64,9 @@ case "`uname`" in
         # BSTINPUTS=~/texmf/jbibtex/bst:~/texmf/bibtex/bst:$BSTINPUTS
         # TEXMF=
         # TEXMFHOME=
+        # TEXMFMAIN=
+        # TEXMFLOCAL=
+        # TEXMFPROJECT=
         # TEXMFVAR=
         # TEXMFCONFIG=
         # TEXMFCNF=
@@ -69,9 +75,28 @@ case "`uname`" in
 esac
 
 
+### autojump
+case "`uname`" in
+
+    Darwin)
+        if which brew > /dev/null ; then
+            ## brew info autojump
+            if [ -f `brew --prefix`/etc/autojump.sh ]; then
+                if [ -n "$BASH_VERSION" ]; then
+                    . `brew --prefix`/etc/autojump.sh
+                fi
+            fi
+        fi
+        ;;
+
+    *) ;;
+esac
+
+
 if [ -d "$HOME/.usr/Yomico" ]; then
     PATH="$HOME/.usr/Yomico:$PATH"
 fi
+
 
 case "`uname`" in
 
@@ -108,6 +133,7 @@ case "`uname`" in
             ## 既存のCommandをCoreutilsで上書きするなら下記を設定
             ## if [ -d "`brew --prefix coreutils`" ]; then
             ##     PATH="`brew --prefix coreutils`/libexec/gnubin:$PATH"
+            ##     MANPATH="`brew --prefix coreutils`/libexec/gnuman:$MANPATH"
             ## fi
         # fi
         if [ -d /Applications/MacVim.app ]; then
