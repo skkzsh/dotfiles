@@ -1,11 +1,12 @@
-## (shell-command "xrdb ~/.Xresource")
+!! (shell-command "xrdb ~/.Xresource")
 
-## EmacsではXIMを無効
+!! EmacsではXIMを無効
 Emacs*useXIM: false
+Emacs23*useXIM: false
 
-## XTerm
-# XTerm*faceName: 'Sans'
-# XTerm*faceSize: 14
-# XTerm*font: 8x14
+!! XTerm
+! XTerm*faceName: 'Sans'
+! XTerm*faceSize: 14
+! XTerm*font: 8x14
 XTerm*foreground: black
 XTerm*background: white
