@@ -42,11 +42,11 @@ promptinit
 #0:black, 1:red, 2:green, 3:yellow,
 #4:blue, 5:magenta, 6:cyan, 7:white
 case "$HOST" in
+    over*)             col=red     ;;
     sing*)             col=green   ;;
-    leap*)             col=cyan    ;;
-    drive*)            col=red     ;;
     box*)              col=magenta ;;
     ride*)             col=yellow  ;;
+    ubuntu*)           col=        ;;
     debian*)           col=        ;;
     *PC)               col=        ;;
     h24?)              col=        ;;
@@ -185,13 +185,20 @@ setopt no_beep
 ##
 # setopt extended_glob
 
+## cdr
+autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+add-zsh-hook chpwd chpwd_recent_dirs
+zstyle ':chpwd:*' recent-dirs-max 5000
+zstyle ':chpwd:*' recent-dirs-default yes
+zstyle ':completion:*' recent-dirs-insert both
 
-## env
-[ -f ~/.bash_env ] && . ~/.bash_env
 
-
-## Alias
-[ -f ~/.zsh_aliases ] && . ~/.zsh_aliases
+if [ -d ~/.bash/conf ]; then
+    ## env
+    . ~/.bash/conf/base.bash
+    ## Alias
+    . ~/.zsh/conf/alias.zsh
+fi
 
 
 ### Plugin
@@ -199,7 +206,9 @@ if [ -d ~/.zsh/plugin ]; then
 
     ## zaw
     . ~/.zsh/plugin/zaw/zaw.zsh
-    # bindkey '^xh' zaw-history
+    bindkey '^xh' zaw-history
+    zstyle ':filter-select' case-insensitive yes # 絞り込みをcase-insensitiveに
+    bindkey '^x:' zaw-cdr
 
     ## auto-fu
     # . ~/.zsh/plugin/auto-fu.zsh/auto-fu.zsh
@@ -208,7 +217,10 @@ if [ -d ~/.zsh/plugin ]; then
     # }
     # zle -N zle-line-init
 
+    ## syntax-highlighting
+    # . ~/.zsh/plugin/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
+
 
 ### percol
 if which percol > /dev/null ; then
@@ -247,6 +259,7 @@ esac
 ### ScreenのHardStatusの表示
 case "$TERM" in
     screen)
+        TERM=xterm-256color # screen上でもpercolの色を同じにする
         ## 実行中のCommand
         preexec() {
             echo -ne "\ek#${1%% *}\e\\"
@@ -260,10 +273,10 @@ case "$TERM" in
 esac
 
 ## ^でcd ..
-function cdup() {
-    echo
-    cd ..
-    zle reset-prompt
-}
-zle -N cdup
-bindkey '\^' cdup
+# function cdup() {
+#     echo
+#     cd ..
+#     zle reset-prompt
+# }
+# zle -N cdup
+# bindkey '\^' cdup

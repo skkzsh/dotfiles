@@ -1,5 +1,5 @@
 ## Bash Alias
-[ -f ~/.bash_aliases ] && . ~/.bash_aliases
+[ -f ~/.bash/conf/alias.bash ] && . ~/.bash/conf/alias.bash
 
 
 ## Global Alias
@@ -10,6 +10,7 @@ alias -g A='| xargs'
 # alias -g H='| head'
 # alias -g T='| tail'
 # alias -g S='| sed'
+alias -g P='| percol'
 alias -g N='> /dev/null'
 alias -g H=--help
 alias -g V=--version
@@ -23,10 +24,12 @@ alias -s eps=gv
 
 case `uname` in
     Linux)
+        alias -g C='| xclip -sel clip'
         alias -s dvi=xdvi
-        alias -s pdf=apvlv
+        alias -s pdf=zathura
         ;;
     Darwin)
+        alias -g C='| pbcopy'
         alias -s dvi='open -a Mxdvi'
         alias -s pdf='open -a Preview'
         ;;
