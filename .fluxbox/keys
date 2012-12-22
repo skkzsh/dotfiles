@@ -214,15 +214,17 @@ MoveMode: Shift l :MoveRight 10
 Mod4 m :RootMenu
 Mod4 r :Reconfigure
 Mod4 q :Restart
-Control Mod1 l :ExecCommand gnome-screensaver-command -l
+# Control Mod1 l :ExecCommand gnome-screensaver-command -l
 Mod4 l :ExecCommand gnome-screensaver-command -l
 Control Mod3 w :MoveLeft 1600
 Control Mod3 e :MoveRight 1600
 
 ## Application
-Control Mod1 t :ExecCommand gnome-terminal
-Control Mod1 Shift t :ExecCommand mlterm
-Mod3 Shift Return :ExecCommand xterm
+Mod3 Return :ExecCommand gnome-terminal
+Control Mod1 Shift t :ExecCommand gnome-terminal
+# Control Mod1 t :ExecCommand gnome-terminal
+# Control Mod1 Shift t :ExecCommand mlterm
+# Mod3 Shift Return :ExecCommand xterm
 Control Shift Escape :ExecCommand gnome-system-monitor
 # Control Mod1 Shift a :ExecCommand gksu synaptic
 # Control Mod1 Shift b :ExecCommand thunderbird

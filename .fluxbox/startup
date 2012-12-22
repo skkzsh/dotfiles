@@ -17,9 +17,9 @@
 
 ### Start if Exist. ###
 ## Dropbox
-[ -x "`which dropbox 2> /dev/null`" ] && dropbox start -i &
+which dropbox > /dev/null && dropbox start -i &
 ## Network
-[ -x "`which nm-applet 2> /dev/null`" ] && nm-applet -sm-disable &
+which nm-applet > /dev/null && nm-applet -sm-disable &
 
 ## Keyring
 # if [ -e /usr/bin/gnome-keyring-daemon ]; then
@@ -38,7 +38,7 @@ list='gnome-volume-control-applet gnome-sound-applet gnome-power-manager gnome-s
 # gnome-settings-daemon &
 # system-config-printer-applet &
 for app in $list; do
-    [ -x "`which $app 2> /dev/null`" ] && $app &
+    which $app > /dev/null && $app &
 done
 
 # ssh-agent
@@ -59,7 +59,7 @@ done
 ## ln -s /home/hoge /home/user
 ## とか?
 
-[ -x "`which xcompmgr 2> /dev/null`" ] && xcompmgr -n &
+which xcompmgr > /dev/null && xcompmgr -n &
 
 # And last but not least we start fluxbox.
 # Because it is the last app you have to run it with ''exec'' before it.
