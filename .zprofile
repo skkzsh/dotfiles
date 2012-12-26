@@ -1,8 +1,4 @@
-if [ -f "$HOME/.bash_profile" ]; then
-    . "$HOME/.bash_profile"
-elif [ -f "$HOME/.profile" ]; then
-    . "$HOME/.profile"
-fi
+[ -f "$HOME/.bash_profile" ] && . "$HOME/.bash_profile"
 
 ### Mac
 ## brew install zsh
