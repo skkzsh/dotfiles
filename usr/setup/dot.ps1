@@ -1,5 +1,7 @@
 <#
 .SYNOPSIS
+Make symbolic links or copy dot files
+from repository, Dropbox, and host OS.
 #>
 
 ### Setting
@@ -21,9 +23,9 @@ $dot_zsh = 'plugin', 'functions'
 
 $vimrc = 'vimrc', 'gvimrc'
 $dot_emacs = '.emacs-w3m', '.wl', '.folders', '.signature'
-$dot_emacs_d = 'conf', 'lisp', 'elpa', 'auto-install', 'public_repos'
+$dot_emacs_d = 'conf', 'lisp', 'elpa', 'auto-install', 'public_repos', 'usr'
 
-$dot_unix_files = '.screenrc', '.gitconfig', '.gitignore', '.perltidyrc'
+$dot_unix_files = '.latexmkrc', '.screenrc', '.gitconfig', '.gitignore', '.perltidyrc'
 $dot_unix_dirs = '.auto-insert'
 
 
@@ -42,9 +44,9 @@ foreach ($file in $vimrc) {
 smartln.ps1 mklink "$unix_dir\.vim" "$vim_prefix\vimfiles"
 
 ## Dot Files
-#foreach ($file in $bashrc, $dot_unix_files, $dot_emacs) {
-#    smartln.ps1 mklink "$unix_dir\$file" "$ENV:HOME\$file"
-#}
+foreach ($file in $bashrc, $dot_unix_files, $dot_emacs) {
+    smartln.ps1 mklink "$unix_dir\$file" "$ENV:HOME\$file"
+}
 ## Dot Directories
 foreach ($dir in $dot_unix_dirs) {
     smartln.ps1 mklink "$unix_dir\$file" "$ENV:HOME\$file"

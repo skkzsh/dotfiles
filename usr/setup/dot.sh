@@ -1,9 +1,12 @@
 #!/bin/sh
-#
-# DropboxやRepository, Host OSにある
-# Dot FilesやDirectoryを共有させるために
-# Symbolic Linkを張る
-##################################################
+: << POD
+=head1 DESCRIPTION
+
+Make symbolic links or copy dot files
+from repository, Dropbox, and host OS.
+
+=cut
+POD
 
 
 ### Setting
@@ -22,7 +25,7 @@ dot_zsh='plugin functions conf'
 
 dot_vim='.vimrc .vim'
 dot_emacs='.emacs-w3m .wl .folders .signature'
-dot_emacs_d='init.el conf lisp elpa auto-install public_repos'
+dot_emacs_d='init.el conf lisp elpa auto-install public_repos usr'
 
 dot_unix='.screenrc .gitconfig .gitignore .perltidyrc .latexmkrc .auto-insert .percol.d'
 
