@@ -26,16 +26,6 @@ case "`uname`" in
     *) ;;
 esac
 
-### perlbrew
-# if [ -d "$HOME/perl5" ]; then
-#     PATH="$HOME/perl5/bin:$PATH"
-#     MANPATH="$MANPATH:$HOME/perl5/man"
-#     export PERL5LIB="$HOME/perl5/lib/perl5"
-#     export PERL_CPANM_OPT="--local-lib=$HOME/perl5"
-#     # export PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"
-#     # MODULEBUILDRC="$HOME/perl5/.modulebuildrc"
-# fi
-
 ### rbenv
 case "`uname`" in
     Linux)
@@ -52,28 +42,6 @@ if [ -d "$HOME/.nodebrew" ] ; then
     PATH="$HOME/.nodebrew/current/bin:$PATH"
     # nodebrew use latest
 fi
-
-### TeX
-# kpsewhich -var-value TEXMF*
-# kpsewhich --expand-path=$TEXMF*
-# kpsewhich --expand-path='$TEXMF*' # Mac
-case "`uname`" in
-    Darwin)
-        # TEXINPUTS=~/texmf/ptex:~/texmf/tex:$TEXINPUTS
-        # BIBINPUTS=~/texmf/jbibtex/bib:~/texmf/bibtex/bib:$BIBINPUTS
-        # BSTINPUTS=~/texmf/jbibtex/bst:~/texmf/bibtex/bst:$BSTINPUTS
-        # TEXMF=
-        # TEXMFHOME=
-        # TEXMFMAIN=
-        # TEXMFLOCAL=
-        # TEXMFPROJECT=
-        # TEXMFVAR=
-        # TEXMFCONFIG=
-        # TEXMFCNF=
-        ;;
-    *) ;;
-esac
-
 
 ### autojump
 case "`uname`" in
@@ -93,11 +61,6 @@ case "`uname`" in
 esac
 
 
-if [ -d "$HOME/.usr/Yomico" ]; then
-    PATH="$HOME/.usr/Yomico:$PATH"
-fi
-
-
 case "`uname`" in
 
     Linux)
@@ -113,12 +76,6 @@ case "`uname`" in
         ;;
 
     Darwin)
-        ## if [ -d /Applications/Thunderbird.app ]; then
-        ##     PATH="/Applications/Thunderbird.app/Contents/MacOS:$PATH"
-        ## fi
-        ## if [ -d /Applications/Firefox.app ]; then
-        ##     PATH="/Applications/Firefox/Contents/MacOS:$PATH"
-        ## fi
         if [ -d /Applications/Xpdf.app ]; then
             PATH="/Applications/Xpdf.app:/Applications/Xpdf.app/bin:$PATH"
         fi
@@ -150,22 +107,62 @@ esac
 
 
 ### Key Chain
-# GUIだと失敗
+# GUIだと失敗?
+if [ -n "$BASH_VERSION" ]; then
+    host="$HOSTNAME"
+elif [ -n "$ZSH_VERSION" ]; then
+    host="$HOST"
+fi
+
 case "`uname`" in
     Linux)
-        # if [ -x /usr/bin/keychain ] ; then
-        #     # unset SSH_AUTH_SOCK
-        #     keychain ~/.ssh/id_rsa
-        #     # keychain -q ~/.ssh/id_rsa
-        #     . ~/.keychain/$HOSTNAME-sh
-        #     # . ~/.ssh-agent-$HOSTNAME
+        # if ! which X > /dev/null 2>&1 ; then
+            if which keychain > /dev/null 2>&1 ; then
+                # unset SSH_AUTH_SOCK
+                keychain ~/.ssh/id_rsa
+                # keychain -q ~/.ssh/id_rsa
+                . ~/.keychain/$host-sh
+                # . ~/.ssh-agent-$HOSTNAME
+            fi
         # fi
         ;;
     *) ;;
 esac
 
-# exec ssh-agent $SHELL
-# eval `ssh-agent`
+unset host
 
-### Mac
-## brew install bash
+# eval `ssh-agent`
+# ssh-agent $SHELL
+# exec ssh-agent $SHELL
+# ssh-add
+
+## TODO: screenでもssh-agent
+## 大丈夫か?
+# ln -sf $SSH_AUTH_SOCK ~/.ssh/ssh_auth_sock
+# export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
+# if [ -S ~/.ssh/ssh_auth_sock ]; then
+#     # echo '1!'
+#     export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
+# elif [ ! -S "$SSH_AUTH_SOCK" ]; then
+#     # echo '2!'
+#     export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
+# elif [ ! -L "$SSH_AUTH_SOCK" ]; then
+#     # echo '3!'
+#     ln -snf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock &&
+#     export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
+# fi
+
+
+### TeX
+case "`uname`" in
+    Linux)
+        # if [ -d /usr/local/texlive ]; then
+        #     PATH=/usr/local/texlive/2012/bin/x86_64-linux:$PATH
+        #     MANPATH=/usr/local/texlive/2012/texmf/doc/man:$MANPATH
+        #     INFOPATH=/usr/local/texlive/2012/texmf/doc/info:$INFOPATH
+        # fi
+        ;;
+    Darwin)
+        ;;
+    *) ;;
+esac
