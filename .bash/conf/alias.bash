@@ -1,16 +1,12 @@
-# enable color support of ls and also add handy aliases
-if which dircolors > /dev/null ; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+if [ -n "$LS_COLORS" ]; then
     alias ls='ls -Fh --color=always'
     alias dir='dir --color=always'
     alias vdir='vdir --color=always'
     alias grep='grep --color=always'
     alias fgrep='fgrep --color=always'
     alias egrep='egrep --color=always'
-
-# elif which gdircolors > /dev/null ; then
-#     test -r ~/.dircolors && eval "$(gdircolors -b ~/.dircolors)" || eval "$(gdircolors -b)"
 fi
+
 
 case "`uname`" in
 
@@ -25,7 +21,6 @@ case "`uname`" in
         alias lvi=/usr/share/vim/vimcurrent/macros/less.sh
         alias m='matlab -nodesktop -nosplash'
         # PDF
-        # alias acrd=acroread
         # alias evc=evince
         # alias xp=xpdf
         alias a=apvlv
@@ -37,15 +32,7 @@ case "`uname`" in
         alias pacou='paco -ua'
         alias pacor='paco -r'
 
-        ## Dropbox
         alias db=dropbox
-        dbs() {
-            case "`dropbox status`" in
-                "Dropbox isn't running!") dropbox start -i ;; # 未起動ならば起動
-                *) dropbox status ;; # でなければ状態を表示
-            esac
-        }
-
         ;;
 
     Darwin)
@@ -83,6 +70,19 @@ case "`uname`" in
     *) ;;
 esac
 
+
+if which htop > /dev/null 2>&1 ; then
+    alias t=htop
+else
+    alias t=top
+fi
+if which colordiff > /dev/null 2>&1 ; then
+    alias d=colordiff
+else
+    alias d=diff
+fi
+
+
 ### Basic
 alias ..='cd ..'
 alias ....='cd ../..'
@@ -106,6 +106,9 @@ alias du='du -h'
 alias h=history
 alias jb='jobs -l'
 alias wh=which
+alias zx='tar zxvf'
+alias jx='tar jxvf'
+alias zc='tar zcvf'
 # alias ='locate'
 alias nkfg='nkf -g'
 alias nkfu='nkf --overwrite -w -Lu'
@@ -113,7 +116,6 @@ alias nkfe='nkf --overwrite -e -Lu'
 alias nkfs='nkf --overwrite -s -Lw'
 alias cmx='chmod +x'
 # alias ='ln -s'
-# alias ='rdesktop'
 alias su-='su -'
 #alias crontab -i
 ### Network
@@ -121,17 +123,8 @@ alias p=ping
 # alias ic=ifconfig
 # alias std='sudo tcpdump'
 # alias =nm-connection-editor
-
-if which htop > /dev/null 2>&1 ; then
-    alias t=htop
-else
-    alias t=top
-fi
-if which colordiff > /dev/null 2>&1 ; then
-    alias d=colordiff
-else
-    alias d=diff
-fi
+alias wg=wget
+alias c=curl
 
 ### less
 alias less='less -R -x4'
@@ -205,15 +198,11 @@ alias da=deactivate
 
 ### Git
 alias g=git
-## Git RepositoryのTopへcd
-gtop() {
-    cd $(git rev-parse --show-toplevel)
-}
 
 ### Memo
 # a=apvlv
 # b=
-# c=
+# c=curl
 # d=diff
 # e=emacs
 # f=

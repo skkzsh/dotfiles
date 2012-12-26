@@ -1,5 +1,5 @@
 ## Bash Alias
-[ -f ~/.bash/conf/alias.bash ] && . ~/.bash/conf/alias.bash
+[ -d ~/.bash/conf ] && . ~/.bash/conf/alias.bash
 
 
 ## Global Alias
@@ -16,6 +16,8 @@ alias -g H=--help
 alias -g V=--version
 alias -g ....=../..
 alias -g ......=../../..
+alias -g Z='| tar zxf -'
+alias -g J='| tar jxf -'
 
 
 ## Suffix Alias
