@@ -13,3 +13,6 @@
 [submodule ".zsh/plugin/zsh-syntax-highlighting"]
 	path = .zsh/plugin/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule ".bash/public_repos/dircolors-solarized"]
+	path = .bash/public_repos/dircolors-solarized
+	url = https://github.com/seebi/dircolors-solarized.git
