@@ -1,6 +1,13 @@
 #!/bin/sh
+: << POD
+=head1 SYNOPSIS
 
-# PowerPointに貼るLaTeX数式のEPS画像を作成
+Make a EPS Image
+of LaTeX Numerical Expression
+for PowerPoint
+
+=cut
+POD
 
 file=${1%.tex}
 
@@ -14,6 +21,6 @@ eps2eps -r10000 ${file}_tmp.eps ${file}.eps
 # \pagestyle{empty}
 # \begin{document}
 # \[
-# 
+#
 # \]
 # \end{document}

@@ -1,4 +1,11 @@
 #!/bin/sh
+: << POD
+=head1 SYNOPSIS
+
+Get Weather Forecast
+
+=cut
+POD
 
 # city=85 # Tokyo
 city=47 # Kyoto

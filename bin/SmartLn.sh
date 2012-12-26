@@ -2,13 +2,13 @@
 
 =head1 NAME
 
-SmartLn - Symbolic Link or Copy Carefully
+SmartLn - Make Symbolic Link or Copy Carefully
 
 =head1 SYNOPSIS
 
     . SmartLn.sh
 
-    # Symbolic Link from Source to Destination
+    # Make Symbolic Link from Source to Destination
     SmartLn ln 'source' 'destination1'
 
     # Copy from Source to Destination
@@ -16,10 +16,10 @@ SmartLn - Symbolic Link or Copy Carefully
 
 =head1 DESCRIPTION
 
-Using this shell script,
-you can symbolic link or copy files
-only if a source file exists and
-you agree to remove a distination file.
+This shell script enables you to
+make a symbolic link or copy a file
+only if the source file exists and
+you agree to remove the distination file.
 
 =cut
 POD
