@@ -1,0 +1,8 @@
+# vim: filetype=conf
+
+fontsize = 17
+tabsize = 4
+logsize = 1024
+scrollbar_mode = none
+vertical_mode = none
+bg_color = white
