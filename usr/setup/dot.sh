@@ -21,13 +21,13 @@ unix_dir=~/Repository/bitbucket/unix_files
 
 bashrc='.bash_profile .bashrc .inputrc .bash'
 zshrc='.zshrc .zprofile'
-dot_zsh='plugin functions conf'
+dot_zsh='conf functions public_repos'
 
 dot_vim='.vimrc .vim'
 dot_emacs='.emacs-w3m .wl .folders .signature'
 dot_emacs_d='init.el conf lisp elpa auto-install public_repos usr'
 
-dot_unix='.screenrc .gitconfig .gitignore .perltidyrc .latexmkrc .auto-insert .percol.d'
+dot_unix='.screenrc .gitconfig .gitignore .perltidyrc .ackrc .latexmkrc .auto-insert .percol.d'
 
 dot_x11='.gvimrc .conkyrc .apvlvrc .Xresources .Xmodmap .xmonad'
 dot_fluxbox='init styles keys startup apps'
@@ -124,7 +124,6 @@ case "$HOSTNAME" in
         # SmartLn ln $unix_dir/.synergys/leap/esprimo-leap.synergy.conf ~/.synergy.conf
         ;;
     ride*)
-        SmartLn ln $unix_dir/.bash/conf/proxy.bash ~/.bash_proxy
         ;;
     ubuntu*)
         ;;
