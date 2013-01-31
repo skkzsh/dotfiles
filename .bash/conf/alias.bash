@@ -1,28 +1,33 @@
-if [ -n "$LS_COLORS" ]; then
-    alias ls='ls -Fh --color=always'
-    alias dir='dir --color=always'
-    alias vdir='vdir --color=always'
-    alias grep='grep --color=always'
-    alias fgrep='fgrep --color=always'
-    alias egrep='egrep --color=always'
-fi
-
+## TODO: Macでcoreutilsを使う場合を考慮
+## dircolorsの後に置く
 
 case "`uname`" in
 
     Linux)
+
+        if [ -n "$LS_COLORS" ]; then
+            alias ls='ls -Fh --color=always'
+            alias dir='dir -Fh --color=always'
+            alias vdir='vdir -Fh --color=always'
+            alias grep='grep --color=always'
+            alias fgrep='fgrep --color=always'
+            alias egrep='egrep --color=always'
+        fi
 
         # Add an "alert" alias for long running commands.  Use like so:
         #   sleep 10; alert
         alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
         alias o=xdg-open
+        alias pst='xclip -sel clip -o'
+
         alias n='nautilus --no-desktop'
         alias lvi=/usr/share/vim/vimcurrent/macros/less.sh
         alias m='matlab -nodesktop -nosplash'
         # PDF
         # alias evc=evince
         # alias xp=xpdf
+        # alias =zathura
         alias a=apvlv
         ## Paco
         alias pacod='paco -D'
@@ -38,6 +43,8 @@ case "`uname`" in
     Darwin)
 
         alias o=open
+        alias pst=pbpaste
+
         alias ls='ls -FhG'
         alias grep='grep --color=always'
         alias fgrep='fgrep --color=always'
@@ -51,20 +58,31 @@ case "`uname`" in
         if which brew > /dev/null ; then
             if [ -d "`brew --cellar emacs`" ]; then
                 alias emacs24="`brew --prefix emacs`/Emacs.app/Contents/MacOS/Emacs"
-                alias emacs='emacs24'
-                # alias emacs23="`brew --cellar emacs`/23.3b/Emacs.app/Contents/MacOS/Emacs"
-                # alias emacs24="`brew --cellar emacs`/24.1/Emacs.app/Contents/MacOS/Emacs"
+                alias emacs=emacs24
+                alias emacs23="`brew --cellar emacs`/23.3b/Emacs.app/Contents/MacOS/Emacs"
             fi
             # which gsed > /dev/null && alias sed=gsed
+            ## Shell ScriptだとAliasが無効?
         fi
 
         ;;
 
+    MINGW32*)
+        alias o=start
+        alias vi=vim
+        alias ls='ls -Fh --color=always'
+        alias dir='dir -Fh --color=always'
+        alias vdir='vdir -Fh --color=always'
+        ## Git BashのError回避のため
+        if [ -n "$LS_COLORS" ]; then
+            alias grep='grep --color=always'
+            alias fgrep='fgrep --color=always'
+            alias egrep='egrep --color=always'
+        fi
+        ;;
+
     CYGWIN*)
         alias o=cygstart
-        ;;
-    MINGW32*)
-        alias o=open
         ;;
 
     *) ;;
@@ -101,14 +119,20 @@ alias lla='ls -lA'
 alias rm='rm -i'
 alias mv='mv -i'
 alias cp='cp -i'
+alias md=mkdir
+alias rd=rmdir
 alias df='df -h'
 alias du='du -h'
 alias h=history
 alias jb='jobs -l'
-alias wh=which
+alias wh='which'
+alias wha='which -a'
 alias zx='tar zxvf'
-alias jx='tar jxvf'
 alias zc='tar zcvf'
+alias jx='tar jxvf'
+alias jc='tar jcvf'
+alias Jx='tar Jxvf'
+alias Jc='tar Jcvf'
 # alias ='locate'
 alias nkfg='nkf -g'
 alias nkfu='nkf --overwrite -w -Lu'
@@ -128,7 +152,7 @@ alias c=curl
 
 ### less
 alias less='less -R -x4'
-alias l=less
+alias l='less'
 alias lsl='ls | less'
 alias lll='ls -l | less'
 alias lal='ls -A | less'
@@ -160,11 +184,12 @@ alias sS='screen -S'
 ### Editor
 
 ## Emacs for X
-alias e=emacs
+alias e='emacs'
 alias wl='emacs -f wl'
 ## Emacs for CUI
-alias enw='env TERM=xterm-256color emacs -nw'
-alias wlnw='env TERM=xterm-256color emacs -nw -f wl'
+alias enw='emacs -nw'
+alias wlnw='emacs -nw -f wl'
+# env TERM=xterm-256color
 ## Emacs Client
 ## Optionによる挙動の違いがよく分からない
 ## Emacs Server

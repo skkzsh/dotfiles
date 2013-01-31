@@ -1,5 +1,17 @@
-### TERMごとのSetting
-## Consoleで英語, その他で日本語
+# TODO: Macでcoreutilsを使う場合を考慮
+
+# export LESS='-R -x4'
+# if [ -n "$LS_COLORS" -o "`uname`" = Darwin ]; then
+#     export GREP_OPTIONS='--color=always'
+#     # if [ -n "$LS_COLORS" ]; then
+#     #     export LS_OPTIONS='-Fh --color=always'
+#     # elif [ "`uname`" = Darwin ] ; then
+#     #     export LS_OPTIONS='-FhG'
+#     # fi
+# fi
+
+### Settings for each TERM
+## if Console in English, otherwise in Japanese
 case "$TERM" in
     linux) LANG=C           ;;
     *)     LANG=ja_JP.utf-8 ;;
@@ -8,7 +20,9 @@ esac
 case "$TERM" in
     xterm*)
         case "`uname`" in
-            Linux | MINGW32*) TERM=xterm-256color ;;
+            Linux) TERM=xterm-256color ;;
+            # Linux | MINGW32*) TERM=xterm-256color ;;
+            ## Console2でのgit diffはxtermでないとError
             *) ;;
         esac
         ;;
@@ -16,11 +30,11 @@ case "$TERM" in
 esac
 
 
-### OSごとのSetting
+### Settings for each OS
 ## VimはAlias定義の後?
 case "`uname`" in
     Darwin)
-        VISUAL=vim
+        export VISUAL=vim
         # CLICOLOR=1
         # LSCOLORS=DxGxcxdxCxegedabagacad
         # LSCOLORS=gxfxcxdxbxegedabagacad
@@ -28,18 +42,20 @@ case "`uname`" in
         ;;
     ## Windowsの環境変数でPAGERを指定している場合は
     ## 上書きしたいため
+    MINGW32*)
+        # export TERM=xterm-256color
+        # export TERM=xterm
+        export PAGER=less
+        export VISUAL=vim
+        ;;
     CYGWIN*)
         PAGER=less
-        ;;
-    MINGW32*)
-        PAGER=less
-        VISUAL=vim
-        TERM=xterm
         ;;
     *) ;;
 esac
 
-### DistributionごとのSetting
+
+### Settings for each Linux Distribution
 ## いくつか方法がある
 if [ -f /etc/issue.net ]; then
     case "`cat /etc/issue.net`" in
@@ -57,15 +73,9 @@ if [ -f /etc/issue.net ]; then
 fi
 
 
-### HostごとのSetting
-if [ -n "$BASH_VERSION" ]; then
-    host="$HOSTNAME"
-elif [ -n "$ZSH_VERSION" ]; then
-    host="$HOST"
-fi
-
+### Settings for each Host
 ### Super Computer
-case "$host" in
+case "`hostname`" in
     xe-000* | ap-000*)
 
         module unload emacs/23.4
@@ -73,7 +83,7 @@ case "$host" in
         ulimit -v 4194304
         ulimit -t 72000
 
-        case "$host" in
+        case "`hostname`" in
             ap-000*)
                 ## Module
                 module load matlab/R2012a
@@ -86,8 +96,6 @@ case "$host" in
         ;;
     *) ;;
 esac
-
-unset host
 
 ### Proxy
 [ -f ~/.bash_proxy ] && . ~/.bash_proxy

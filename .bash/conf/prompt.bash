@@ -11,24 +11,47 @@
 ### 5: 点滅
 ### 7: 反転
 case "$HOSTNAME" in
-    over*)             col=31 ;;
     sing*)             col=32 ;;
     box*)              col=35 ;;
+    over*)             col=31 ;;
     ride*)             col=33 ;;
+    cern*)             col=4  ;;
     ubuntu*)           col=4  ;;
     debian*)           col=4  ;;
     *PC)               col=7  ;;
+    *ZENBOOK)          col=4  ;;
     h24?)              col=4  ;;
     xe-000? | ap-000?) col=4  ;;
     *)                 col=4  ;;
 esac
+
 col_begin="\[\e[${col}m\]"
 col_end="\[\e[0m\]"
-case "$TERM" in
-    xterm* | screen*)
-        ## Ubuntu Base
-        PS1="\[\e]0;\h: \w\a\]${debian_chroot:+($debian_chroot)}${col_begin}\h${col_end}:\w \$ "
-        ## PS1="\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\u@\h:\w\$ " # Default
+unset col
+
+## Ubuntu Base
+# Console2, MINGWだと, TERM=cygwin
+case "`uname`" in
+    MINGW32*)
+            PS1="\[\e]0;\w\a\]${debian_chroot:+($debian_chroot)}\w ${col_begin}\$${col_end} "
         ;;
-    *) ;;
+
+    *)
+        case "$TERM" in
+            xterm* | screen*)
+                case "$USER" in
+                    root)
+                        PS1="\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}${col_begin}\u${col_end}@${col_begin}\h${col_end}:\w \$ "
+                        ;;
+                    *)
+                        PS1="\[\e]0;\h: \w\a\]${debian_chroot:+($debian_chroot)}${col_begin}\h${col_end}:\w \$ "
+                        ;;
+                esac
+                ;;
+            *) ;;
+        esac
+        ;;
 esac
+# PS1="\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\u@\h:\w\$ " # Ubuntu Default
+
+unset col_begin col_end
