@@ -1,21 +1,24 @@
-[submodule ".zsh/plugin/oh-my-zsh"]
-	path = .zsh/plugin/oh-my-zsh
-	url = https://github.com/robbyrussell/oh-my-zsh.git
-[submodule ".zsh/plugin/zaw"]
-	path = .zsh/plugin/zaw
-	url = https://github.com/zsh-users/zaw.git
-[submodule ".zsh/plugin/zsh-lovers"]
-	path = .zsh/plugin/zsh-lovers
-	url = https://github.com/grml/zsh-lovers.git
-[submodule ".zsh/plugin/auto-fu.zsh"]
-	path = .zsh/plugin/auto-fu.zsh
-	url = https://github.com/hchbaw/auto-fu.zsh.git
-[submodule ".zsh/plugin/zsh-syntax-highlighting"]
-	path = .zsh/plugin/zsh-syntax-highlighting
-	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
 [submodule ".bash/public_repos/dircolors-solarized"]
 	path = .bash/public_repos/dircolors-solarized
 	url = https://github.com/seebi/dircolors-solarized.git
 [submodule ".bash/public_repos/nodebrew"]
 	path = .bash/public_repos/nodebrew
 	url = https://github.com/hokaccha/nodebrew.git
+[submodule ".zsh/public_repos/zsh-completions"]
+	path = .zsh/public_repos/zsh-completions
+	url = https://github.com/zsh-users/zsh-completions.git
+[submodule ".zsh/public_repos/zaw"]
+	path = .zsh/public_repos/zaw
+	url = https://github.com/zsh-users/zaw.git
+[submodule ".zsh/public_repos/zsh-syntax-highlighting"]
+	path = .zsh/public_repos/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule ".zsh/public_repos/oh-my-zsh"]
+	path = .zsh/public_repos/oh-my-zsh
+	url = https://github.com/robbyrussell/oh-my-zsh.git
+[submodule ".zsh/public_repos/zsh-lovers"]
+	path = .zsh/public_repos/zsh-lovers
+	url = https://github.com/grml/zsh-lovers.git
+[submodule ".zsh/public_repos/auto-fu.zsh"]
+	path = .zsh/public_repos/auto-fu.zsh
+	url = https://github.com/hchbaw/auto-fu.zsh.git
