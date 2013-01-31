@@ -1,3 +1,5 @@
+[ -f ~/.bash/conf/base-share.bash ] && . ~/.bash/conf/base-share.bash
+
 ### Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
 
@@ -57,3 +59,10 @@ setopt no_beep
 #setopt glob_complete
 ##
 # setopt extended_glob
+
+# URL
+# autoload -U url-quote-magic
+# zle -N self-insert url-quote-magic
+
+# Versionの条件分岐に使用
+autoload -Uz is-at-least

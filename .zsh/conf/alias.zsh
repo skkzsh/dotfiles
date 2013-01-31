@@ -5,7 +5,7 @@
 ## Global Alias
 alias -g L='| less'
 alias -g G='| grep'
-alias -g S='| wc'
+alias -g W='| wc'
 alias -g A='| xargs'
 # alias -g H='| head'
 # alias -g T='| tail'
@@ -18,21 +18,31 @@ alias -g ....=../..
 alias -g ......=../../..
 alias -g Z='| tar zxf -'
 alias -g J='| tar jxf -'
+# alias -g J='| tar Jxf -'
 
 
 ## Suffix Alias
+if which aunpack > /dev/null 2>&1 ; then
+    alias -s {tar,gz,tgz,bz2,tbz,xz,lzo,tzo,cpio}=aunpack
+    alias -s {zip,lzh,lha,rar,jar,7z,ace,arj,Z}=aunpack
+fi
+alias -s gpg=gpg
 
-alias -s eps=gv
 
-case `uname` in
+case "`uname`" in
+
     Linux)
         alias -g C='| xclip -sel clip'
-        alias -s dvi=xdvi
         alias -s pdf=zathura
+        alias -s eps=gv
+        alias -s dvi=xdvi
         ;;
+
     Darwin)
         alias -g C='| pbcopy'
-        alias -s dvi='open -a Mxdvi'
-        alias -s pdf='open -a Preview'
+        alias -s {pdf,dvi}=open
+        alias -s {jpg,JPG,jpeg,JPEG,png,PNG,gif,GIF,bmp,BMP,eps}=open
         ;;
+
+    *)  ;;
 esac

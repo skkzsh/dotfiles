@@ -1,5 +1,8 @@
 [ -f "$HOME/.bash_profile" ] && . "$HOME/.bash_profile"
 
+### Ubuntu
+## .zprofileが読み込まれず, .profileが読み込まれる
+
 ### Mac
 ## brew install zsh
 ## Defaultでは, zsh上でscreenを起動すると,

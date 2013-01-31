@@ -1,7 +1,13 @@
-### Completion
 ## fpathはcompinitの前に定義
-
-fpath=(~/.autojump/functions ~/.zsh/functions/Completion ~/.zsh/site-functions $fpath)
+fpath=(~/.zsh/public_repos/zsh-completions/src $fpath)
+fpath=(~/.zsh/site-functions ~/.zsh/functions $fpath)
+fpath=(~/.bash/public_repos/nodebrew/completions/zsh $fpath)
+# for cmd in cpanm pip gem ; do
+#     fpath=(~/.zsh/public_repos/oh-my-zsh/plugins/$cmd $fpath)
+# done
+## TODO: pythonbrew
+## rbenvの補完ができない!
+# . ~/.rbenv/completions/rbenv.zsh
 ## Linux
 ## ln -s ~/.rbenv/completions/rbenv.zsh ~/.zsh/site-functions/_rbenv
 ## Mac
@@ -12,6 +18,7 @@ fpath=(~/.autojump/functions ~/.zsh/functions/Completion ~/.zsh/site-functions $
 autoload -Uz compinit
 ## -uはPermission Error回避
 compinit -u
+
 
 ###
 zstyle ':completion:*' auto-description 'specify: %d'
@@ -52,7 +59,6 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 
 ## cdr
-autoload -Uz is-at-least
 if is-at-least 4.3.15 ; then
     autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
     add-zsh-hook chpwd chpwd_recent_dirs
