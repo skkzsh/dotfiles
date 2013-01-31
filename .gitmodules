@@ -16,3 +16,6 @@
 [submodule ".bash/public_repos/dircolors-solarized"]
 	path = .bash/public_repos/dircolors-solarized
 	url = https://github.com/seebi/dircolors-solarized.git
+[submodule ".bash/public_repos/nodebrew"]
+	path = .bash/public_repos/nodebrew
+	url = https://github.com/hokaccha/nodebrew.git
