@@ -1,0 +1,8 @@
+# vim: filetype=conf
+
+# --color
+--pager=less -R
+
+--type-set=org=.org
+--type-set=markdown=.md,.mkd,mdt,mkdn,mdwn,.mark,.mdown,.markdown
+--type-set=powershell=.ps1,.psd1,.psm1
