@@ -9,6 +9,8 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
+# Ubuntuだと, .bash_profileは読み込まれない.
+
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
@@ -40,7 +42,6 @@ esac
 ### nodebrew
 if [ -d "$HOME/.nodebrew" ] ; then
     PATH="$HOME/.nodebrew/current/bin:$PATH"
-    # nodebrew use latest
 fi
 
 ### autojump
@@ -98,59 +99,18 @@ case "`uname`" in
         fi
         ;;
 
+    MINGW*)
+        # Perlの優先順位を上げる
+        # if [ -d /c/strawberry ]; then
+        #     PATH="/c/strawberry/perl/site/bin:/c/strawberry/perl/bin:/c/strawberry/c/bin:$PATH"
+        # fi
+        ;;
+
     *) ;;
 esac
-
 
 ### set PATH so it includes user's private bin if it exists
 [ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
-
-
-### Key Chain
-# GUIだと失敗?
-if [ -n "$BASH_VERSION" ]; then
-    host="$HOSTNAME"
-elif [ -n "$ZSH_VERSION" ]; then
-    host="$HOST"
-fi
-
-case "`uname`" in
-    Linux)
-        # if ! which X > /dev/null 2>&1 ; then
-            if which keychain > /dev/null 2>&1 ; then
-                # unset SSH_AUTH_SOCK
-                keychain ~/.ssh/id_rsa
-                # keychain -q ~/.ssh/id_rsa
-                . ~/.keychain/$host-sh
-                # . ~/.ssh-agent-$HOSTNAME
-            fi
-        # fi
-        ;;
-    *) ;;
-esac
-
-unset host
-
-# eval `ssh-agent`
-# ssh-agent $SHELL
-# exec ssh-agent $SHELL
-# ssh-add
-
-## TODO: screenでもssh-agent
-## 大丈夫か?
-# ln -sf $SSH_AUTH_SOCK ~/.ssh/ssh_auth_sock
-# export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
-# if [ -S ~/.ssh/ssh_auth_sock ]; then
-#     # echo '1!'
-#     export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
-# elif [ ! -S "$SSH_AUTH_SOCK" ]; then
-#     # echo '2!'
-#     export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
-# elif [ ! -L "$SSH_AUTH_SOCK" ]; then
-#     # echo '3!'
-#     ln -snf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock &&
-#     export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
-# fi
 
 
 ### TeX
