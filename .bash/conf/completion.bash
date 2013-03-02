@@ -1,3 +1,4 @@
+#---------------------------------------------------------------------------
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -15,9 +16,13 @@ case "`uname`" in
             . ~/.bash_completion
         fi
         ## Git
-        [ -f ~/.git-completion.bash ] && . ~/.git-completion.bash
+        if [ -f ~/.git-completion.bash ] ; then
+            . ~/.git-completion.bash
+        fi
         ## rbenv
-        [ -d ~/.rbenv ] && . ~/.rbenv/completions/rbenv.bash
+        if [ -d ~/.rbenv ] ; then
+            . ~/.rbenv/completions/rbenv.bash
+        fi
         ## Gem
         ;;
 
@@ -37,7 +42,7 @@ case "`uname`" in
         ## Git
         # %PROGRAMFILES%\Git\etc\git-completion.bash
         programfiles="$(echo $PROGRAMFILES | perl -pe "s%C:\\\%/c/%")"
-        if [ -f "$programfiles/Git/etc/git-completion.bash" ] ; then
+        if [ -d "$programfiles/Git" ] ; then
             . "$programfiles/Git/etc/git-completion.bash"
         fi
         unset programfiles
@@ -46,16 +51,21 @@ case "`uname`" in
     *) ;;
 esac
 
+#---------------------------------------------------------------------------
 ## perl
 # which setup-bash-complete > /dev/null 2>&1 && . setup-bash-complete
 ## perlbrew
-[ -n "$PERLBREW_ROOT" ] && . "$PERLBREW_ROOT/etc/perlbrew-completion.bash"
+if [ -n "$PERLBREW_ROOT" ] ; then
+    . "$PERLBREW_ROOT/etc/perlbrew-completion.bash"
+fi
 
+#---------------------------------------------------------------------------
 ## TODO: pythonbrew
 
 ## pip
 which pip > /dev/null 2>&1 && eval "$(pip completion --bash)"
 
+#---------------------------------------------------------------------------
 ## nodebrew
 if [ -d ~/.bash/public_repos/nodebrew ] ; then
     . ~/.bash/public_repos/nodebrew/completions/bash/nodebrew-completion

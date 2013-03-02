@@ -1,7 +1,8 @@
+#---------------------------------------------------------------------------
 ### perlbrew (perlbrew env)
 [ -d ~/perl5/perlbrew ] && . ~/perl5/perlbrew/etc/bashrc
 
-
+#---------------------------------------------------------------------------
 ### pythonbrew
 [ -d ~/.pythonbrew ] && . ~/.pythonbrew/etc/bashrc
 
@@ -13,6 +14,6 @@ if which virtualenvwrapper.sh > /dev/null 2>&1 ; then
     . "`which virtualenvwrapper.sh`"
 fi
 
-
+#---------------------------------------------------------------------------
 ### rbenv (brew info rbenv)
 which rbenv > /dev/null 2>&1 && eval "$(rbenv init -)"

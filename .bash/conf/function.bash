@@ -1,5 +1,6 @@
 ### Functions
 
+#---------------------------------------------------------------------------
 ## Dropbox
 dbs() {
     case "`dropbox status`" in
@@ -18,6 +19,7 @@ take() {
     cd $1
 }
 
+#---------------------------------------------------------------------------
 ## TODO: Many Arguments
 ## GnuPG
 alias gpga='gpg -c --cipher-algo aes256'

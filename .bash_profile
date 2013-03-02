@@ -7,9 +7,9 @@
 
 # the default umask is set in /etc/profile; for setting the umask
 # for ssh logins, install and configure the libpam-umask package.
-#umask 022
+# umask 022
 
-# Ubuntuだと, .bash_profileは読み込まれない.
+## Ubuntuだと, .bash_profileは読み込まれない.
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
@@ -19,8 +19,9 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-# Path (下の方ほど優先度が高い)
+## Path (下の方ほど優先度が高い)
 
+#---------------------------------------------------------------------------
 case "`uname`" in
     Darwin)
         PATH="/usr/local/sbin:/usr/local/bin:$PATH"
@@ -28,22 +29,28 @@ case "`uname`" in
     *) ;;
 esac
 
+#---------------------------------------------------------------------------
 ### rbenv
 case "`uname`" in
     Linux)
-        [ -d "$HOME/.rbenv" ] && PATH="$HOME/.rbenv/bin:$PATH"
+        if [ -d "$HOME/.rbenv" ] ; then
+            PATH="$HOME/.rbenv/bin:$PATH"
+        fi
         ;;
     *) ;;
 esac
 
 ### cabal
-[ -d "$HOME/.cabal" ] && PATH="$HOME/.cabal/bin:$PATH"
+if [ -d "$HOME/.cabal" ] ; then
+    PATH="$HOME/.cabal/bin:$PATH"
+fi
 
 ### nodebrew
 if [ -d "$HOME/.nodebrew" ] ; then
     PATH="$HOME/.nodebrew/current/bin:$PATH"
 fi
 
+#---------------------------------------------------------------------------
 ### autojump
 case "`uname`" in
 
@@ -61,31 +68,32 @@ case "`uname`" in
     *) ;;
 esac
 
-
+#---------------------------------------------------------------------------
 case "`uname`" in
 
     Linux)
-        if [ -d /usr/NX/bin ] ; then
-            PATH="/usr/NX/bin:$PATH"
-        fi
-        if [ -d "$HOME/.usr/bin" ]; then
+        if [ -d "$HOME/.usr/bin" ] ; then
             PATH="$HOME/.usr/bin:$PATH"
         fi
-        if [ -d "$HOME/.usr/pypy" ]; then
+        if [ -d "$HOME/.usr/v2c" ] ; then
+            PATH="$HOME/.usr/v2c:$PATH"
+        fi
+        if [ -d "$HOME/.usr/pypy" ] ; then
             PATH="$HOME/.usr/pypy/bin:$PATH"
+        fi
+        if [ -d /usr/NX/bin ] ; then
+            PATH="/usr/NX/bin:$PATH"
         fi
         ;;
 
     Darwin)
-        if [ -d /Applications/Xpdf.app ]; then
-            PATH="/Applications/Xpdf.app:/Applications/Xpdf.app/bin:$PATH"
-        fi
-        if [ -d /Applications/gnuplot.app ]; then
-            PATH="/Applications/gnuplot.app:/Applications/gnuplot.app/bin:$PATH"
-        fi
-        if [ -d /Applications/Ghostscript.app ]; then
-            PATH="/Applications/Ghostscript.app:/Applications/Ghostscript.app/bin:$PATH"
-        fi
+        for app in Xpdf gnuplot Ghostscript ; do
+            dir=/Applications/$app.app
+            if [ -d $dir ]; then
+                PATH="$dir:$dir/bin:$PATH"
+            fi
+        done
+        unset app dir
         # if which brew > /dev/null ; then
             ## Coreutils (brew info coreutils)
             ## 既存のCommandをCoreutilsで上書きするなら下記を設定
@@ -99,7 +107,7 @@ case "`uname`" in
         fi
         ;;
 
-    MINGW*)
+    MINGW32*)
         # Perlの優先順位を上げる
         # if [ -d /c/strawberry ]; then
         #     PATH="/c/strawberry/perl/site/bin:/c/strawberry/perl/bin:/c/strawberry/c/bin:$PATH"
@@ -109,10 +117,13 @@ case "`uname`" in
     *) ;;
 esac
 
+#---------------------------------------------------------------------------
 ### set PATH so it includes user's private bin if it exists
-[ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
+if [ -d "$HOME/bin" ]; then
+    PATH="$HOME/bin:$PATH"
+fi
 
-
+#---------------------------------------------------------------------------
 ### TeX
 case "`uname`" in
     Linux)

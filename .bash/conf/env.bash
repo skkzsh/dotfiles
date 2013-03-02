@@ -1,3 +1,4 @@
+#---------------------------------------------------------------------------
 # TODO: Macでcoreutilsを使う場合を考慮
 
 # export LESS='-R -x4'
@@ -10,18 +11,19 @@
 #     # fi
 # fi
 
+#---------------------------------------------------------------------------
 ### Settings for each TERM
 ## if Console in English, otherwise in Japanese
 case "$TERM" in
-    linux) LANG=C           ;;
-    *)     LANG=ja_JP.utf-8 ;;
+    linux) export LANG=C           ;;
+    *)     export LANG=ja_JP.utf-8 ;;
 esac
 ## TODO: 256 Color
 case "$TERM" in
     xterm*)
         case "`uname`" in
-            Linux) TERM=xterm-256color ;;
-            # Linux | MINGW32*) TERM=xterm-256color ;;
+            Linux) export TERM=xterm-256color ;;
+            # Linux | MINGW32*) export TERM=xterm-256color ;;
             ## Console2でのgit diffはxtermでないとError
             *) ;;
         esac
@@ -29,7 +31,7 @@ case "$TERM" in
     *) ;;
 esac
 
-
+#---------------------------------------------------------------------------
 ### Settings for each OS
 ## VimはAlias定義の後?
 case "`uname`" in
@@ -49,12 +51,13 @@ case "`uname`" in
         export VISUAL=vim
         ;;
     CYGWIN*)
-        PAGER=less
+        export PAGER=less
         ;;
     *) ;;
 esac
 
 
+#---------------------------------------------------------------------------
 ### Settings for each Linux Distribution
 ## いくつか方法がある
 if [ -f /etc/issue.net ]; then
@@ -65,14 +68,14 @@ if [ -f /etc/issue.net ]; then
             ;;
 
         Red*|*SUSE*)
-            VISUAL=vim
+            export VISUAL=vim
             ;;
 
         *)  ;;
     esac
 fi
 
-
+#---------------------------------------------------------------------------
 ### Settings for each Host
 ### Super Computer
 case "`hostname`" in
@@ -97,5 +100,8 @@ case "`hostname`" in
     *) ;;
 esac
 
+#---------------------------------------------------------------------------
 ### Proxy
-[ -f ~/.bash_proxy ] && . ~/.bash_proxy
+if [ -f ~/.bash_proxy ] ; then
+    . ~/.bash_proxy
+fi
