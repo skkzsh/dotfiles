@@ -1,6 +1,7 @@
 ## TODO: Macでcoreutilsを使う場合を考慮
 ## dircolorsの後に置く
 
+#---------------------------------------------------------------------------
 case "`uname`" in
 
     Linux)
@@ -89,6 +90,7 @@ case "`uname`" in
 esac
 
 
+#---------------------------------------------------------------------------
 if which htop > /dev/null 2>&1 ; then
     alias t=htop
 else
@@ -101,6 +103,7 @@ else
 fi
 
 
+#---------------------------------------------------------------------------
 ### Basic
 alias ..='cd ..'
 alias ....='cd ../..'
@@ -116,7 +119,6 @@ alias sl=ls
 alias ll='ls -l'
 alias la='ls -A'
 alias lla='ls -lA'
-alias rm='rm -i'
 alias mv='mv -i'
 alias cp='cp -i'
 alias md=mkdir
@@ -142,14 +144,33 @@ alias cmx='chmod +x'
 # alias ='ln -s'
 alias su-='su -'
 #alias crontab -i
+alias trc=truecrypt
 ### Network
 alias p=ping
 # alias ic=ifconfig
 # alias std='sudo tcpdump'
 # alias =nm-connection-editor
 alias wg=wget
+# alias wgcd=wget --content-disposition
+# alias wgtsn=wget --trust-server-names
+# alias wgncc=wget --no-check-certificate
 alias c=curl
 
+#---------------------------------------------------------------------------
+## Trash
+# if which rmtrash > /dev/null 2>&1 ; then
+#     alias rm=rmtrash
+# elif which gmv > /dev/null 2>&1 ; then
+#     alias rm='gmv -f --backup=numbered --target-directory ~/.mytrash'
+# else
+#     alias rm='mv -f --backup=numbered --target-directory ~/.mytrash'
+if which trash-put > /dev/null 2>&1 ; then
+    alias rm=trash-put
+else
+    alias rm='rm -i'
+fi
+
+#---------------------------------------------------------------------------
 ### less
 alias less='less -R -x4'
 alias l='less'
@@ -159,6 +180,7 @@ alias lal='ls -A | less'
 alias llal='ls -lA | less'
 alias dul='du | less'
 alias paxl='ps ax | less'
+#alias ='tree | less'
 #alias ptl='pstree -al | less'
 if [ -n "$BASH_VERSION" ]; then
     alias hl='history | less'
@@ -171,10 +193,17 @@ case "`uname`" in
     *) ;;
 esac
 
+#---------------------------------------------------------------------------
 ### grep
 alias pgrep='pgrep -l'
 alias paxg='ps ax | grep'
+# if [ -n "$BASH_VERSION" ]; then
+#     alias hg='history | grep'
+# elif [ -n "$ZSH_VERSION" ]; then
+#     alias hg='history 1 | grep'
+# fi
 
+#---------------------------------------------------------------------------
 ### GNU screen
 alias s=screen
 alias sls='screen -ls'
@@ -224,6 +253,7 @@ alias da=deactivate
 ### Git
 alias g=git
 
+#---------------------------------------------------------------------------
 ### Memo
 # a=apvlv
 # b=
