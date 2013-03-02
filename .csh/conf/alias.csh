@@ -33,7 +33,7 @@ alias s     screen
 alias sls   'screen -ls'
 alias sr    'screen -R'
 
-### Editor 
+### Editor
 alias e     emacs
 alias enw   'emacs -nw'
 alias v     vim

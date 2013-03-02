@@ -1,0 +1,9 @@
+if ( -f ~/.cshrc ) then
+    source ~/.cshrc
+endif
+
+if ( -f ~/.csh/tcsh/conf ) then
+    source ~/.csh/tcsh/conf/base.tcsh
+    source ~/.csh/tcsh/conf/key.tcsh
+    source ~/.csh/tcsh/conf/completion.tcsh
+endif
