@@ -76,7 +76,8 @@ SmartLn ln $unix_dir/.ssh/config ~/.ssh/config
 ## OSごとのSetting
 case "`uname`" in
     Linux)
-        SmartLn ln $unix_dir/share/texmf ~/texmf
+        texmf_prefix=~
+        vimproc_os=unix
 
         if [ $x11 = yes ]; then
             for file in $dot_x11; do
@@ -92,10 +93,18 @@ case "`uname`" in
         fi
         ;;
     Darwin)
-        SmartLn ln $unix_dir/share/texmf ~/Library/texmf
+        texmf_prefix=~/Library
+        vimproc_os=mac
+        ;;
+    MINGW32*)
+        vimproc_os=mingw64
         ;;
     *)  ;;
 esac
+SmartLn ln $unix_dir/share/texmf $texmf_prefix/texmf
+# cd "$unix_dir\.vim\bundle\vimproc
+# make -f make_${vimproc_os}.mak
+
 
 ## DistributionごとのSetting
 if [ -f /etc/issue.net ]; then

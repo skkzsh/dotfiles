@@ -44,6 +44,9 @@ foreach ($file in $vimrc) {
 }
 smartln.ps1 mklink "$unix_dir\.vim" "$vim_prefix\vimfiles"
 smartln.ps1 mklink "$unix_dir\.vim" "$vim_prefix\.vim"
+## vimproc
+## https://github.com/Shougo/vimproc/downloads
+# "$unix_dir\.vim\bundle\vimproc\autoload"
 
 ## Dot Files
 foreach ($file in $bashrc + $dot_unix_files + $dot_emacs + $dot_unix_dirs) {
