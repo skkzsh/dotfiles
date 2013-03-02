@@ -1,7 +1,12 @@
 ### Functions
 
-[ -f ~/.bash/conf/function.bash ] && . ~/.bash/conf/function.bash
+#---------------------------------------------------------------------------
+### Bash
+if [ -d ~/.bash/conf ] ; then
+    . ~/.bash/conf/function.bash
+fi
 
+#---------------------------------------------------------------------------
 ### ScreenのHardStatusの表示
 case "$TERM" in
     screen)
@@ -18,6 +23,7 @@ case "$TERM" in
     *) ;;
 esac
 
+#---------------------------------------------------------------------------
 ## ^でcd ..
 # function cdup() {
 #     echo

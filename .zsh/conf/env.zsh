@@ -1,6 +1,11 @@
-[ -f ~/.bash/conf/env.bash ] && . ~/.bash/conf/env.bash
+#---------------------------------------------------------------------------
+## Bash
+if [ -d ~/.bash/conf ] ; then
+    . ~/.bash/conf/env.bash
+fi
 
-### History
+#---------------------------------------------------------------------------
+## History
 HISTSIZE=100000
 SAVEHIST=$HISTSIZE
 HISTFILE=~/.zsh_history

@@ -1,7 +1,16 @@
+#---------------------------------------------------------------------------
 ## Bash Alias
-[ -d ~/.bash/conf ] && . ~/.bash/conf/alias.bash
+if [ -d ~/.bash/conf ] ; then
+    . ~/.bash/conf/alias.bash
+fi
 
+#---------------------------------------------------------------------------
+## Zsh Alias
+alias h1='history 1'
+alias hd='history -d'
+# alias zmv='noglob zmv -W'
 
+#---------------------------------------------------------------------------
 ## Global Alias
 alias -g L='| less'
 alias -g G='| grep'
@@ -21,6 +30,7 @@ alias -g J='| tar jxf -'
 # alias -g J='| tar Jxf -'
 
 
+#---------------------------------------------------------------------------
 ## Suffix Alias
 if which aunpack > /dev/null 2>&1 ; then
     alias -s {tar,gz,tgz,bz2,tbz,xz,lzo,tzo,cpio}=aunpack
@@ -34,8 +44,9 @@ case "`uname`" in
     Linux)
         alias -g C='| xclip -sel clip'
         alias -s pdf=zathura
-        alias -s eps=gv
         alias -s dvi=xdvi
+        alias -s eps=gv
+        alias -s {jpg,JPG,jpeg,JPEG,png,PNG,gif,GIF,bmp,BMP,eps}=xdg-open
         ;;
 
     Darwin)

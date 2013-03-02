@@ -1,7 +1,12 @@
 ### Plugins
 
-[ -f ~/.bash/conf/plugin.bash ] && . ~/.bash/conf/plugin.bash
+#---------------------------------------------------------------------------
+## Bash
+if [ -d ~/.bash/conf ] ; then
+    . ~/.bash/conf/plugin.bash
+fi
 
+#---------------------------------------------------------------------------
 ## zaw
 if [ -d ~/.zsh/public_repos/zaw ]; then
     . ~/.zsh/public_repos/zaw/zaw.zsh
@@ -10,6 +15,7 @@ if [ -d ~/.zsh/public_repos/zaw ]; then
     bindkey '^x:' zaw-cdr
 fi
 
+#---------------------------------------------------------------------------
 ## auto-fu
 # if [ -d ~/.zsh/public_repos/auto-fu.zsh]; then
 #     . ~/.zsh/public_repos/auto-fu.zsh/auto-fu.zsh
@@ -19,14 +25,16 @@ fi
 #     zle -N zle-line-init
 # fi
 
+#---------------------------------------------------------------------------
 ## syntax-highlighting
+## TODO: sub command
 if is-at-least 4.3.9 ; then
     if [ -d ~/.zsh/public_repos/zsh-syntax-highlighting ]; then
         . ~/.zsh/public_repos/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     fi
 fi
 
-
+#---------------------------------------------------------------------------
 ### percol
 if (which percol && (which tac || which gtac)) > /dev/null 2>&1; then
     function percol_select_history() {

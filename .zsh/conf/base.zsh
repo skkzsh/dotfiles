@@ -1,5 +1,10 @@
-[ -f ~/.bash/conf/base-share.bash ] && . ~/.bash/conf/base-share.bash
+#---------------------------------------------------------------------------
+## Bash
+if [ -d ~/.bash/conf ] ; then
+    . ~/.bash/conf/base-share.bash
+fi
 
+#---------------------------------------------------------------------------
 ### Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
 
@@ -9,6 +14,8 @@ bindkey '^[p' history-beginning-search-backward
 bindkey '^[n' history-beginning-search-forward
 ## ^s, ^qを無効
 # setopt no_flow_control
+
+#---------------------------------------------------------------------------
 ### History
 ## 同じコマンドラインを連続で実行した場合はHistoryに登録しない
 setopt hist_ignore_dups
@@ -60,9 +67,15 @@ setopt no_beep
 ##
 # setopt extended_glob
 
-# URL
-# autoload -U url-quote-magic
-# zle -N self-insert url-quote-magic
+#---------------------------------------------------------------------------
+## AutoLoad
 
 # Versionの条件分岐に使用
 autoload -Uz is-at-least
+
+# zmv
+autoload -Uz zmv
+
+## URL
+# autoload -U url-quote-magic
+# zle -N self-insert url-quote-magic

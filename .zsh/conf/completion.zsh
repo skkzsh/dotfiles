@@ -1,25 +1,33 @@
+#---------------------------------------------------------------------------
 ## fpathはcompinitの前に定義
+## TODO: if exists
+
 fpath=(~/.zsh/public_repos/zsh-completions/src $fpath)
 fpath=(~/.zsh/site-functions ~/.zsh/functions $fpath)
 fpath=(~/.bash/public_repos/nodebrew/completions/zsh $fpath)
+
 # for cmd in cpanm pip gem ; do
 #     fpath=(~/.zsh/public_repos/oh-my-zsh/plugins/$cmd $fpath)
 # done
+# unset cmd
+
 ## TODO: pythonbrew
 ## rbenvの補完ができない!
 # . ~/.rbenv/completions/rbenv.zsh
+
 ## Linux
 ## ln -s ~/.rbenv/completions/rbenv.zsh ~/.zsh/site-functions/_rbenv
 ## Mac
 ## ln -s /usr/local/Library/Contributions/brew_zsh_completion.zsh ~/.zsh/site-functions/_brew
 ## ln -s `brew --prefix rbenv`/completions/rbenv.zsh ~/.zsh/site-functions/_rbenv
 
+#---------------------------------------------------------------------------
 ### Use modern completion system
 autoload -Uz compinit
 ## -uはPermission Error回避
 compinit -u
 
-
+#---------------------------------------------------------------------------
 ###
 zstyle ':completion:*' auto-description 'specify: %d'
 ### 補完を指定した順番に実行
@@ -57,7 +65,7 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
-
+#---------------------------------------------------------------------------
 ## cdr
 if is-at-least 4.3.15 ; then
     autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
