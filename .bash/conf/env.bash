@@ -51,7 +51,8 @@ case "$(uname)" in
         # export TERM=xterm-256color
         # export TERM=xterm
         export PAGER=less
-        export VISUAL=vim
+        export VISUAL=gvim
+        export EDITOR=gvim
         ;;
     CYGWIN*)
         export PAGER=less
