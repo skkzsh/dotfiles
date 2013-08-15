@@ -105,7 +105,16 @@ case "$(hostname)" in
 esac
 
 #---------------------------------------------------------------------------
+### Gisty
+case "$(uname)" in
+    Linux|Darwin)
+        export GISTY_DIR=~/Repository/gist
+        ;;
+    *) ;;
+esac
+
+#---------------------------------------------------------------------------
 ### Proxy
-if [ -f ~/.bash_proxy ] ; then
+if [[ -f ~/.bash_proxy ]] ; then
     . ~/.bash_proxy
 fi
