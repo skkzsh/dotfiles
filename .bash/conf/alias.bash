@@ -140,11 +140,13 @@ alias nkfg='nkf -g'
 alias nkfu='nkf --overwrite -w -Lu'
 alias nkfe='nkf --overwrite -e -Lu'
 alias nkfs='nkf --overwrite -s -Lw'
+alias nkfsu='nkf --overwrite -s -Lu'
 alias cmx='chmod +x'
 # alias ='ln -s'
 alias su-='su -'
 #alias crontab -i
 alias trc=truecrypt
+alias jk=jekyll
 ### Network
 alias p=ping
 # alias ic=ifconfig
@@ -154,7 +156,7 @@ alias wg=wget
 # alias wgcd=wget --content-disposition
 # alias wgtsn=wget --trust-server-names
 # alias wgncc=wget --no-check-certificate
-alias c=curl
+# alias cu=curl
 
 #---------------------------------------------------------------------------
 ## Trash
@@ -166,6 +168,9 @@ alias c=curl
 #     alias rm='mv -f --backup=numbered --target-directory ~/.mytrash'
 if which trash-put > /dev/null 2>&1 ; then
     alias rm=trash-put
+    # alias tls=trash-list
+    # alias tst=restore-trash
+    # alias trm=trash-rm
 else
     alias rm='rm -i'
 fi
@@ -252,6 +257,14 @@ alias da=deactivate
 
 ### Git
 alias g=git
+# alias g='git add'
+# alias g='git commit'
+# alias g='git status'
+# alias g='git branch'
+# alias g='git checkout'
+# alias g='git diff'
+# alias g='git log'
+# alias g='git rm'
 
 #---------------------------------------------------------------------------
 ### Memo
