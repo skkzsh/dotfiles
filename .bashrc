@@ -1,4 +1,4 @@
-if [ -d ~/.bash/conf ]; then
+if [[ -d ~/.bash/conf ]] ; then
     # bash only
     . ~/.bash/conf/base-only.bash
     . ~/.bash/conf/ubuntu.bash
@@ -19,4 +19,8 @@ if [ -d ~/.bash/conf ]; then
     . ~/.bash/conf/prompt.bash
 fi
 
-# TODO: language -> alias -> env ?
+if [[ -d ~/.bash/local ]] ; then
+    . ~/.bash/local/local.bash
+fi
+
+# XXX: language -> alias -> env ?

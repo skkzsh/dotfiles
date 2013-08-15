@@ -1,4 +1,5 @@
-# bash, zshの共通基本Setting
+# bash, zshの共通基本Settings
+# NOTE: source this file in .zshrc
 
 #---------------------------------------------------------------------------
 ### Ctrl-sによる画面出力停止を無効にして,
@@ -6,7 +7,7 @@
 which stty > /dev/null 2>&1 && stty stop undef
 
 #---------------------------------------------------------------------------
-case "`uname`" in
+case "$(uname)" in
     MINGW32*)
         case "$TERM" in
             dumb) TERM=xterm ;;
@@ -18,10 +19,10 @@ case "`uname`" in
 esac
 
 ### LS_COLORS
-### FIXME: dircolorsはxtermでないと出力されない?
+### XXX: dircolorsはxtermでないと出力されない?
 ### TODO: Macでcoreutilsを使う場合を考慮, gdircolors
 if which dircolors > /dev/null 2>&1 ; then
-    [ -r ~/.dircolors ] && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    [[ -r ~/.dircolors ]] && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 fi
 
 #---------------------------------------------------------------------------
@@ -31,20 +32,20 @@ fi
 # exec ssh-agent $SHELL
 # ssh-add
 
-## TODO: screenでもssh-agent
+## FIXME: screenでもssh-agent
 ## 大丈夫か?
 # ln -sf $SSH_AUTH_SOCK ~/.ssh/ssh_auth_sock
 # export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
-case "`uname`" in
+case "$(uname)" in
 
     Linux*)
-        if [ -S ~/.ssh/ssh_auth_sock ]; then
+        if [[ -S ~/.ssh/ssh_auth_sock ]]; then
             # echo '1!'
             export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
-        elif [ ! -S "$SSH_AUTH_SOCK" ]; then
+        elif [[ ! -S "$SSH_AUTH_SOCK" ]]; then
             # echo '2!'
             export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
-        elif [ ! -L "$SSH_AUTH_SOCK" ]; then
+        elif [[ ! -L "$SSH_AUTH_SOCK" ]]; then
             # echo '3!'
             ln -snf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock &&
             export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock

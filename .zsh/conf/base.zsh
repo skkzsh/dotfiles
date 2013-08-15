@@ -1,6 +1,8 @@
+# Basic Settings
+
 #---------------------------------------------------------------------------
 ## Bash
-if [ -d ~/.bash/conf ] ; then
+if [[ -d ~/.bash/conf ]] ; then
     . ~/.bash/conf/base-share.bash
 fi
 
@@ -9,7 +11,7 @@ fi
 bindkey -e
 
 #####
-### Key Bind
+### Key Bindings
 bindkey '^[p' history-beginning-search-backward
 bindkey '^[n' history-beginning-search-forward
 ## ^s, ^qを無効

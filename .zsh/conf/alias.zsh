@@ -1,6 +1,8 @@
+# Aliases for Zsh
+
 #---------------------------------------------------------------------------
 ## Bash Alias
-if [ -d ~/.bash/conf ] ; then
+if [[ -d ~/.bash/conf ]] ; then
     . ~/.bash/conf/alias.bash
 fi
 
@@ -39,7 +41,7 @@ fi
 alias -s gpg=gpg
 
 
-case "`uname`" in
+case "$(uname)" in
 
     Linux)
         alias -g C='| xclip -sel clip'

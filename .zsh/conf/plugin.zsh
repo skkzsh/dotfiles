@@ -2,13 +2,13 @@
 
 #---------------------------------------------------------------------------
 ## Bash
-if [ -d ~/.bash/conf ] ; then
+if [[ -d ~/.bash/conf ]] ; then
     . ~/.bash/conf/plugin.bash
 fi
 
 #---------------------------------------------------------------------------
 ## zaw
-if [ -d ~/.zsh/public_repos/zaw ]; then
+if [[ -d ~/.zsh/public_repos/zaw ]]; then
     . ~/.zsh/public_repos/zaw/zaw.zsh
     bindkey '^xh' zaw-history
     zstyle ':filter-select' case-insensitive yes # 大文字・小文字の区別はしない
@@ -17,7 +17,7 @@ fi
 
 #---------------------------------------------------------------------------
 ## auto-fu
-# if [ -d ~/.zsh/public_repos/auto-fu.zsh]; then
+# if [[ -d ~/.zsh/public_repos/auto-fu.zsh]]; then
 #     . ~/.zsh/public_repos/auto-fu.zsh/auto-fu.zsh
 #     function zle-line-init () {
 #         auto-fu-init
@@ -29,7 +29,7 @@ fi
 ## syntax-highlighting
 ## TODO: sub command
 if is-at-least 4.3.9 ; then
-    if [ -d ~/.zsh/public_repos/zsh-syntax-highlighting ]; then
+    if [[ -d ~/.zsh/public_repos/zsh-syntax-highlighting ]]; then
         . ~/.zsh/public_repos/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     fi
 fi

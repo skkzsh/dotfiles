@@ -1,9 +1,10 @@
-### Functions
+# Functions
+# NOTE: source this file in .zshrc
 
 #---------------------------------------------------------------------------
 ## Dropbox
 dbs() {
-    case "`dropbox status`" in
+    case "$(dropbox status)" in
         "Dropbox isn't running!") dropbox start -i ;; # 未起動ならば起動
         *) dropbox status ;; # でなければ状態を表示
     esac
@@ -20,11 +21,11 @@ take() {
 }
 
 #---------------------------------------------------------------------------
-## TODO: Many Arguments
+## XXX: Many Arguments
 ## GnuPG
 alias gpga='gpg -c --cipher-algo aes256'
 gpgr() {
-    if [ -f "$1" ] ; then
+    if [[ -f "$1" ]] ; then
         case "$1" in
             *\.tgz\.gpg|*\.tar\.gz\.gpg)
                 # Decrypt directory
@@ -40,7 +41,7 @@ gpgr() {
                 ;;
         esac
 
-    elif [ -d "$1" ] ; then
+    elif [[ -d "$1" ]] ; then
         # Encrypt directory
         tar zcf - "$1" | gpga -o "$1.tgz.gpg"
     else
@@ -56,7 +57,7 @@ gpgr() {
 ## OpenSSL
 alias osa='openssl aes-256-cbc'
 osr() {
-    if [ -f "$1" ] ; then
+    if [[ -f "$1" ]] ; then
         case "$1" in
             *\.tgz\.*|*\.tar\.gz\.*)
                 # Decrypt directory
@@ -72,7 +73,7 @@ osr() {
                 ;;
         esac
 
-    elif [ -d "$1" ] ; then
+    elif [[ -d "$1" ]] ; then
         # Encrypt directory
         tar zcf - "$1" | osa -e -out "$1.tgz.enc"
     else

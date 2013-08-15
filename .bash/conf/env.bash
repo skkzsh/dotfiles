@@ -1,12 +1,15 @@
+# Environment Variables
+# NOTE: source this file in .zshrc
+
 #---------------------------------------------------------------------------
 # TODO: Macでcoreutilsを使う場合を考慮
 
 # export LESS='-R -x4'
-# if [ -n "$LS_COLORS" -o "`uname`" = Darwin ]; then
+# if [[ -n "$LS_COLORS" -o "$(uname)" = Darwin ]]; then
 #     export GREP_OPTIONS='--color=always'
-#     # if [ -n "$LS_COLORS" ]; then
+#     # if [[ -n "$LS_COLORS" ]]; then
 #     #     export LS_OPTIONS='-Fh --color=always'
-#     # elif [ "`uname`" = Darwin ] ; then
+#     # elif [[ "$(uname)" = Darwin ]] ; then
 #     #     export LS_OPTIONS='-FhG'
 #     # fi
 # fi
@@ -21,7 +24,7 @@ esac
 ## TODO: 256 Color
 case "$TERM" in
     xterm*)
-        case "`uname`" in
+        case "$(uname)" in
             Linux) export TERM=xterm-256color ;;
             # Linux | MINGW32*) export TERM=xterm-256color ;;
             ## Console2でのgit diffはxtermでないとError
@@ -33,8 +36,8 @@ esac
 
 #---------------------------------------------------------------------------
 ### Settings for each OS
-## VimはAlias定義の後?
-case "`uname`" in
+## Alias定義の後?
+case "$(uname)" in
     Darwin)
         export VISUAL=vim
         # CLICOLOR=1
@@ -60,8 +63,8 @@ esac
 #---------------------------------------------------------------------------
 ### Settings for each Linux Distribution
 ## いくつか方法がある
-if [ -f /etc/issue.net ]; then
-    case "`cat /etc/issue.net`" in
+if [[ -f /etc/issue.net ]]; then
+    case "$(cat /etc/issue.net)" in
 
         Scientific*|Ubuntu*)
             export EDITOR=vim
@@ -78,7 +81,7 @@ fi
 #---------------------------------------------------------------------------
 ### Settings for each Host
 ### Super Computer
-case "`hostname`" in
+case "$(hostname)" in
     xe-000* | ap-000*)
 
         module unload emacs/23.4
@@ -86,7 +89,7 @@ case "`hostname`" in
         ulimit -v 4194304
         ulimit -t 72000
 
-        case "`hostname`" in
+        case "$(hostname)" in
             ap-000*)
                 ## Module
                 module load matlab/R2012a

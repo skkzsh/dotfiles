@@ -1,3 +1,5 @@
+# Completions
+
 #---------------------------------------------------------------------------
 ## fpathはcompinitの前に定義
 ## TODO: if exists
@@ -42,7 +44,7 @@ zstyle ':completion:*:default' menu select=1
 ### enable color support of ls and also add handy aliases
 ### 補完候補に色を付ける
 ## dircolors評価後
-if [ -n "$LS_COLORS" ]; then
+if [[ -n "$LS_COLORS" ]] ; then
     zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 else
     zstyle ':completion:*:default' list-colors ''

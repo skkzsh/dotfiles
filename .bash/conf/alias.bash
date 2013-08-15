@@ -1,12 +1,14 @@
-## TODO: Macでcoreutilsを使う場合を考慮
-## dircolorsの後に置く
+# Alias
+# NOTE: source this file in .zshrc
+# TODO: Macでcoreutilsを使う場合を考慮
+# dircolorsの後に置く
 
 #---------------------------------------------------------------------------
-case "`uname`" in
+case "$(uname)" in
 
     Linux)
 
-        if [ -n "$LS_COLORS" ]; then
+        if [[ -n "$LS_COLORS" ]]; then
             alias ls='ls -Fh --color=always'
             alias dir='dir -Fh --color=always'
             alias vdir='vdir -Fh --color=always'
@@ -51,16 +53,16 @@ case "`uname`" in
         alias fgrep='fgrep --color=always'
         alias egrep='egrep --color=always'
 
-        if [ -d /Applications/MacVim.app ]; then
+        if [[ -d /Applications/MacVim.app ]]; then
             alias vim=/Applications/MacVim.app/Contents/MacOS/Vim
             alias vi=vim
         fi
 
         if which brew > /dev/null ; then
-            if [ -d "`brew --cellar emacs`" ]; then
-                alias emacs24="`brew --prefix emacs`/Emacs.app/Contents/MacOS/Emacs"
+            if [[ -d "$(brew --cellar emacs)" ]]; then
+                alias emacs24="$(brew --prefix emacs)/Emacs.app/Contents/MacOS/Emacs"
                 alias emacs=emacs24
-                alias emacs23="`brew --cellar emacs`/23.3b/Emacs.app/Contents/MacOS/Emacs"
+                alias emacs23="$(brew --cellar emacs)/23.3b/Emacs.app/Contents/MacOS/Emacs"
             fi
             # which gsed > /dev/null && alias sed=gsed
             ## Shell ScriptだとAliasが無効?
@@ -75,7 +77,7 @@ case "`uname`" in
         alias dir='dir -Fh --color=always'
         alias vdir='vdir -Fh --color=always'
         ## Git BashのError回避のため
-        if [ -n "$LS_COLORS" ]; then
+        if [[ -n "$LS_COLORS" ]]; then
             alias grep='grep --color=always'
             alias fgrep='fgrep --color=always'
             alias egrep='egrep --color=always'
@@ -89,7 +91,6 @@ case "`uname`" in
     *) ;;
 esac
 
-
 #---------------------------------------------------------------------------
 if which htop > /dev/null 2>&1 ; then
     alias t=htop
@@ -101,7 +102,6 @@ if which colordiff > /dev/null 2>&1 ; then
 else
     alias d=diff
 fi
-
 
 #---------------------------------------------------------------------------
 ### Basic
@@ -182,12 +182,12 @@ alias dul='du | less'
 alias paxl='ps ax | less'
 #alias ='tree | less'
 #alias ptl='pstree -al | less'
-if [ -n "$BASH_VERSION" ]; then
+if [[ -n $BASH_VERSION ]]; then
     alias hl='history | less'
-elif [ -n "$ZSH_VERSION" ]; then
+elif [[ -n $ZSH_VERSION ]]; then
     alias hl='history 1 | less'
 fi
-case "`uname`" in
+case "$(uname)" in
     Linux) alias lest='last -a | less' ;;
     Darwin) alias lest='last | less' ;;
     *) ;;
@@ -196,12 +196,12 @@ esac
 #---------------------------------------------------------------------------
 ### grep
 alias pgrep='pgrep -l'
-alias paxg='ps ax | grep'
-# if [ -n "$BASH_VERSION" ]; then
-#     alias hg='history | grep'
-# elif [ -n "$ZSH_VERSION" ]; then
-#     alias hg='history 1 | grep'
-# fi
+if [[ -n "$BASH_VERSION" ]]; then
+    alias ps?='ps ax | grep'
+    alias h?='history | grep'
+# elif [[ -n "$ZSH_VERSION" ]]; then
+#     alias h?='history 1 | grep'
+fi
 
 #---------------------------------------------------------------------------
 ### GNU screen

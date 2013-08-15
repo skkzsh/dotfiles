@@ -1,4 +1,4 @@
-if [ -d ~/.zsh/conf ]; then
+if [[ -d ~/.zsh/conf ]] ; then
     . ~/.zsh/conf/prompt.zsh
     . ~/.zsh/conf/base.zsh
     . ~/.zsh/conf/plugin.zsh
@@ -12,4 +12,8 @@ if [ -d ~/.zsh/conf ]; then
     . ~/.zsh/conf/function.zsh
 fi
 
-# TODO: completion -> language -> alias -> env ?
+if [[ -d ~/.bash/local ]] ; then
+    . ~/.bash/local/local.bash
+fi
+
+# XXX: completion -> language -> alias -> env ?

@@ -1,9 +1,9 @@
-### bashだけの基本Setting
+### bashだけの基本Settings
 
 #---------------------------------------------------------------------------
 ### Red Hat
-case "`uname`" in
-    Linux) if [ -f /etc/bashrc ] ; then
+case "$(uname)" in
+    Linux) if [[ -f /etc/bashrc ]] ; then
                 . /etc/bashrc
             fi
         ;;
@@ -15,7 +15,7 @@ esac
 complete -d cd
 ### cd時にDirectory名を訂正
 shopt -s cdspell
-if [ "$BASH_VERSINFO" -ge 4 ]; then
+if [[ $BASH_VERSINFO -ge 4 ]]; then
     ### Directory名でcd
     shopt -s autocd
     ### 補完時にDirectory名を訂正

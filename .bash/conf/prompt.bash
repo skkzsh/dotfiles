@@ -31,7 +31,7 @@ unset col
 
 ## Ubuntu Base
 # Console2, MINGWだと, TERM=cygwin
-case "`uname`" in
+case "$(uname)" in
     MINGW32*)
         PS1="${col_begin}\[\e]0;\w\a\]\w \$${col_end} "
         ;;

@@ -2,7 +2,7 @@
 
 #---------------------------------------------------------------------------
 ### Bash
-if [ -d ~/.bash/conf ] ; then
+if [[ -d ~/.bash/conf ]] ; then
     . ~/.bash/conf/function.bash
 fi
 

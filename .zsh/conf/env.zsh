@@ -1,6 +1,8 @@
+# Environment Variables
+
 #---------------------------------------------------------------------------
 ## Bash
-if [ -d ~/.bash/conf ] ; then
+if [[ -d ~/.bash/conf ]] ; then
     . ~/.bash/conf/env.bash
 fi
 
