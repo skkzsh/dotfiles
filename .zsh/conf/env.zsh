@@ -11,3 +11,6 @@ fi
 HISTSIZE=100000
 SAVEHIST=$HISTSIZE
 HISTFILE=~/.zsh_history
+
+#---------------------------------------------------------------------------
+zle_highlight=(isearch:bold)
