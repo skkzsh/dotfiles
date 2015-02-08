@@ -3,13 +3,13 @@
 #---------------------------------------------------------------------------
 ## Bash Alias
 if [[ -d ~/.bash/conf ]] ; then
-    . ~/.bash/conf/alias.bash
+    . ~/.bash/conf/alias-init.bash
 fi
 
 #---------------------------------------------------------------------------
 ## Zsh Alias
 alias h1='history 1'
-alias hd='history -d'
+# alias hi='history -i'
 # alias zmv='noglob zmv -W'
 
 #---------------------------------------------------------------------------
@@ -41,6 +41,8 @@ if which aunpack > /dev/null 2>&1 ; then
     alias -s {tar,gz,tgz,bz2,tbz,xz,lzo,tzo,cpio}=aunpack
     alias -s {zip,lzh,lha,rar,jar,7z,ace,arj,Z}=aunpack
 fi
+
+alias -s epub=unzip
 alias -s gpg=gpg
 
 

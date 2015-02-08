@@ -4,15 +4,9 @@
 ### plenv
 which plenv > /dev/null 2>&1 && eval "$(plenv init -)"
 
-### perlbrew (perlbrew env)
-# [[ -d ~/perl5/perlbrew ]] && . ~/perl5/perlbrew/etc/bashrc
-
 #---------------------------------------------------------------------------
 ### pyenv
 which pyenv > /dev/null 2>&1 && eval "$(pyenv init -)"
-
-### pythonbrew
-# [[ -d ~/.pythonbrew ]] && . ~/.pythonbrew/etc/bashrc
 
 ### TODO: virtualenvwrapper
 if which virtualenvwrapper.sh > /dev/null 2>&1 ; then
@@ -31,5 +25,6 @@ which rbenv > /dev/null 2>&1 && eval "$(rbenv init -)"
 # which ndenv > /dev/null 2>&1 && eval "$(ndenv init -)"
 
 #---------------------------------------------------------------------------
-### anyenv
-# which anyenv > /dev/null 2>&1 && eval "$(anyenv init -)"
+### phpenv
+which phpenv > /dev/null 2>&1 && eval "$(phpenv init -)"
+

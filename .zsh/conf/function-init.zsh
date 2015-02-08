@@ -3,7 +3,7 @@
 #---------------------------------------------------------------------------
 ### Bash
 if [[ -d ~/.bash/conf ]] ; then
-    . ~/.bash/conf/function.bash
+    . ~/.bash/conf/function-init.bash
 fi
 
 #---------------------------------------------------------------------------
@@ -17,7 +17,7 @@ case "$TERM" in
         }
         ## Current Directory
         precmd() {
-            echo -ne "\ek$(basename $(pwd))$\e\\"
+            echo -ne "\ek$(basename "$PWD")$\e\\"
         }
         ;;
     *) ;;

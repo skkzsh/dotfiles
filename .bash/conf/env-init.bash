@@ -5,11 +5,11 @@
 # TODO: Macでcoreutilsを使う場合を考慮
 
 # export LESS='-R -x4'
-# if [[ -n "$LS_COLORS" -o "$(uname)" = Darwin ]]; then
+# if [[ -n $LS_COLORS -o $(uname) = Darwin ]]; then
 #     export GREP_OPTIONS='--color=always'
-#     # if [[ -n "$LS_COLORS" ]]; then
+#     # if [[ -n $LS_COLORS ]]; then
 #     #     export LS_OPTIONS='-Fh --color=always'
-#     # elif [[ "$(uname)" = Darwin ]] ; then
+#     # elif [[ $(uname) = Darwin ]] ; then
 #     #     export LS_OPTIONS='-FhG'
 #     # fi
 # fi
@@ -21,6 +21,7 @@ case "$TERM" in
     linux) export LANG=C           ;;
     *)     export LANG=ja_JP.utf-8 ;;
 esac
+
 ## TODO: 256 Color
 case "$TERM" in
     xterm*)
@@ -38,6 +39,7 @@ esac
 ### Settings for each OS
 ## Alias定義の後?
 case "$(uname)" in
+
     Darwin)
         export VISUAL=vim
         # CLICOLOR=1
@@ -45,6 +47,12 @@ case "$(uname)" in
         # LSCOLORS=gxfxcxdxbxegedabagacad
         # LSCOLORS=ExFxCxDxBxegedabagacad
         ;;
+
+    Linux*)
+        export EDITOR=vim
+        export VISUAL=vim
+        ;;
+
     ## Windowsの環境変数でPAGERを指定している場合は
     ## 上書きしたいため
     MINGW32*)
@@ -54,9 +62,11 @@ case "$(uname)" in
         export VISUAL=gvim
         export EDITOR=gvim
         ;;
+
     CYGWIN*)
         export PAGER=less
         ;;
+
     *) ;;
 esac
 
@@ -64,57 +74,23 @@ esac
 #---------------------------------------------------------------------------
 ### Settings for each Linux Distribution
 ## いくつか方法がある
-if [[ -f /etc/issue.net ]]; then
-    case "$(cat /etc/issue.net)" in
-
-        Scientific*|Ubuntu*)
-            export EDITOR=vim
-            ;;
-
-        Red*|*SUSE*)
-            export VISUAL=vim
-            ;;
-
-        *)  ;;
-    esac
-fi
-
-#---------------------------------------------------------------------------
-### Settings for each Host
-### Super Computer
-case "$(hostname)" in
-    xe-000* | ap-000*)
-
-        module unload emacs/23.4
-        ## CPU TimeとMemory等のLimit解除
-        ulimit -v 4194304
-        ulimit -t 72000
-
-        case "$(hostname)" in
-            ap-000*)
-                ## Module
-                module load matlab/R2012a
-                # module load matlab/R2011b
-                # module load matlab/R2010b
-                ;;
-            *) ;;
-        esac
-
-        ;;
-    *) ;;
-esac
+## TODO: EDITOR or VISUAL
+# if [[ -f /etc/issue ]]; then
+#     case "$(cat /etc/issue)" in
+#
+#         Arch*|Ubuntu*|RED*|Scientific*|Amazon*|*SUSE*)
+#             ;;
+#
+#         *)  ;;
+#     esac
+# fi
 
 #---------------------------------------------------------------------------
 ### Gisty
 case "$(uname)" in
-    Linux|Darwin)
+    Darwin|Linux)
         export GISTY_DIR=~/Repository/gist
         ;;
     *) ;;
 esac
 
-#---------------------------------------------------------------------------
-### Proxy
-if [[ -f ~/.bash_proxy ]] ; then
-    . ~/.bash_proxy
-fi

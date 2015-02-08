@@ -6,43 +6,6 @@
 #---------------------------------------------------------------------------
 case "$(uname)" in
 
-    Linux)
-
-        if [[ -n "$LS_COLORS" ]]; then
-            alias ls='ls -Fh --color=always'
-            alias dir='dir -Fh --color=always'
-            alias vdir='vdir -Fh --color=always'
-            alias grep='grep --color=always'
-            alias fgrep='fgrep --color=always'
-            alias egrep='egrep --color=always'
-        fi
-
-        # Add an "alert" alias for long running commands.  Use like so:
-        #   sleep 10; alert
-        alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
-        alias o=xdg-open
-        alias pst='xclip -sel clip -o'
-
-        alias n='nautilus --no-desktop'
-        alias lvi=/usr/share/vim/vimcurrent/macros/less.sh
-        alias m='matlab -nodesktop -nosplash'
-        # PDF
-        # alias evc=evince
-        # alias xp=xpdf
-        # alias =zathura
-        alias a=apvlv
-        ## Paco
-        alias pacod='paco -D'
-        alias pacop='paco -p'
-        alias pacoa='paco -1addFs'
-        alias pacof='paco -fs'
-        alias pacou='paco -ua'
-        alias pacor='paco -r'
-
-        alias db=dropbox
-        ;;
-
     Darwin)
 
         alias o=open
@@ -59,15 +22,51 @@ case "$(uname)" in
         fi
 
         if which brew > /dev/null ; then
-            if [[ -d "$(brew --cellar emacs)" ]]; then
-                alias emacs24="$(brew --prefix emacs)/Emacs.app/Contents/MacOS/Emacs"
+            if [[ -d $(brew --cellar emacs) ]]; then
+                alias emacs24=$(brew --prefix emacs)/Emacs.app/Contents/MacOS/Emacs
                 alias emacs=emacs24
-                alias emacs23="$(brew --cellar emacs)/23.3b/Emacs.app/Contents/MacOS/Emacs"
             fi
             # which gsed > /dev/null && alias sed=gsed
             ## Shell ScriptだとAliasが無効?
         fi
 
+        ;;
+
+    Linux)
+
+        if [[ -n $LS_COLORS ]]; then
+            alias ls='ls -Fh --color=always'
+            alias dir='dir -Fh --color=always'
+            alias vdir='vdir -Fh --color=always'
+            alias grep='grep --color=always'
+            alias fgrep='fgrep --color=always'
+            alias egrep='egrep --color=always'
+        fi
+
+        # Add an "alert" alias for long running commands.  Use like so:
+        #   sleep 10; alert
+        alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+        alias o=xdg-open
+        alias pst='xclip -sel clip -o'
+
+        # alias n='nautilus --no-desktop'
+        alias lvi=/usr/share/vim/vimcurrent/macros/less.sh
+        # alias m='matlab -nodesktop -nosplash'
+        # PDF
+        # alias evc=evince
+        # alias xp=xpdf
+        # alias =zathura
+        alias a=apvlv
+        ## Paco
+        alias pacod='paco -D'
+        alias pacop='paco -p'
+        alias pacoa='paco -1addFs'
+        alias pacof='paco -fs'
+        alias pacou='paco -ua'
+        alias pacor='paco -r'
+
+        alias db=dropbox
         ;;
 
     MINGW32*)
@@ -77,7 +76,7 @@ case "$(uname)" in
         alias dir='dir -Fh --color=always'
         alias vdir='vdir -Fh --color=always'
         ## Git BashのError回避のため
-        if [[ -n "$LS_COLORS" ]]; then
+        if [[ -n $LS_COLORS ]]; then
             alias grep='grep --color=always'
             alias fgrep='fgrep --color=always'
             alias egrep='egrep --color=always'
@@ -93,9 +92,7 @@ esac
 
 #---------------------------------------------------------------------------
 if which htop > /dev/null 2>&1 ; then
-    alias t=htop
-else
-    alias t=top
+    alias top=htop
 fi
 if which colordiff > /dev/null 2>&1 ; then
     alias d=colordiff
@@ -129,12 +126,12 @@ alias h=history
 alias jb='jobs -l'
 alias wh='which'
 alias wha='which -a'
-alias zx='tar zxvf'
-alias zc='tar zcvf'
-alias jx='tar jxvf'
-alias jc='tar jcvf'
-alias Jx='tar Jxvf'
-alias Jc='tar Jcvf'
+# alias zx='tar zxvf'
+# alias zc='tar zcvf'
+# alias jx='tar jxvf'
+# alias jc='tar jcvf'
+# alias Jx='tar Jxvf'
+# alias Jc='tar Jcvf'
 # alias ='locate'
 alias nkfg='nkf -g'
 alias nkfu='nkf --overwrite -w -Lu'
@@ -177,7 +174,7 @@ fi
 
 #---------------------------------------------------------------------------
 ### less
-alias less='less -R -x4'
+alias less='less -iMR -x4'
 alias l='less'
 alias lsl='ls | less'
 alias lll='ls -l | less'
@@ -187,25 +184,26 @@ alias dul='du | less'
 alias paxl='ps ax | less'
 #alias ='tree | less'
 #alias ptl='pstree -al | less'
-if [[ -n $BASH_VERSION ]]; then
+if [[ -n $BASH ]]; then
     alias hl='history | less'
-elif [[ -n $ZSH_VERSION ]]; then
+elif [[ -n $ZSH_NAME ]]; then
     alias hl='history 1 | less'
 fi
 case "$(uname)" in
-    Linux) alias lest='last -a | less' ;;
     Darwin) alias lest='last | less' ;;
+    Linux) alias lest='last -a | less' ;;
     *) ;;
 esac
 
 #---------------------------------------------------------------------------
 ### grep
 alias pgrep='pgrep -l'
-if [[ -n "$BASH_VERSION" ]]; then
+if [[ -n $BASH ]]; then
     alias ps?='ps ax | grep'
     alias h?='history | grep'
-# elif [[ -n "$ZSH_VERSION" ]]; then
-#     alias h?='history 1 | grep'
+elif [[ -n $ZSH_NAME ]]; then
+    alias ps\?='ps ax | grep'
+    alias h\?='history 1 | grep'
 fi
 
 #---------------------------------------------------------------------------
@@ -214,6 +212,9 @@ alias s=screen
 alias sls='screen -ls'
 alias sr='screen -R'
 alias sS='screen -S'
+
+### tmux
+alias t=tmux
 
 ### Editor
 
@@ -241,13 +242,11 @@ alias vd=vimdiff
 alias se=sudoedit
 
 ### Perl
-alias plb=perlbrew
 alias pld=perldoc
 
 ### Python
 alias py=python
 alias ipy=ipython
-alias pyb=pythonbrew
 ## virtualenvwrapper
 alias mkve=mkvirtualenv
 alias lsve=lsvirtualenv
@@ -280,8 +279,8 @@ alias g=git
 # j
 # k=
 # l=less
-# m=matlab
-# n=nautilus
+# m=
+# n=
 # o=open
 # p=ping
 # q=

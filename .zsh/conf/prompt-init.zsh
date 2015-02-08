@@ -43,13 +43,10 @@ case "$HOST" in
     sing*)             col=green   ;;
     box*)              col=magenta ;;
     over*)             col=red     ;;
-    ride*)             col=yellow  ;;
     cern*)             deco=u ;;
     ubuntu*)           deco=u ;;
-    debian*)           deco=u ;;
+    arch*)             deco=u ;;
     *PC)               deco=s ;;
-    h24?*)             deco=u ;;
-    xe-000? | ap-000?) deco=u ;;
     *)                 col= ;;
 esac
 

@@ -1,5 +1,5 @@
 #---------------------------------------------------------------------------
 ## Bash
 if [[ -d ~/.bash/conf ]] ; then
-    . ~/.bash/conf/language.bash
+    . ~/.bash/conf/lang-init.bash
 fi

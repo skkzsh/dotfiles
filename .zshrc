@@ -1,19 +1,22 @@
 if [[ -d ~/.zsh/conf ]] ; then
-    . ~/.zsh/conf/prompt.zsh
-    . ~/.zsh/conf/base.zsh
-    . ~/.zsh/conf/plugin.zsh
-    . ~/.zsh/conf/completion.zsh
 
-    . ~/.zsh/conf/language.zsh
+    . ~/.zsh/conf/prompt-init.zsh
+    . ~/.zsh/conf/base-init.zsh
 
-    . ~/.zsh/conf/alias.zsh
-    . ~/.zsh/conf/env.zsh
+    . ~/.zsh/conf/bundle-init.zsh
+    . ~/.zsh/conf/plugin-init.zsh
+    . ~/.zsh/conf/completion-init.zsh
 
-    . ~/.zsh/conf/function.zsh
+    . ~/.zsh/conf/lang-init.zsh
+
+    . ~/.zsh/conf/alias-init.zsh
+    . ~/.zsh/conf/env-init.zsh
+
+    . ~/.zsh/conf/function-init.zsh
 fi
 
 if [[ -d ~/.bash/local ]] ; then
-    . ~/.bash/local/local.bash
+    . ~/.bash/local/local-init.bash
 fi
 
 # XXX: completion -> language -> alias -> env ?

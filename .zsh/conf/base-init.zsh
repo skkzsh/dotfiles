@@ -3,7 +3,7 @@
 #---------------------------------------------------------------------------
 ## Bash
 if [[ -d ~/.bash/conf ]] ; then
-    . ~/.bash/conf/base-share.bash
+    . ~/.bash/conf/base-share-init.bash
 fi
 
 #---------------------------------------------------------------------------
@@ -15,7 +15,7 @@ bindkey -e
 bindkey '^[p' history-beginning-search-backward
 bindkey '^[n' history-beginning-search-forward
 ## ^s, ^qを無効
-# setopt no_flow_control
+setopt no_flow_control
 
 #---------------------------------------------------------------------------
 ### History
@@ -24,7 +24,7 @@ setopt hist_ignore_dups
 ## zshプロセス間でHistoryを共有
 setopt share_history
 ## 実行時刻も保存
-# setopt extended_history
+setopt extended_history
 ## すぐにHistoryに追記
 # setopt inc_append_histor
 ## プロセス指定ではメニュー選択
@@ -68,6 +68,12 @@ setopt no_beep
 #setopt glob_complete
 ##
 # setopt extended_glob
+
+#---------------------------------------------------------------------------
+## Ubuntu
+if [[ -f /etc/zsh_command_not_found ]]; then
+      . /etc/zsh_command_not_found
+fi
 
 #---------------------------------------------------------------------------
 ## AutoLoad

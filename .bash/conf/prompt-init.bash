@@ -16,14 +16,11 @@ case "$HOSTNAME" in
     sing*)             col=32 ;;
     box*)              col=35 ;;
     over*)             col=31 ;;
-    ride*)             col=33 ;;
     cern*)             col=4  ;;
     ubuntu*)           col=4  ;;
-    debian*)           col=4  ;;
+    arch*)             col=4  ;;
     *PC)               col=7  ;;
     *ZENBOOK)          col=4  ;;
-    h24?)              col=4  ;;
-    xe-000? | ap-000?) col=4  ;;
     *)                 col=4  ;;
 esac
 

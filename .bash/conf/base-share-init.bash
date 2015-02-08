@@ -42,10 +42,10 @@ case "$(uname)" in
         if [[ -S ~/.ssh/ssh_auth_sock ]]; then
             # echo '1!'
             export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
-        elif [[ ! -S "$SSH_AUTH_SOCK" ]]; then
+        elif [[ ! -S $SSH_AUTH_SOCK ]]; then
             # echo '2!'
             export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
-        elif [[ ! -L "$SSH_AUTH_SOCK" ]]; then
+        elif [[ ! -L $SSH_AUTH_SOCK ]]; then
             # echo '3!'
             ln -snf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock &&
             export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
