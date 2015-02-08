@@ -1,8 +1,27 @@
-# vim: filetype=conf
-
 # --color
 --pager=less -R
 
 --type-set=org=.org
 --type-set=markdown=.md,.mkd,mdt,mkdn,mdwn,.mark,.mdown,.markdown
+--type-set=rst=.rst
+--type-set=conf=.conf
+--type-set=dosini=.ini
 --type-set=powershell=.ps1,.psd1,.psm1
+--type-set=texinfo=.texinfo,.texi,txi
+--type-set=info=.info
+# --type-set=neosnipet=.snip
+--type-set=dot=.dot
+--type-set=diag=.diag
+# --type-set=dat=.dat
+
+## Dot Files
+# --type-set==.bashrc,.bash_profile,.bash_history,.profile
+# --type-set==.zshrc,.zprofile,.zsh_history,.zlogin,.zlogout,.zshenv
+# --type-set=xmodmap=.Xmodmap
+# --type-set=xdefaults=.Xresources
+# --type-set=gitconfig=.gitconfig,.gitmodules
+
+# --type-set= =.in
+# --type-set= =.map
+
+# vim: filetype=conf
