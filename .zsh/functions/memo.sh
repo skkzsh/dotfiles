@@ -1,6 +1,6 @@
 #!/bin/sh
 
-wget https://raw.github.com/lapis25/dotfiles/master/.zsh/functions/_perlbrew
+wget https://raw.github.com/swdyh/gisty/master/_gisty
 
 # http://www.haskell.org/haskellwiki/Zsh
 wget http://gemi.fedorapeople.org/haskell/_ghc
