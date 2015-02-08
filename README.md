@@ -2,9 +2,6 @@
 
 ```sh
 git clone git://github.com/skkzsh/dotfiles.git
-cd dotfiles
-git submodule init
-git submodule update
 ```
 
 # Update
@@ -13,7 +10,5 @@ git submodule update
 cd dotfiles
 git pull origin master
 
-git submodule init
-git submodule update
-git submodule foreach 'git checkout master; git pull origin master'
+antigen update
 ```
