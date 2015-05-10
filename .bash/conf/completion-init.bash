@@ -8,7 +8,7 @@
 
 ### XXX
 ## brew info bash-completion
-if which brew > /dev/null 2>&1 && [[ -d $(brew --prefix bash-completion) ]]; then
+if which brew > /dev/null 2>&1 && [[ -d $(brew --prefix bash-completion) ]] ; then
     . $(brew --prefix)/etc/bash_completion
 elif [[ -f /etc/bash_completion ]] && ! shopt -oq posix; then
     . /etc/bash_completion
@@ -23,7 +23,7 @@ fi
 ### XXX
 ## env
 for ext in pl py rb; do # php
-    if which brew > /dev/null 2>&1 && [[ -d  $(brew --prefix ${ext}env) ]]; then
+    if which brew > /dev/null 2>&1 && [[ -d $(brew --prefix ${ext}env) ]]; then
         . $(brew --prefix ${ext}env)/completions/${ext}env.bash
     elif [[ -d ~/.${ext}env/completions ]] ; then
         . ~/.${ext}env/completions/${ext}env.bash
@@ -34,10 +34,12 @@ unset ext
 case "$(uname)" in
 
     Linux)
-        ## Git
-        if [[ -f ~/.git-completion.bash ]] ; then
-            . ~/.git-completion.bash
+        if ! (which brew > /dev/null 2>&1 && [[ -d $(brew --prefix nodebrew) ]]) && [[ -d ~/.nodebrew ]] ; then
+            . ~/.nodebrew/completions/bash/nodebrew-completion
         fi
+        # if [[ -f ~/.git-completion.bash ]] ; then
+        #     . ~/.git-completion.bash
+        # fi
         ## Gem
         ;;
 
@@ -79,14 +81,9 @@ fi
 which pip > /dev/null 2>&1 && eval "$(pip completion --bash)"
 
 #---------------------------------------------------------------------------
-## nodebrew
-if [[ -d ~/.bash/bundle/nodebrew ]] ; then
-    . ~/.bash/bundle/nodebrew/completions/bash/nodebrew-completion
-fi
-
 ## npm
 case "$(uname)" in
-    Darwin | Linux)
+    Darwin | Linux | SunOS)
         which npm > /dev/null 2>&1 && eval "$(npm completion)"
         ;;
     *)
