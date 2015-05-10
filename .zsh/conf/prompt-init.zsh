@@ -46,6 +46,7 @@ case "$HOST" in
     cern*)             deco=u ;;
     ubuntu*)           deco=u ;;
     arch*)             deco=u ;;
+    # solaris*)          deco=u ;;
     *PC)               deco=s ;;
     *)                 col= ;;
 esac
