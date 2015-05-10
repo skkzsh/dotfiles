@@ -69,6 +69,19 @@ case "$(uname)" in
         alias db=dropbox
         ;;
 
+    SunOS)
+        if [[ -n $LS_COLORS ]]; then
+            alias ls='gls -Fh --color=always'
+            alias dir='dir -Fh --color=always'
+            alias vdir='vdir -Fh --color=always'
+            alias grep='ggrep --color=always'
+            alias fgrep='gfgrep --color=always'
+            alias egrep='gegrep --color=always'
+        fi
+
+        alias rm='grm'
+        ;;
+
     MINGW32*)
         alias o=start
         alias vi=vim
@@ -184,6 +197,7 @@ alias dul='du | less'
 alias paxl='ps ax | less'
 #alias ='tree | less'
 #alias ptl='pstree -al | less'
+alias ag="ag --pager='less -R'"
 if [[ -n $BASH ]]; then
     alias hl='history | less'
 elif [[ -n $ZSH_NAME ]]; then
