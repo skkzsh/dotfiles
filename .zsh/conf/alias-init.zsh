@@ -48,6 +48,12 @@ alias -s gpg=gpg
 
 case "$(uname)" in
 
+    Darwin)
+        alias -g C='| pbcopy'
+        alias -s {pdf,dvi}=open
+        alias -s {jpg,JPG,jpeg,JPEG,png,PNG,gif,GIF,bmp,BMP,eps}=open
+        ;;
+
     Linux)
         alias -g C='| xclip -sel clip'
         alias -s pdf=zathura
@@ -56,10 +62,7 @@ case "$(uname)" in
         alias -s {jpg,JPG,jpeg,JPEG,png,PNG,gif,GIF,bmp,BMP,eps}=xdg-open
         ;;
 
-    Darwin)
-        alias -g C='| pbcopy'
-        alias -s {pdf,dvi}=open
-        alias -s {jpg,JPG,jpeg,JPEG,png,PNG,gif,GIF,bmp,BMP,eps}=open
+    SunOS)
         ;;
 
     *)  ;;
