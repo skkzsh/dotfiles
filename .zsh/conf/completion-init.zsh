@@ -5,8 +5,16 @@
 ## TODO: if exists
 
 fpath=(~/.zsh/site-functions ~/.zsh/functions $fpath)
-fpath=(~/.bash/bundle/nodebrew/completions/zsh $fpath)
 # fpath=(~/.zsh/bundle/zsh-completions/src $fpath)
+
+case "$(uname)" in
+    Linux)
+        if ! (which brew > /dev/null 2>&1 && [[ -d $(brew --prefix nodebrew) ]]) && [[ -d ~/.nodebrew ]] ; then
+            fpath=(~/.nodebrew/completions/zsh $fpath)
+        fi
+        ;;
+    *) ;;
+esac
 
 for cmd in pip ; do
     fpath=(~/.zsh/bundle/oh-my-zsh/plugins/$cmd $fpath)
