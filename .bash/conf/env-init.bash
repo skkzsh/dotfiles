@@ -53,14 +53,20 @@ case "$(uname)" in
         export VISUAL=vim
         ;;
 
+    SunOS)
+        export PAGER=less
+        # -ins
+        export VISUAL=vim
+        ;;
+
     ## Windowsの環境変数でPAGERを指定している場合は
     ## 上書きしたいため
     MINGW32*)
         # export TERM=xterm-256color
         # export TERM=xterm
         export PAGER=less
-        export VISUAL=gvim
         export EDITOR=gvim
+        export VISUAL=gvim
         ;;
 
     CYGWIN*)
