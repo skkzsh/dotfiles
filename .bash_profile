@@ -11,21 +11,12 @@
 
 ## Ubuntuだと, .bash_profileは読み込まれない.
 
-# if running bash
-if [[ -n $BASH_VERSION ]]; then
-    # include .bashrc if it exists
-    if [[ -f ~/.bashrc ]]; then
-        . ~/.bashrc
-    fi
-fi
-
 ## Path (下の方ほど優先度が高い)
-
 #---------------------------------------------------------------------------
 case "$(uname)" in
 
     Darwin)
-        PATH="/usr/local/sbin:/usr/local/bin:$PATH"
+        PATH="/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:$PATH"
         ;;
 
     Linux)
@@ -34,6 +25,22 @@ case "$(uname)" in
             MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
             INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
         fi
+        ;;
+
+    SunOS)
+        PATH="/opt/csw/bin:/opt/csw/sbin:$PATH:/usr/sbin"
+
+        if [[ -d ~/perl5 ]] ; then
+            eval $(perl -I ~/perl5/lib/perl5/ -Mlocal::lib)
+        fi
+        ;;
+
+    *) ;;
+esac
+
+case "$(uname)" in
+
+    Linux|SunOS)
         for ext in pl py rb php; do
             if [[ -d $HOME/.${ext}env ]] ; then
                 PATH="$HOME/.${ext}env/bin:$PATH"
@@ -41,6 +48,7 @@ case "$(uname)" in
         done
         unset ext
         ;;
+
     *) ;;
 esac
 
@@ -69,6 +77,10 @@ fi
 # if [[ -d $HOME/.cask ]] ; then
 #     PATH="$HOME/.cask/bin:$PATH"
 # fi
+
+if [[ -d $HOME/.local/bin ]] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
 
 ### make install
 if [[ -d $HOME/.usr/bin ]] ; then
@@ -118,9 +130,9 @@ case "$(uname)" in
         if [[ -d $HOME/.usr/v2c ]] ; then
             PATH="$HOME/.usr/v2c:$PATH"
         fi
-        if [[ -d /usr/NX/bin ]] ; then
-            PATH="/usr/NX/bin:$PATH"
-        fi
+        # if [[ -d /usr/NX/bin ]] ; then
+        #     PATH="/usr/NX/bin:$PATH"
+        # fi
         ;;
 
     # MINGW32*)
@@ -153,3 +165,12 @@ fi
 #         ;;
 #     *) ;;
 # esac
+
+#---------------------------------------------------------------------------
+# if running bash
+if [[ -n $BASH_VERSION ]]; then
+    # include .bashrc if it exists
+    if [[ -f ~/.bashrc ]]; then
+        . ~/.bashrc
+    fi
+fi
