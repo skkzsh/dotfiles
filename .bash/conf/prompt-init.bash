@@ -19,6 +19,7 @@ case "$HOSTNAME" in
     cern*)             col=4  ;;
     ubuntu*)           col=4  ;;
     arch*)             col=4  ;;
+    solaris*)          col=4  ;;
     *PC)               col=7  ;;
     *ZENBOOK)          col=4  ;;
     *)                 col=4  ;;
