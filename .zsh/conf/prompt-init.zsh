@@ -30,7 +30,7 @@ promptinit
 ### HostによってPromptの色を変更
 ## Method 1
 ## bashrcを参考
-# case "$HOST" in
+# case $HOST in
 #     *)                 col= ;;
 # esac
 # col_begin=%{[${col}m%}
@@ -39,34 +39,43 @@ promptinit
 ## Method 2
 #0:black, 1:red, 2:green, 3:yellow,
 #4:blue, 5:magenta, 6:cyan, 7:white
-case "$HOST" in
-    sing*)             col=green   ;;
-    box*)              col=magenta ;;
-    over*)             col=red     ;;
-    cern*)             deco=u ;;
-    ubuntu*)           deco=u ;;
-    arch*)             deco=u ;;
-    # solaris*)          deco=u ;;
-    *PC)               deco=s ;;
-    *)                 col= ;;
+case $HOST in
+    sing*)      col=green   ;;
+    box*)       col=magenta ;;
+    *vagrant*)  col=cyan    ;;
+    *ubuntu*)    deco=u ;;
+    *arch*)      deco=u ;;
+    # solaris*)   deco=u ;;
+    *)          col= ;;
 esac
 
 autoload colors
 colors
-col_begin=%{${fg[${col}]}%}
+col_begin=%{${fg[$col]}%}
 col_end=%{${reset_color}%}
 unset col
 
-deco_begin=%`echo ${deco} | tr a-z A-Z`
-deco_end=%${deco}
+## TODO
+deco_begin=%$(echo $deco | tr a-z A-Z)
+deco_end=%$deco
 unset deco
 
-case "$USER" in
-    root)
-        PROMPT="${col_begin}%n${col_end}@${col_begin}%m${col_end}:%~ > "
+case $(uname) in
+
+    MSYS*|MINGW*)
+        ## FIXME
+        PROMPT=$col_begin'%~ > '$col_end
         ;;
+
     *)
-        PROMPT="${col_begin}%m${col_end}:%~ > "
+        case $USER in
+            root)
+                PROMPT=$col_begin'%n'$col_end'@'$col_begin'%m'$col_end':%~ > '
+                ;;
+            *)
+                PROMPT=$col_begin'%m'$col_end':%~ > '
+                ;;
+        esac
         ;;
 esac
 

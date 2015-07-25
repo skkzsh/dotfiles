@@ -1,10 +1,14 @@
-[ -f "$HOME/.bash_profile" ] && . "$HOME/.bash_profile"
+# echo hello zprofile
+
+if [[ -f ~/.bash_profile ]] ; then
+    . ~/.bash_profile
+fi
 
 ### Ubuntu
 ## .zprofileが読み込まれず, .profileが読み込まれる
 
 ### Mac
-## brew install zsh
+## brew info zsh
 ## Defaultでは, zsh上でscreenを起動すると,
 ## PATHが逆転する.
 ## /etc/zshenvのpath_helperが原因.

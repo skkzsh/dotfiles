@@ -10,52 +10,31 @@ fi
 ### peco
 if which peco > /dev/null 2>&1 ; then
 
-    if (which tac || which gtac) > /dev/null 2>&1 ; then
-        function peco_select_history_z() {
-            local tac
-            if which gtac > /dev/null 2>&1 ; then
-                tac=gtac
-            else
-                tac=tac
-            fi
-            BUFFER=$(history -n 1 | eval $tac | peco --query "$LBUFFER")
-            CURSOR=$#BUFFER         # move cursor
-            zle -R -c               # refresh
-            # zle clear-screen
-            # zle redisplay
-        }
-        zle -N peco_select_history_z
-        bindkey '^[r' peco_select_history_z
-    fi
+    function peco_select_history_z() {
+        BUFFER=$(history -nr 1 | peco --query "$LBUFFER")
+        CURSOR=$#BUFFER         # move cursor
+        zle -R -c               # refresh
+        # zle clear-screen
+        # zle redisplay
+    }
+    zle -N peco_select_history_z
+    bindkey '^[r' peco_select_history_z
 
     # Git
-    # function peco_git_add_z {
-    # }
-    # function peco_git_modified_file_z {
-    # }
-
-    # alias -g peco_git_modified_file_z
+    alias -g GF='$(peco_git_modified_files)'
 
 fi
 
 #---------------------------------------------------------------------------
 ### percol
 # if which percol > /dev/null 2>&1 ; then
-#     if (which tac || which gtac) > /dev/null 2>&1 ; then
-#         function percol_select_history() {
-#             local tac
-#             if which gtac > /dev/null 2>&1 ; then
-#                 tac=gtac
-#             else
-#                 tac=tac
-#             fi
-#             BUFFER=$(history -n 1 | eval $tac | percol --query "$LBUFFER")
-#             CURSOR=$#BUFFER         # move cursor
-#             zle -R -c               # refresh
-#         }
-#         zle -N percol_select_history
-#         bindkey '^[r' percol_select_history
-#     fi
+#     function percol_select_history() {
+#         BUFFER=$(history -nr 1 | percol --query "$LBUFFER")
+#         CURSOR=$#BUFFER         # move cursor
+#         zle -R -c               # refresh
+#     }
+#     # zle -N percol_select_history
+#     # bindkey '^[r' percol_select_history
 # fi
 
 #---------------------------------------------------------------------------

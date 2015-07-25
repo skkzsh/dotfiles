@@ -7,7 +7,7 @@
 fpath=(~/.zsh/site-functions ~/.zsh/functions $fpath)
 # fpath=(~/.zsh/bundle/zsh-completions/src $fpath)
 
-case "$(uname)" in
+case $(uname) in
     Linux)
         if ! (which brew > /dev/null 2>&1 && [[ -d $(brew --prefix nodebrew) ]]) && [[ -d ~/.nodebrew ]] ; then
             fpath=(~/.nodebrew/completions/zsh $fpath)
@@ -83,3 +83,12 @@ if is-at-least 4.3.15 ; then
     zstyle ':chpwd:*' recent-dirs-default yes
     zstyle ':completion:*' recent-dirs-insert both
 fi
+
+#---------------------------------------------------------------------------
+## AWS
+if which aws_zsh_completer.sh > /dev/null 2>&1 ; then
+    if which pyenv > /dev/null 2>&1 ; then
+        . $(pyenv which aws_zsh_completer.sh)
+    fi
+fi
+

@@ -8,18 +8,28 @@ fi
 
 #---------------------------------------------------------------------------
 ### ScreenのHardStatusの表示
-case "$TERM" in
+case $TERM in
     screen)
-        TERM=xterm-256color # screen上でもpercolの色を同じにする
-        ## 実行中のCommand
-        preexec() {
-            echo -ne "\ek#${1%% *}\e\\"
-        }
-        ## Current Directory
-        precmd() {
-            echo -ne "\ek$(basename "$PWD")$\e\\"
-        }
+        # TERM=xterm-256color # screen上でもpercolの色を同じにする
+
+        # add-zsh-hook
+
+        if [[ -z $TMUX ]] ; then
+            ## Current Directory
+            precmd() {
+                echo -ne "\ek${PWD:t}$\e\\"
+            }
+
+            # chpwd
+
+            ## 実行中のCommand
+            preexec() {
+                echo -ne "\ek#${1%% *}\e\\"
+            }
+        fi
+
         ;;
+
     *) ;;
 esac
 

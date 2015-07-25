@@ -1,3 +1,5 @@
+# echo hello zshrc
+
 if [[ -d ~/.zsh/conf ]] ; then
 
     . ~/.zsh/conf/prompt-init.zsh

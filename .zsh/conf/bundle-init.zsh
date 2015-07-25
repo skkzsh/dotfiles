@@ -1,7 +1,7 @@
 if [[ -d ~/.zsh/bundle/antigen ]]; then
     . ~/.zsh/bundle/antigen/antigen.zsh
 
-    if [[ ! $(uname) == SunOS ]] ; then
+    if [[ $(uname) != SunOS ]] ; then
         # antigen use oh-my-zsh
         # antigen bundle autojump
         # antigen bundle rbenv

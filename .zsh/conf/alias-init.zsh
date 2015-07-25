@@ -24,16 +24,16 @@ alias -g U='| uniq'
 # alias -g T='| tail'
 # alias -g A='| gawk'
 # alias -g S='| sed'
-alias -g P='| percol'
+alias -g P='| peco'
 alias -g N='> /dev/null'
 alias -g H=--help
 alias -g V=--version
 alias -g ....=../..
 alias -g ......=../../..
 alias -g Z='| tar zxf -'
-alias -g J='| tar jxf -'
+# alias -g J='| tar jxf -'
 # alias -g J='| tar Jxf -'
-
+alias -g J='| jq .'
 
 #---------------------------------------------------------------------------
 ## Suffix Alias
@@ -44,9 +44,10 @@ fi
 
 alias -s epub=unzip
 alias -s gpg=gpg
+alias -s sqlite{,3}=sqlite3
+alias -s db=sqlite3
 
-
-case "$(uname)" in
+case $(uname) in
 
     Darwin)
         alias -g C='| pbcopy'
