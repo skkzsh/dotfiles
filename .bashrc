@@ -1,7 +1,8 @@
+# echo hello bashrc
+
 if [[ -d ~/.bash/conf ]] ; then
     # bash only
     . ~/.bash/conf/base-only-init.bash
-    . ~/.bash/conf/ubuntu-init.bash
     . ~/.bash/conf/completion-init.bash
 
     # bash & zsh

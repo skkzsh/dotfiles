@@ -4,7 +4,7 @@
 # dircolorsの後に置く
 
 #---------------------------------------------------------------------------
-case "$(uname)" in
+case $(uname) in
 
     Darwin)
 
@@ -12,9 +12,6 @@ case "$(uname)" in
         alias pst=pbpaste
 
         alias ls='ls -FhG'
-        alias grep='grep --color=always'
-        alias fgrep='fgrep --color=always'
-        alias egrep='egrep --color=always'
 
         if [[ -d /Applications/MacVim.app ]]; then
             alias vim=/Applications/MacVim.app/Contents/MacOS/Vim
@@ -34,15 +31,6 @@ case "$(uname)" in
 
     Linux)
 
-        if [[ -n $LS_COLORS ]]; then
-            alias ls='ls -Fh --color=always'
-            alias dir='dir -Fh --color=always'
-            alias vdir='vdir -Fh --color=always'
-            alias grep='grep --color=always'
-            alias fgrep='fgrep --color=always'
-            alias egrep='egrep --color=always'
-        fi
-
         # Add an "alert" alias for long running commands.  Use like so:
         #   sleep 10; alert
         alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
@@ -59,41 +47,32 @@ case "$(uname)" in
         # alias =zathura
         alias a=apvlv
         ## Paco
-        alias pacod='paco -D'
-        alias pacop='paco -p'
-        alias pacoa='paco -1addFs'
-        alias pacof='paco -fs'
-        alias pacou='paco -ua'
-        alias pacor='paco -r'
+        # alias pacod='paco -D'
+        # alias pacop='paco -p'
+        # alias pacoa='paco -1addFs'
+        # alias pacof='paco -fs'
+        # alias pacou='paco -ua'
+        # alias pacor='paco -r'
 
         alias db=dropbox
         ;;
 
-    SunOS)
-        if [[ -n $LS_COLORS ]]; then
-            alias ls='gls -Fh --color=always'
-            alias dir='dir -Fh --color=always'
-            alias vdir='vdir -Fh --color=always'
-            alias grep='ggrep --color=always'
-            alias fgrep='gfgrep --color=always'
-            alias egrep='gegrep --color=always'
-        fi
-
-        alias rm='grm'
+    FreeBSD)
+        alias ls='ls -FhG'
+        alias vi=vim
         ;;
 
-    MINGW32*)
+    SunOS)
+        # alias ls=gls
+        alias grep=ggrep
+        alias fgrep=gfgrep
+        alias egrep=gegrep
+        alias rm=grm
+        ;;
+
+    MSYS*|MINGW*)
         alias o=start
         alias vi=vim
-        alias ls='ls -Fh --color=always'
-        alias dir='dir -Fh --color=always'
-        alias vdir='vdir -Fh --color=always'
-        ## Git BashのError回避のため
-        if [[ -n $LS_COLORS ]]; then
-            alias grep='grep --color=always'
-            alias fgrep='fgrep --color=always'
-            alias egrep='egrep --color=always'
-        fi
         ;;
 
     CYGWIN*)
@@ -102,6 +81,44 @@ case "$(uname)" in
 
     *) ;;
 esac
+
+case $(uname) in
+
+    Arch*)
+        alias vi=vim
+        ;;
+
+    *) ;;
+esac
+
+#---------------------------------------------------------------------------
+### LS_COLORS
+### XXX: dircolorsはxtermでないと出力されない?
+# if which gdircolors > /dev/null 2>&1 ; then
+#     dc=gdircolors
+# else
+#     dc=dircolors
+# fi
+if which dircolors > /dev/null 2>&1 ; then
+    [[ -r ~/.dircolors ]] && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+fi
+unset dc
+
+if [[ -n $LS_COLORS && $(uname) = SunOS ]]; then
+    alias grep='ggrep --color=always'
+    alias fgrep='gfgrep --color=always'
+    alias egrep='gegrep --color=always'
+elif [[ -n $LS_COLORS || $(uname) = Darwin || $(uname) = FreeBSD ]]; then
+    alias grep='grep --color=always'
+    alias fgrep='fgrep --color=always'
+    alias egrep='egrep --color=always'
+fi
+
+if [[ -n $LS_COLORS && $(uname) != Darwin ]]; then
+    alias ls='ls -Fh --color=always'
+    alias dir='dir -Fh --color=always'
+    alias vdir='vdir -Fh --color=always'
+fi
 
 #---------------------------------------------------------------------------
 if which htop > /dev/null 2>&1 ; then
@@ -115,12 +132,6 @@ fi
 
 #---------------------------------------------------------------------------
 ### Basic
-alias ..='cd ..'
-alias ....='cd ../..'
-alias ......='cd ../../..'
-alias cd..='cd ..'
-alias cd....='cd ../..'
-alias cd......='cd ../../..'
 # alias -='cd -'
 alias cd-='cd -'
 # alias pd=pushd
@@ -187,7 +198,7 @@ fi
 
 #---------------------------------------------------------------------------
 ### less
-alias less='less -iMR -x4'
+# alias less='less -iMR -x4'
 alias l='less'
 alias lsl='ls | less'
 alias lll='ls -l | less'
@@ -197,13 +208,13 @@ alias dul='du | less'
 alias paxl='ps ax | less'
 #alias ='tree | less'
 #alias ptl='pstree -al | less'
-alias ag="ag --pager='less -R'"
+alias ag="ag --pager='less -iMR -x4'"
 if [[ -n $BASH ]]; then
     alias hl='history | less'
 elif [[ -n $ZSH_NAME ]]; then
     alias hl='history 1 | less'
 fi
-case "$(uname)" in
+case $(uname) in
     Darwin) alias lest='last | less' ;;
     Linux) alias lest='last -a | less' ;;
     *) ;;
@@ -262,11 +273,11 @@ alias pld=perldoc
 alias py=python
 alias ipy=ipython
 ## virtualenvwrapper
-alias mkve=mkvirtualenv
-alias lsve=lsvirtualenv
-alias rmve=rmvirtualenv
-alias wo=workon
-alias da=deactivate
+# alias mkve=mkvirtualenv
+# alias lsve=lsvirtualenv
+# alias rmve=rmvirtualenv
+# alias wo=workon
+# alias da=deactivate
 
 ### Git
 alias g=git
@@ -300,7 +311,7 @@ alias g=git
 # q=
 # r
 # s=screen
-# t=top
+# t=tmux
 # u=
 # v=vim
 # w

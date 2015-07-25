@@ -31,7 +31,7 @@ for ext in pl py rb; do # php
 done
 unset ext
 
-case "$(uname)" in
+case $(uname) in
 
     Linux)
         if ! (which brew > /dev/null 2>&1 && [[ -d $(brew --prefix nodebrew) ]]) && [[ -d ~/.nodebrew ]] ; then
@@ -43,15 +43,15 @@ case "$(uname)" in
         ## Gem
         ;;
 
-    MINGW32*)
-        ## Git
-        # %PROGRAMFILES%\Git\etc\git-completion.bash
-        programfiles="$(echo $PROGRAMFILES | sed 's!C:\\!/c/!')"
-        if [[ -d $programfiles/Git ]] ; then
-            . "$programfiles/Git/etc/git-completion.bash"
-        fi
-        unset programfiles
-        ;;
+    # MINGW32*)
+    #     ## Git
+    #     # %PROGRAMFILES%\Git\etc\git-completion.bash
+    #     programfiles="$(echo $PROGRAMFILES | sed 's!C:\\!/c/!')"
+    #     if [[ -d $programfiles/Git ]] ; then
+    #         . "$programfiles/Git/etc/git-completion.bash"
+    #     fi
+    #     unset programfiles
+    #     ;;
 
     *) ;;
 esac
@@ -75,17 +75,20 @@ fi
 # which setup-bash-complete > /dev/null 2>&1 && . setup-bash-complete
 
 #---------------------------------------------------------------------------
-## TODO: pythonbrew
-
 ## pip
 which pip > /dev/null 2>&1 && eval "$(pip completion --bash)"
 
 #---------------------------------------------------------------------------
 ## npm
-case "$(uname)" in
+case $(uname) in
     Darwin | Linux | SunOS)
         which npm > /dev/null 2>&1 && eval "$(npm completion)"
         ;;
     *)
         ;;
 esac
+
+#---------------------------------------------------------------------------
+## AWS
+which aws > /dev/null 2>&1 && complete -C aws_completer aws
+

@@ -9,7 +9,7 @@ if which peco > /dev/null 2>&1 ; then
         local dir="$(find . -maxdepth 1 -type d | sed 's;\./;;' | peco)"
         [[ -n $dir ]] && cd "$dir"
     }
-    # bind -x '"\C-x\C-f": peco_find'
+    # bind -x '"\C-x\C-f": peco_lscd'
 
     function peco_pgrep() {
         if [[ $1 == "" ]] ; then
@@ -30,6 +30,10 @@ if which peco > /dev/null 2>&1 ; then
         peco_pgrep $QUERY | xargs kill $*
     }
 
+    function peco_git_modified_files {
+        git status --short | peco | awk '{print $NF}'
+    }
+
     if [[ -n $BASH ]]; then
 
         if (which tac || which gtac) > /dev/null 2>&1 ; then
@@ -40,7 +44,7 @@ if which peco > /dev/null 2>&1 ; then
                 else
                     tac=tac
                 fi
-                READLINE_LINE=$(cat ~/.bash_history | eval $tac | peco --query "$READLINE_LINE")
+                READLINE_LINE=$($tac "$HISTFILE" | peco --query "$READLINE_LINE")
                 READLINE_POINT=$#READLINE_LINE
             }
             bind -x '"\C-[r": peco_select_history_b'
@@ -99,3 +103,27 @@ if which brew > /dev/null 2>&1 && [[ -d $(brew --prefix z) ]] ; then
     # _Z_CMD=j
     . $(brew --prefix)/etc/profile.d/z.sh
 fi
+
+#---------------------------------------------------------------------------
+# keychain ~/.ssh/id_rsa
+[[ -f ~/.keychain/$(hostname)-sh ]] && . ~/.keychain/$(hostname)-sh
+
+#---------------------------------------------------------------------------
+### Fortune
+### HostによってFileを変更
+# if which fortune > /dev/null 2>&1 ; then
+#
+#     # literature, ubuntu-server-tips-ja, debian-hints, libfortune-perl
+#     case $(hostname) in
+#         sing*)     fortune_file=literature            ;;
+#         *ubuntu*)  fortune_file=ubuntu-server-tips-ja ;;
+#         *)         fortunefile=                       ;;
+#     esac
+#
+#     echo
+#     echo "********************************************************************************"
+#     fortune $fortune_file
+#     echo "********************************************************************************"
+#     echo
+#
+# fi
