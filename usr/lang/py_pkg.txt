@@ -1,0 +1,17 @@
+trash-cli
+Glances
+# ipython
+
+# awscli
+
+# ansible
+
+# pyful
+
+# Sphinx
+# blockdiag
+# sphinx-bootstrap-theme
+# sphinx-rtd-theme
+# sphinxcontrib-blockdiag
+
+# percol
