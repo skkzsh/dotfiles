@@ -1,0 +1,1 @@
+vagrant  ALL=(ALL) NOPASSWD: /usr/bin/apt-get, /usr/bin/yum, /usr/sbin/service, /usr/bin/systemctl, /usr/sbin/visudo
