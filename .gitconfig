@@ -1,12 +1,16 @@
 [user]
     name = skkzsh
     email = skkzsh12@gmail.com
+    signingkey = skkzsh
+
 [core]
     excludesfile = ~/.gitignore
     pager = less -iMR -x4
     ; pager = lv -c
+
 [color]
     ui = auto
+
 [alias]
     a = add
     ap = add -p
@@ -27,19 +31,26 @@
     ls = log --stat --summary
     rc = rm --cached
     ; = stash
+
 [diff "to_utf8"]
     textconv = nkf -w
 [diff "sqlite3"]
     textconv = echo .dump | sqlite3
-[github]
-    user = skkzsh
+[diff "gpg"]
+    textconv = gpg -o-
+
 [include]
     path = .gitconfig.contrib
     path = .gitconfig.local
+
 [filter "media"]
     clean = git media clean %f
     smudge = git media smudge %f
     required = true
+
+[github]
+    user = skkzsh
+
 # [difftool "sourcetree"]
 #     cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 #     path =
