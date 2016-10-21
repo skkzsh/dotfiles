@@ -24,6 +24,7 @@ alias -g U='| uniq'
 # alias -g T='| tail'
 # alias -g A='| gawk'
 # alias -g S='| sed'
+# alias -g P='| perl'
 alias -g P='| peco'
 alias -g N='> /dev/null'
 alias -g H=--help
@@ -38,32 +39,55 @@ alias -g J='| jq .'
 #---------------------------------------------------------------------------
 ## Suffix Alias
 if which aunpack > /dev/null 2>&1 ; then
-    alias -s {tar,gz,tgz,bz2,tbz,xz,lzo,tzo,cpio}=aunpack
+    alias -s {tar,gz,tgz,bz2,tbz,xz,txz,lzo,tzo,cpio}=aunpack
     alias -s {zip,lzh,lha,rar,jar,7z,ace,arj,Z}=aunpack
 fi
 
+# alias -s {}=less
+# org
+alias -s {txt,log,md,conf}=view
+alias -s {css,xml,yml,json,ini}=view
+alias -s {el,vim}=view
 alias -s epub=unzip
 alias -s gpg=gpg
 alias -s sqlite{,3}=sqlite3
 alias -s db=sqlite3
 
-case $(uname) in
+case $OSTYPE in
 
-    Darwin)
+    darwin*)
         alias -g C='| pbcopy'
-        alias -s {pdf,dvi}=open
-        alias -s {jpg,JPG,jpeg,JPEG,png,PNG,gif,GIF,bmp,BMP,eps}=open
+        alias -s pdf='qlmanage -p'
+        # alias -s dvi=open
+        alias -s {,s}htm{,l}=open
+        alias -s {jpg,JPG,jpeg,JPEG,png,PNG,gif,GIF,bmp,BMP,eps}='qlmanage -p'
+        alias -s csv='qlmanage -p'
         ;;
 
-    Linux)
-        alias -g C='| xclip -sel clip'
+    linux*)
+        alias -g C='| xclip -selection clipboard'
         alias -s pdf=zathura
-        alias -s dvi=xdvi
+        # alias -s dvi=xdvi
         alias -s eps=gv
-        alias -s {jpg,JPG,jpeg,JPEG,png,PNG,gif,GIF,bmp,BMP,eps}=xdg-open
+        alias -s {,s}htm{,l}=xdg-open
+        alias -s {jpg,JPG,jpeg,JPEG,png,PNG,gif,GIF,bmp,BMP}=xdg-open
         ;;
 
-    SunOS)
+    solaris*)
+        # alias -g C='| xclip -selection clipboard'
+        # alias -s pdf=zathura
+        # alias -s dvi=xdvi
+        alias -s eps=gv
+        alias -s {,s}htm{,l}=xdg-open
+        alias -s {jpg,JPG,jpeg,JPEG,png,PNG,gif,GIF,bmp,BMP}=xdg-open
+        ;;
+
+    msys)
+        alias -g C='| clip'
+        alias -s lnk=start
+        alias -s pdf=start
+        alias -s {,s}htm{,l}=start
+        alias -s {jpg,JPG,jpeg,JPEG,png,PNG,gif,GIF,bmp,BMP,eps}=start
         ;;
 
     *)  ;;

@@ -16,8 +16,10 @@ case $(uname) in
     *) ;;
 esac
 
-for cmd in pip ; do
+for cmd in cpanm pip docker; do
+    # if which $cmd > /dev/null 2>&1 ; then
     fpath=(~/.zsh/bundle/oh-my-zsh/plugins/$cmd $fpath)
+    # fi
 done
 unset cmd
 

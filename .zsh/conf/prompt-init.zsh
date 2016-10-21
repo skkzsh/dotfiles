@@ -40,12 +40,12 @@ promptinit
 #0:black, 1:red, 2:green, 3:yellow,
 #4:blue, 5:magenta, 6:cyan, 7:white
 case $HOST in
-    sing*)      col=green   ;;
-    box*)       col=magenta ;;
-    *vagrant*)  col=cyan    ;;
-    *ubuntu*)    deco=u ;;
-    *arch*)      deco=u ;;
-    # solaris*)   deco=u ;;
+    sing*)        col=green   ;;
+    raspberrypi*) col=red     ;;
+    ip-*)         col=yellow  ;;
+    *vagrant*)    col=cyan  ;;
+    *ubuntu*)     deco=u ;;
+    *arch*)       deco=u ;;
     *)          col= ;;
 esac
 
@@ -60,9 +60,9 @@ deco_begin=%$(echo $deco | tr a-z A-Z)
 deco_end=%$deco
 unset deco
 
-case $(uname) in
+case $OSTYPE in
 
-    MSYS*|MINGW*)
+    msys)
         ## FIXME
         PROMPT=$col_begin'%~ > '$col_end
         ;;
@@ -78,6 +78,19 @@ case $(uname) in
         esac
         ;;
 esac
+
+
+## Ubuntu on Windows
+# if [[ -f /proc/sys/kernel/osrelease ]]; then
+#     case "$(cat /proc/sys/kernel/osrelease)" in
+#
+#         *Microsoft)
+#             PROMPT=$col_begin'%~ > '$col_end
+#             ;;
+#
+#         *) ;;
+#     esac
+# fi
 
 # PROMPT="${deco_begin}${col_begin}%m${col_end}${deco_end}:%~ > "
 ## suse Base
