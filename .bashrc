@@ -1,4 +1,4 @@
-# echo hello bashrc
+# echo hello bashrc # Debug
 
 if [[ -d ~/.bash/conf ]] ; then
     # bash only
@@ -20,7 +20,7 @@ if [[ -d ~/.bash/conf ]] ; then
     . ~/.bash/conf/prompt-init.bash
 fi
 
-if [[ -d ~/.bash/local ]] ; then
+if [[ -f ~/.bash/local/local-init.bash ]] ; then
     . ~/.bash/local/local-init.bash
 fi
 

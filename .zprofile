@@ -1,4 +1,4 @@
-# echo hello zprofile
+# echo hello zprofile # Debug
 
 if [[ -f ~/.bash_profile ]] ; then
     . ~/.bash_profile
