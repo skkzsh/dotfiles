@@ -1,7 +1,7 @@
 # Install
 
 ```sh
-git clone git://github.com/skkzsh/dotfiles.git
+git clone https://github.com/skkzsh/dotfiles.git
 ```
 
 # Update
@@ -10,5 +10,5 @@ git clone git://github.com/skkzsh/dotfiles.git
 cd dotfiles
 git pull origin master
 
-antigen update
+zplug update
 ```
