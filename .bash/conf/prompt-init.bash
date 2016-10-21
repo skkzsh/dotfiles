@@ -12,13 +12,13 @@
 ## 5: 点滅
 ## 7: 反転
 case $HOSTNAME in
-    sing*)      col=32 ;;
-    box*)       col=35 ;;
-    *vagrant*)  col=36 ;;
-    *ubuntu*)   col=4  ;;
-    *arch*)     col=4  ;;
-    *solaris*)  col=4  ;;
-    *)          col=4  ;;
+    sing*)        col=32 ;;
+    raspberrypi*) col=31 ;;
+    ip-*)         col=33 ;;
+    *vagrant*)    col=36 ;;
+    *ubuntu*)     col=4  ;;
+    *arch*)       col=4  ;;
+    *)            col=4  ;;
 esac
 
 col_begin="\[\e[${col}m\]"
@@ -28,8 +28,9 @@ unset col
 
 ## Ubuntu Base
 # Console2, MINGWだと, TERM=cygwin
-case $(uname) in
-    MSYS*|MINGW*)
+case $OSTYPE in
+    msys)
+        # PS1="${col_begin}\[\e]0;\w\a\]\w \$${col_end} "
         PS1=$col_begin'\w'$col_end' \$ '
         ;;
 
@@ -38,9 +39,11 @@ case $(uname) in
             xterm* | screen*)
                 case $USER in
                     root)
+                        # PS1="\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}${col_begin}\u${col_end}@${col_begin}\h${col_end}:\w \$ "
                         PS1=$col_begin'\u'$col_end'@'$col_begin'\h'$col_end':\w \$ '
                         ;;
                     *)
+                        # PS1="\[\e]0;\h: \w\a\]${debian_chroot:+($debian_chroot)}${col_begin}\h${col_end}:\w \$ "
                         PS1=$col_begin'\h'$col_end':\w \$ '
                         ;;
                 esac
@@ -49,6 +52,19 @@ case $(uname) in
         esac
         ;;
 esac
+
+## Ubuntu on Windows
+# if [[ -f /proc/sys/kernel/osrelease ]]; then
+#     case "$(cat /proc/sys/kernel/osrelease)" in
+#
+#         *Microsoft)
+#             PS1=$col_begin'\w'$col_end' \$ '
+#             ;;
+#
+#         *) ;;
+#     esac
+# fi
+
 # PS1="\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\u@\h:\w\$ " # Ubuntu Default
 
 unset col_begin col_end

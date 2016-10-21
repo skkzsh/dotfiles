@@ -18,7 +18,7 @@ export LESS='-iMR -x4'
 [[ -x /usr/bin/lesspipe ]] && eval "$(SHELL=/bin/sh lesspipe)"
 
 #---------------------------------------------------------------------------
-### Settings for each TERM
+### conf for each TERM
 ## if Console in English, otherwise in Japanese
 case $TERM in
     linux) export LANG=C           ;;
@@ -40,7 +40,7 @@ case $TERM in
 esac
 
 #---------------------------------------------------------------------------
-### Settings for each OS
+### conf for each OS
 ## Alias定義の後?
 case $(uname) in
 
@@ -52,7 +52,7 @@ case $(uname) in
         # LSCOLORS=ExFxCxDxBxegedabagacad
         ;;
 
-    Linux*)
+    Linux)
         export EDITOR=vim
         export VISUAL=vim
         ;;
@@ -65,12 +65,17 @@ case $(uname) in
 
     ## Windowsの環境変数でPAGERを指定している場合は
     ## 上書きしたいため
-    MSYS*|MINGW*|CYGWIN*)
+    MSYS*|MINGW*)
         # export TERM=xterm-256color
         # export TERM=xterm
         export PAGER=less
-        export EDITOR=gvim
-        export VISUAL=gvim
+        if which gvim > /dev/null 2>&1 ; then
+            export EDITOR=gvim
+            export VISUAL=gvim
+        else
+            export EDITOR=vim
+            export VISUAL=vim
+        fi
         ;;
 
     *) ;;
@@ -78,7 +83,7 @@ esac
 
 
 #---------------------------------------------------------------------------
-### Settings for each Linux Distribution
+### conf for each Linux Distribution
 ## いくつか方法がある
 ## TODO: EDITOR or VISUAL
 # if [[ -f /etc/issue ]]; then
@@ -92,19 +97,29 @@ esac
 # fi
 
 #---------------------------------------------------------------------------
-### Docker
-if which boot2docker > /dev/null 2>&1 ; then
-    export DOCKER_HOST=tcp://$(boot2docker ip 2> /dev/null):2376
-    export DOCKER_CERT_PATH=~/.boot2docker/certs/boot2docker-vm
-    export DOCKER_TLS_VERIFY=1
+### Ansible
+if (which ansible && which cowsay) > /dev/null 2>&1 ; then
+    export ANSIBLE_NOCOWS=1
 fi
 
 #---------------------------------------------------------------------------
-### Gisty
-case $(uname) in
-    Darwin|Linux)
-        export GISTY_DIR=~/Repository/gist
-        ;;
-    *) ;;
-esac
+### Git
+
+## Git for Windowsにより, GIT_SSH=plinkとなっている場合
+# case $OSTYPE in
+#     msys)
+#         [[ $GIT_SSH =~ plink ]] && unset GIT_SSH
+#         [[ $SVN_SSH =~ plink ]] && unset SVN_SSH
+#         ;;
+#     *) ;;
+# esac
+
+if which gisty > /dev/null 2>&1 ; then
+    case $(uname) in
+        Darwin|Linux)
+            export GISTY_DIR=~/Repository/gist
+            ;;
+        *) ;;
+    esac
+fi
 

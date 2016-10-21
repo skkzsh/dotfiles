@@ -4,39 +4,37 @@
 # dircolorsの後に置く
 
 #---------------------------------------------------------------------------
-case $(uname) in
+case $OSTYPE in
 
-    Darwin)
+    darwin*)
 
         alias o=open
         alias pst=pbpaste
 
-        alias ls='ls -FhG'
-
         if [[ -d /Applications/MacVim.app ]]; then
             alias vim=/Applications/MacVim.app/Contents/MacOS/Vim
-            alias vi=vim
         fi
 
-        if which brew > /dev/null ; then
-            if [[ -d $(brew --cellar emacs) ]]; then
-                alias emacs24=$(brew --prefix emacs)/Emacs.app/Contents/MacOS/Emacs
-                alias emacs=emacs24
-            fi
+        # if which brew > /dev/null ; then
+            # if [[ -d $(brew --prefix emacs) ]]; then
+            #     alias emacs=$(brew --prefix emacs)/Emacs.app/Contents/MacOS/Emacs
+            #     # alias emacs=$(brew --cellar emacs)/25*/Emacs.app/Contents/MacOS/Emacs
+            # fi
+
             # which gsed > /dev/null && alias sed=gsed
             ## Shell ScriptだとAliasが無効?
-        fi
+        # fi
 
         ;;
 
-    Linux)
+    linux*)
 
         # Add an "alert" alias for long running commands.  Use like so:
         #   sleep 10; alert
         alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
         alias o=xdg-open
-        alias pst='xclip -sel clip -o'
+        alias pst='xclip -selection clipboard -o'
 
         # alias n='nautilus --no-desktop'
         alias lvi=/usr/share/vim/vimcurrent/macros/less.sh
@@ -45,7 +43,7 @@ case $(uname) in
         # alias evc=evince
         # alias xp=xpdf
         # alias =zathura
-        alias a=apvlv
+        # alias a=apvlv
         ## Paco
         # alias pacod='paco -D'
         # alias pacop='paco -p'
@@ -57,12 +55,7 @@ case $(uname) in
         alias db=dropbox
         ;;
 
-    FreeBSD)
-        alias ls='ls -FhG'
-        alias vi=vim
-        ;;
-
-    SunOS)
+    solaris*)
         # alias ls=gls
         alias grep=ggrep
         alias fgrep=gfgrep
@@ -70,26 +63,32 @@ case $(uname) in
         alias rm=grm
         ;;
 
-    MSYS*|MINGW*)
+    msys)
         alias o=start
-        alias vi=vim
-        ;;
-
-    CYGWIN*)
-        alias o=cygstart
-        ;;
-
-    *) ;;
-esac
-
-case $(uname) in
-
-    Arch*)
-        alias vi=vim
+        alias pst='cat /dev/clipboard'
+        alias wgit='/c/Program\ Files/Git/bin/git'
+        # alias wgit='/c/Program\ Files/Git/cmd/git'
+        # alias wgpg="LANG=C /c/Program\ Files\ \(x86\)/GNU/GnuPG4Win/pub/gpg"
         ;;
 
     *) ;;
 esac
+
+case $OSTYPE in
+    darwin*|freebsd*|msys) alias vi=vim ;;
+    *) ;;
+esac
+
+if [[ -f /etc/issue ]]; then
+    case "$(cat /etc/issue)" in
+
+        Arch*)
+            alias vi=vim
+            ;;
+
+        *) ;;
+    esac
+fi
 
 #---------------------------------------------------------------------------
 ### LS_COLORS
@@ -120,15 +119,45 @@ if [[ -n $LS_COLORS && $(uname) != Darwin ]]; then
     alias vdir='vdir -Fh --color=always'
 fi
 
+case $(uname) in
+    Darwin|FreeBSD) alias ls='ls -FhG' ;;
+    *) ;;
+esac
+
 #---------------------------------------------------------------------------
 if which htop > /dev/null 2>&1 ; then
     alias top=htop
 fi
-if which colordiff > /dev/null 2>&1 ; then
-    alias d=colordiff
-else
-    alias d=diff
-fi
+
+case $OSTYPE in
+
+    msys)
+        if which colordiff > /dev/null 2>&1 ; then
+            difftool=colordiff
+        else
+            difftool=diff
+        fi
+
+        if which diff-highlight > /dev/null 2>&1 ; then
+            function di {
+                $difftool -u $@ | diff-highlight
+            }
+        else
+            alias di=$difftool
+        fi
+        # unset difftool
+        ;;
+
+    *)
+        if which git > /dev/null 2>&1 ; then
+            alias di='git diff --no-index'
+        elif which colordiff > /dev/null 2>&1 ; then
+            alias di=colordiff
+        else
+            alias di=diff
+        fi
+        ;;
+esac
 
 #---------------------------------------------------------------------------
 ### Basic
@@ -216,7 +245,7 @@ elif [[ -n $ZSH_NAME ]]; then
 fi
 case $(uname) in
     Darwin) alias lest='last | less' ;;
-    Linux) alias lest='last -a | less' ;;
+    Linux)  alias lest='last -a | less' ;;
     *) ;;
 esac
 
@@ -233,10 +262,10 @@ fi
 
 #---------------------------------------------------------------------------
 ### GNU screen
-alias s=screen
-alias sls='screen -ls'
-alias sr='screen -R'
-alias sS='screen -S'
+# alias s=screen
+# alias sls='screen -ls'
+# alias sr='screen -R'
+# alias sS='screen -S'
 
 ### tmux
 alias t=tmux
@@ -245,10 +274,10 @@ alias t=tmux
 
 ## Emacs for X
 alias e='emacs'
-alias wl='emacs -f wl'
+# alias wl='emacs -f wl'
 ## Emacs for CUI
 alias enw='emacs -nw'
-alias wlnw='emacs -nw -f wl'
+# alias wlnw='emacs -nw -f wl'
 # env TERM=xterm-256color
 ## Emacs Client
 ## Optionによる挙動の違いがよく分からない

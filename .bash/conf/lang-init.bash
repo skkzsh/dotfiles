@@ -8,3 +8,9 @@ if which virtualenvwrapper.sh > /dev/null 2>&1 ; then
     WORKON_HOME=~/.virtualenvs
     . "$(which virtualenvwrapper.sh)"
 fi
+
+# FIXME : nodist
+# case $OSTYPE in
+#     msys) . $NODE_PREFIX/bin/nodist_bash_profile_content.sh ;;
+#     *)    ;;
+# esac

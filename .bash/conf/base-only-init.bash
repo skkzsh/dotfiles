@@ -1,4 +1,4 @@
-### bashだけの基本Settings
+### bashだけの基本conf
 
 ### Ubuntu
 # ~/.bashrc: executed by bash(1) for non-login shells.
@@ -12,9 +12,10 @@
 #---------------------------------------------------------------------------
 ### Red Hat
 case $(uname) in
-    Linux) if [[ -f /etc/bashrc ]] ; then
-                . /etc/bashrc
-            fi
+    Linux)
+        if [[ -f /etc/bashrc ]] ; then
+            . /etc/bashrc
+        fi
         ;;
     *)  ;;
 esac

@@ -1,4 +1,4 @@
-# bash, zshの共通基本Settings
+# bash, zshの共通基本conf
 # NOTE: source this file in .zshrc
 
 #---------------------------------------------------------------------------

@@ -10,14 +10,18 @@
 ## brew info bash-completion
 if which brew > /dev/null 2>&1 && [[ -d $(brew --prefix bash-completion) ]] ; then
     . $(brew --prefix)/etc/bash_completion
-elif [[ -f /etc/bash_completion ]] && ! shopt -oq posix; then
-    . /etc/bash_completion
-elif [[ -f ~/.bash_completion ]] && ! shopt -oq posix; then
-    ## Local
-    [[ -n $BASH_COMPLETION ]]            || BASH_COMPLETION=~/.bash_completion
-    [[ -n $BASH_COMPLETION_DIR ]]        || BASH_COMPLETION_DIR=~/.bash_completion.d
-    [[ -n $BASH_COMPLETION_COMPAT_DIR ]] || BASH_COMPLETION_COMPAT_DIR=~/.bash_completion.d
-    . ~/.bash_completion
+elif ! shopt -oq posix ; then
+    if [[ -f /usr/share/bash-completion/bash_completion ]] ; then
+        . /usr/share/bash-completion/bash_completion
+    elif [[ -f /etc/bash_completion ]] ; then
+        . /etc/bash_completion
+    # elif [[ -f ~/.bash_completion ]] ; then
+    #     ## Local
+    #     [[ -n $BASH_COMPLETION ]]            || BASH_COMPLETION=~/.bash_completion
+    #     [[ -n $BASH_COMPLETION_DIR ]]        || BASH_COMPLETION_DIR=~/.bash_completion.d
+    #     [[ -n $BASH_COMPLETION_COMPAT_DIR ]] || BASH_COMPLETION_COMPAT_DIR=~/.bash_completion.d
+    #     . ~/.bash_completion
+    fi
 fi
 
 ### XXX
@@ -46,7 +50,7 @@ case $(uname) in
     # MINGW32*)
     #     ## Git
     #     # %PROGRAMFILES%\Git\etc\git-completion.bash
-    #     programfiles="$(echo $PROGRAMFILES | sed 's!C:\\!/c/!')"
+    #     programfiles=$(cygpath $PROGRAMFILES)
     #     if [[ -d $programfiles/Git ]] ; then
     #         . "$programfiles/Git/etc/git-completion.bash"
     #     fi

@@ -2,6 +2,26 @@
 # NOTE: source this file in .zshrc
 
 #---------------------------------------------------------------------------
+### fzf
+if [[ -n $fzf_prefix ]] ; then
+    # printenv SHELL | gawk -F/ '{print $NF}'
+    if [[ -n $BASH ]] ; then
+        fzf_sh=bash
+    elif [[ -n $ZSH_NAME ]] ; then
+        fzf_sh=zsh
+    fi
+
+    if [[ -n $fzf_sh ]] ; then
+        # TODO
+        # . $fzf_prefix/shell/completion.$fzf_sh
+        # . $fzf_prefix/shell/key-bindings.$fzf_sh
+        unset fzf_sh
+    fi
+    unset fzf_prefix
+fi
+
+#---------------------------------------------------------------------------
+### TODO Integrate peco $ percol
 ### peco
 if which peco > /dev/null 2>&1 ; then
 
@@ -63,45 +83,48 @@ fi
 
 #---------------------------------------------------------------------------
 ### percol
-# if which percol > /dev/null 2>&1 ; then
-#
-#     function percol_pgrep() {
-#         if [[ $1 == "" ]] ; then
-#             PERCOL=percol
-#         else
-#             PERCOL="percol --query $1"
-#         fi
-#         ps aux | eval $PERCOL | awk '{print $2}'
-#     }
-#
-#     function percol_pkill() {
-#         if [[ $1 =~ "^-" ]] ; then
-#             QUERY=""            # options only
-#         else
-#             QUERY=$1            # with a query
-#             [[ $# > 0 ]] && shift
-#         fi
-#         percol_pgrep $QUERY | xargs kill $*
-#     }
-#
-# fi
+if which percol > /dev/null 2>&1 ; then
 
-#---------------------------------------------------------------------------
-### autojump
-## compinitより前に
-## brew info autojump
-if which brew > /dev/null 2>&1 && [[ -d $(brew --prefix autojump) ]] ; then
-    . $(brew --prefix)/etc/autojump.sh
-elif [[ -f ~/.autojump/etc/profile.d/autojump.sh ]] ; then
-    . ~/.autojump/etc/profile.d/autojump.sh
+    function percol_pgrep() {
+        if [[ $1 == "" ]] ; then
+            PERCOL=percol
+        else
+            PERCOL="percol --query $1"
+        fi
+        ps aux | eval $PERCOL | awk '{print $2}'
+    }
+
+    function percol_pkill() {
+        if [[ $1 =~ "^-" ]] ; then
+            QUERY=""            # options only
+        else
+            QUERY=$1            # with a query
+            [[ $# > 0 ]] && shift
+        fi
+        percol_pgrep $QUERY | xargs kill $*
+    }
+
 fi
 
 #---------------------------------------------------------------------------
+### fasd
+# if which fasd > /dev/null 2>&1 ; then
+#     eval "$(fasd --init auto)"
+#     eval "$(fasd --init posix-alias zsh-hook)"
+# fi
+
+#---------------------------------------------------------------------------
 ### z
-## brew info z.sh
+## brew info z
 if which brew > /dev/null 2>&1 && [[ -d $(brew --prefix z) ]] ; then
     # _Z_CMD=j
     . $(brew --prefix)/etc/profile.d/z.sh
+fi
+
+if [[ $OSTYPE = msys ]] ; then
+    if [[ -d ~/.bash/bundle/z ]] ; then
+        . ~/.bash/bundle/z/z.sh
+    fi
 fi
 
 #---------------------------------------------------------------------------
