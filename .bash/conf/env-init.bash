@@ -44,17 +44,15 @@ esac
 ## Alias定義の後?
 case $(uname) in
 
-    Darwin)
-        export VISUAL=vim
+    Darwin|Linux)
+        export EDITOR=vim
+        export VISUAL=$EDITOR
+
+        # for Mac
         # CLICOLOR=1
         # LSCOLORS=DxGxcxdxCxegedabagacad
         # LSCOLORS=gxfxcxdxbxegedabagacad
         # LSCOLORS=ExFxCxDxBxegedabagacad
-        ;;
-
-    Linux)
-        export EDITOR=vim
-        export VISUAL=vim
         ;;
 
     FreeBSD|SunOS)
@@ -71,11 +69,10 @@ case $(uname) in
         export PAGER=less
         if which gvim > /dev/null 2>&1 ; then
             export EDITOR=gvim
-            export VISUAL=gvim
         else
             export EDITOR=vim
-            export VISUAL=vim
         fi
+        export VISUAL=$EDITOR
         ;;
 
     *) ;;
@@ -123,3 +120,6 @@ if which gisty > /dev/null 2>&1 ; then
     esac
 fi
 
+#---------------------------------------------------------------------------
+### DB
+export PGHOST=localhost
