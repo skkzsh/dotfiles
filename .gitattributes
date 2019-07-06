@@ -1,3 +1,1 @@
-*.reg diff=to_utf8
-*.db diff=sqlite3
-*.gpg diff=gpg
+# *.db diff=sqlite3
