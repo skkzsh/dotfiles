@@ -3,7 +3,8 @@ if [[ -d ~/.zsh/bundle/zplug ]]; then
 
     if [[ $(uname) != SunOS ]] ; then
         zplug zsh-users/zsh-completions
-        zplug zsh-users/zsh-syntax-highlighting, nice:10
+        zplug zsh-users/zsh-syntax-highlighting, defer:2
+        # zplug zsh-users/zsh-autosuggestions
 
         if [[ $OSTYPE != msys ]] ; then
             zplug zsh-users/zaw
