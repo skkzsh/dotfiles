@@ -18,10 +18,13 @@ if [[ -n $fzf_prefix ]] ; then
         unset fzf_sh
     fi
     unset fzf_prefix
+
+    # export $FZF_DEFAULT_COMMAND
+    # export $FZF_DEFAULT_OPTS
 fi
 
 #---------------------------------------------------------------------------
-### TODO Integrate peco $ percol
+### TODO Integrate peco & percol
 ### peco
 if which peco > /dev/null 2>&1 ; then
 
@@ -50,8 +53,23 @@ if which peco > /dev/null 2>&1 ; then
         peco_pgrep $QUERY | xargs kill $*
     }
 
-    function peco_git_modified_files {
+    ## Git
+    function peco_git_files_modified {
         git status --short | peco | awk '{print $NF}'
+    }
+
+    ## FIXME: Docker
+    function peco_docker_containers {
+        docker ps | peco | awk '{print $1}'
+        # docker container ls
+    }
+    function peco_docker_containers_all {
+        docker ps -a | peco | awk '{print $1}'
+        # docker container ls
+    }
+    function peco_docker_images {
+        docker images | peco | awk '{print $3}'
+        # docker image ls
     }
 
     if [[ -n $BASH ]]; then
