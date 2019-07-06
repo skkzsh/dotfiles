@@ -21,7 +21,13 @@ if which peco > /dev/null 2>&1 ; then
     bindkey '^[r' peco_select_history_z
 
     # Git
-    alias -g GF='$(peco_git_modified_files)'
+    alias -g GFM='$(peco_git_files_modified)'
+    # ghq
+    alias -g GL='$(ghq list -p | peco)'
+    # Docker
+    alias -g DC='$(peco_docker_containers)'
+    alias -g DCA='$(peco_docker_containers_all)'
+    alias -g DI='$(peco_docker_images)'
 
 fi
 
@@ -67,7 +73,7 @@ if which zaw > /dev/null 2>&1 ; then
     bindkey '^xh' zaw-history
 
     if which cdr > /dev/null 2>&1  ; then
-        bindkey '^@' zaw-cdr
+        bindkey '^xr' zaw-cdr
     fi
 fi
 
