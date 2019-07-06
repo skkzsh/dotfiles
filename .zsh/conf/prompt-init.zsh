@@ -40,16 +40,18 @@ promptinit
 #0:black, 1:red, 2:green, 3:yellow,
 #4:blue, 5:magenta, 6:cyan, 7:white
 case $HOST in
-    sing*)        col=green   ;;
-    raspberrypi*) col=red     ;;
-    ip-*)         col=yellow  ;;
-    *vagrant*)    col=cyan  ;;
-    *ubuntu*)     deco=u ;;
-    *arch*)       deco=u ;;
+    *Mac*)        col=green  ;;
+    raspberrypi*) col=red    ;;
+    zen*)         col=red    ;;
+    ip-*)         col=yellow ;;
+    AGDC*)        col=green  ;;
+    *vagrant*)    col=cyan   ;;
+    *ubuntu*)     col=cyan   ;;
+    localhost*)   deco=u ;;
     *)          col= ;;
 esac
 
-autoload colors
+autoload -Uz colors
 colors
 col_begin=%{${fg[$col]}%}
 col_end=%{${reset_color}%}
@@ -64,7 +66,7 @@ case $OSTYPE in
 
     msys)
         ## FIXME
-        PROMPT=$col_begin'%~ > '$col_end
+        PROMPT=${col_begin}${MSYSTEM}${col_end}':%~ > '
         ;;
 
     *)
@@ -81,16 +83,14 @@ esac
 
 
 ## Ubuntu on Windows
-# if [[ -f /proc/sys/kernel/osrelease ]]; then
-#     case "$(cat /proc/sys/kernel/osrelease)" in
+#  case "$(uname -r)" in
 #
-#         *Microsoft)
-#             PROMPT=$col_begin'%~ > '$col_end
-#             ;;
+#      *Microsoft)
+#          PROMPT=$col_begin'%~ > '$col_end
+#          ;;
 #
-#         *) ;;
-#     esac
-# fi
+#      *) ;;
+#  esac
 
 # PROMPT="${deco_begin}${col_begin}%m${col_end}${deco_end}:%~ > "
 ## suse Base
@@ -102,3 +102,24 @@ SPROMPT='zsh: correct '%R' to '%r' [nyae]? '
 # RPROMPT=
 
 unset col_begin col_end deco_begin deco_end
+
+#---------------------------------------------------------------------------
+## Git
+# zsh-git-prompt
+# which git > /dev/null 2>&1
+
+autoload -Uz vcs_info
+precmd_functions+=( vcs_info )
+setopt prompt_subst
+
+# use %c, %u
+zstyle ':vcs_info:*' check-for-changes true
+# %cのstr
+zstyle ':vcs_info:*' stagedstr "%F{yellow}!"
+# %uのstr
+zstyle ':vcs_info:*' unstagedstr "%F{red}+"
+zstyle ':vcs_info:*' formats "%F{green}%c%u[%b]%f"
+zstyle ':vcs_info:*' actionformats '[%b|%a]'
+
+RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
+
