@@ -1,5 +1,11 @@
 source 'https://rubygems.org'
 
+# tmuxinator
+sqlint
+
+# Mac
+# iStats
+
 # gem 'selenium-webdriver'
 # nogogiri mechanize
 

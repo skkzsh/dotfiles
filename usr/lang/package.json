@@ -11,9 +11,11 @@
     "name": "skkzsh",
     "email": "skkzsh12@gmail.com"
   },
-  "license": "",
-  "devDependencies": {
-    "phantomjs": "*"
+  "license": "MIT",
+  "dependencies": {
+    "jsonlint": "*",
+    "ungit": "*",
+    "git-open": "*"
   },
   "keywords": [
         ""

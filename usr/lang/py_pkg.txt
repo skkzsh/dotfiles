@@ -1,6 +1,10 @@
 trash-cli
 Glances
-# ipython
+tldr
+# pgcli
+# litecli
+yamllint
+ipython
 
 # awscli
 

@@ -1,6 +1,7 @@
 requires 'App::cpanoutdated';
 requires 'App::pmuninstall';
+# requires 'App::tldr';
 
-requires 'App::Ack';
+# requires 'App::Ack';
 
 # vim: ft=perl
