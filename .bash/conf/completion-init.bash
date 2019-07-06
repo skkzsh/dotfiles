@@ -26,7 +26,7 @@ fi
 
 ### XXX
 ## env
-for ext in pl py rb; do # php
+for ext in pl py rb nd go ; do # php
     if which brew > /dev/null 2>&1 && [[ -d $(brew --prefix ${ext}env) ]]; then
         . $(brew --prefix ${ext}env)/completions/${ext}env.bash
     elif [[ -d ~/.${ext}env/completions ]] ; then
@@ -91,6 +91,14 @@ case $(uname) in
     *)
         ;;
 esac
+
+#---------------------------------------------------------------------------
+if which kubectl > /dev/null 2>&1 ; then
+    . <( kubectl completion bash )
+fi
+if which helm > /dev/null 2>&1 ; then
+    . <( helm completion bash )
+fi
 
 #---------------------------------------------------------------------------
 ## AWS
