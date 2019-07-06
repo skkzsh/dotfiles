@@ -16,7 +16,7 @@ case $(uname) in
     *) ;;
 esac
 
-for cmd in cpanm pip docker; do
+for cmd in cpanm pip docker docker-compose ; do
     # if which $cmd > /dev/null 2>&1 ; then
     fpath=(~/.zsh/bundle/oh-my-zsh/plugins/$cmd $fpath)
     # fi
@@ -29,7 +29,6 @@ unset cmd
 ## Linux
 ## ln -s ~/.rbenv/completions/rbenv.zsh ~/.zsh/site-functions/_rbenv
 ## Mac
-## ln -s /usr/local/Library/Contributions/brew_zsh_completion.zsh ~/.zsh/site-functions/_brew
 ## ln -s $(brew --prefix rbenv)/completions/rbenv.zsh ~/.zsh/site-functions/_rbenv
 
 #---------------------------------------------------------------------------
@@ -85,6 +84,14 @@ if is-at-least 4.3.15 ; then
     zstyle ':chpwd:*' recent-dirs-default yes
     zstyle ':completion:*' recent-dirs-insert both
 fi
+
+#---------------------------------------------------------------------------
+if which kubectl > /dev/null 2>&1 ; then
+    . <( kubectl completion zsh )
+fi
+# if which helm > /dev/null 2>&1 ; then
+#     . <( helm completion zsh )
+# fi
 
 #---------------------------------------------------------------------------
 ## AWS
