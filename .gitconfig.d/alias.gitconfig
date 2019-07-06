@@ -1,0 +1,43 @@
+[alias]
+    a  = add
+    au = add -u
+    aa = add -A
+    ap = add -p
+
+    b  = branch
+    ba = branch -a
+
+    ci  = commit
+    cm  = commit -m
+    ca  = commit -a
+    cam = commit -am
+
+    co = checkout
+
+    d  = diff
+    dc = diff --cached
+    dw = diff --color-words
+
+    f = fetch
+    g = grep
+
+    lp  = log -p
+    ls  = log --stat
+    l   = log --graph
+    lo  = l --oneline
+    la  = l --all
+    lao = l --all --oneline
+
+    mg = merge
+    unstage = reset HEAD --
+    rc = rm --cached
+    sh = show
+    ; ss = stash
+
+    st  = status
+    sts = status -s
+
+    o = open
+    # br = browse-remote
+
+# vim: ft=gitconfig

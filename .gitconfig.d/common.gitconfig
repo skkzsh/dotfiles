@@ -1,0 +1,21 @@
+[core]
+    excludesfile = ~/.gitignore
+    pager = less -iMR -x4
+    ; pager = lv -c
+
+[color]
+    ui = auto
+
+[log]
+    abbrevCommit = true
+
+# [fetch]
+#     prune = true
+
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+
+# vim: ft=gitconfig

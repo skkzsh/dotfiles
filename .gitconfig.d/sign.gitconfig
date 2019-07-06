@@ -1,0 +1,4 @@
+[commit]
+    gpgsign = true
+
+# vim: ft=gitconfig

@@ -1,0 +1,22 @@
+[diff "to_utf8"]
+    textconv = nkf -w
+[diff "sqlite3"]
+    textconv = echo .dump | sqlite3
+[diff "gpg"]
+    textconv = gpg -o-
+[diff "strings"]
+    textconv = strings
+[diff "jq"]
+    textconv = jq .
+[diff "ebook-meta"]
+    textconv = ebook-meta
+
+# [difftool "sourcetree"]
+#     cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+#     path =
+
+# [mergetool "sourcetree"]
+#     cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+#     trustExitCode = true
+
+# vim: ft=gitconfig
