@@ -65,9 +65,15 @@ setopt no_beep
 ## カーソル位置で補完
 # setopt complete_in_word
 ## globを展開しないで候補の一覧から補完
-#setopt glob_complete
-##
-# setopt extended_glob
+# setopt glob_complete
+## extended glob
+setopt extended_glob
+
+# if [[ $(uname) = Darwin ]]; then
+    # /etc/zprofile (/usr/libexec/path_helper) を実行しないために
+    # unsetopt global_rcs
+    # setopt no_global_rcs
+# fi
 
 #---------------------------------------------------------------------------
 ## Ubuntu

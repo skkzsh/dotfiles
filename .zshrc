@@ -7,8 +7,8 @@ if [[ -d ~/.zsh/conf ]] ; then
     . ~/.zsh/conf/prompt-init.zsh
     . ~/.zsh/conf/base-init.zsh
 
-    . ~/.zsh/conf/completion-init.zsh
     . ~/.zsh/conf/zplug-init.zsh
+    . ~/.zsh/conf/completion-init.zsh
     # . ~/.zsh/conf/bundle-init.zsh
     . ~/.zsh/conf/plugin-init.zsh
 

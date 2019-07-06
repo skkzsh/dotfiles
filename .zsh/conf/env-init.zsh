@@ -17,6 +17,6 @@ zle_highlight=(isearch:bold)
 
 #---------------------------------------------------------------------------
 if [[ $OSTYPE = msys ]] ; then
-    SHELL=$(which zsh)
+    export SHELL=$(which zsh)
 fi
 
