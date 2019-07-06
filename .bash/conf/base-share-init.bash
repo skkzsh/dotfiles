@@ -6,3 +6,10 @@
 ### historyの後方検索にする
 which stty > /dev/null 2>&1 && stty stop undef
 
+#---------------------------------------------------------------------------
+## Ubuntu on Windows
+case "$(uname -r)" in
+    *Microsoft) umask 022 ;;
+    *) ;;
+esac
+
