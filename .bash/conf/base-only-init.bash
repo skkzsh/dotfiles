@@ -33,6 +33,8 @@ if [[ $BASH_VERSINFO -ge 4 ]]; then
     # If set, the pattern "**" used in a pathname expansion context will
     # match all files and zero or more directories and subdirectories.
     shopt -s globstar
+    # extended glob
+    shopt -s extglob
 fi
 
 #---------------------------------------------------------------------------
@@ -56,6 +58,7 @@ HISTFILESIZE=$HISTSIZE
 ## .bash_historyに前コマンドを追記;
 ## 端末ローカルの履歴を消去;
 ## .bash_historyから履歴を再読込
+## FIXME: autojump
 PROMPT_COMMAND='history -a; history -c; history -r'
 ## .bash_history追記をOFF
 shopt -u histappend
