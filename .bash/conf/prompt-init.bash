@@ -12,13 +12,12 @@
 ## 5: 点滅
 ## 7: 反転
 case $HOSTNAME in
-    sing*)        col=32 ;;
-    raspberrypi*) col=31 ;;
-    ip-*)         col=33 ;;
-    *vagrant*)    col=36 ;;
-    *ubuntu*)     col=4  ;;
-    *arch*)       col=4  ;;
-    *)            col=4  ;;
+    zen*)        col=31 ;;
+    ip-*)        col=33 ;;
+    *vagrant*)   col=36 ;;
+    *ubuntu*)    col=4  ;;
+    localhost*)  col=4  ;;
+    *)           col=4  ;;
 esac
 
 col_begin="\[\e[${col}m\]"
@@ -31,12 +30,12 @@ unset col
 case $OSTYPE in
     msys)
         # PS1="${col_begin}\[\e]0;\w\a\]\w \$${col_end} "
-        PS1=$col_begin'\w'$col_end' \$ '
+        PS1=${col_begin}${MSYSTEM}${col_end}':\w \$ '
         ;;
 
     *)
         case $TERM in
-            xterm* | screen*)
+            xterm*)
                 case $USER in
                     root)
                         # PS1="\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}${col_begin}\u${col_end}@${col_begin}\h${col_end}:\w \$ "
@@ -54,21 +53,30 @@ case $OSTYPE in
 esac
 
 ## Ubuntu on Windows
-# if [[ -f /proc/sys/kernel/osrelease ]]; then
-#     case "$(cat /proc/sys/kernel/osrelease)" in
+#  case "$(uname -r)" in
 #
-#         *Microsoft)
-#             PS1=$col_begin'\w'$col_end' \$ '
-#             ;;
+#      *Microsoft)
+#          PS1=$col_begin'\w'$col_end' \$ '
+#          ;;
 #
-#         *) ;;
-#     esac
-# fi
+#      *) ;;
+#  esac
 
 # PS1="\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\u@\h:\w\$ " # Ubuntu Default
 
 unset col_begin col_end
 
+#---------------------------------------------------------------------------
+## Git
+# if which git > /dev/null 2>&1 ; then
+# if [[ -d ]] ; then
+# . git-prompt.sh
+# fi
+# fi
+#
+# __git_ps1
+
+#---------------------------------------------------------------------------
 # set variable identifying the chroot you work in (used in the prompt below)
 # if [[ -z $debian_chroot ]] && [[ -r /etc/debian_chroot ]]; then
 #     debian_chroot=$(cat /etc/debian_chroot)
