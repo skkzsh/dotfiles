@@ -7,24 +7,8 @@
 case $OSTYPE in
 
     darwin*)
-
         alias o=open
         alias pst=pbpaste
-
-        if [[ -d /Applications/MacVim.app ]]; then
-            alias vim=/Applications/MacVim.app/Contents/MacOS/Vim
-        fi
-
-        # if which brew > /dev/null ; then
-            # if [[ -d $(brew --prefix emacs) ]]; then
-            #     alias emacs=$(brew --prefix emacs)/Emacs.app/Contents/MacOS/Emacs
-            #     # alias emacs=$(brew --cellar emacs)/25*/Emacs.app/Contents/MacOS/Emacs
-            # fi
-
-            # which gsed > /dev/null && alias sed=gsed
-            ## Shell ScriptだとAliasが無効?
-        # fi
-
         ;;
 
     linux*)
@@ -124,9 +108,17 @@ case $(uname) in
     *) ;;
 esac
 
+# if [[ -n $LS_COLORS ]]; then
+#     alias jq='jq -C'
+# fi
+
 #---------------------------------------------------------------------------
 if which htop > /dev/null 2>&1 ; then
     alias top=htop
+fi
+
+if which tmuxinator > /dev/null 2>&1 ; then
+    alias mux=tmuxinator
 fi
 
 case $OSTYPE in
@@ -196,7 +188,7 @@ alias cmx='chmod +x'
 alias su-='su -'
 #alias crontab -i
 alias trc=truecrypt
-alias jk=jekyll
+# alias jk=jekyll
 ### Network
 alias p=ping
 # alias ic=ifconfig
@@ -290,13 +282,13 @@ alias ec='emacsclient' # CUI
 alias ecnc='emacsclient -n -c' # GUI
 
 ## Vim
-alias v=vim
+# alias v=vim
 alias vw=view
 alias vd=vimdiff
 alias se=sudoedit
 
 ### Perl
-alias pld=perldoc
+# alias pld=perldoc
 
 ### Python
 alias py=python
@@ -308,30 +300,32 @@ alias ipy=ipython
 # alias wo=workon
 # alias da=deactivate
 
-### Git
+### Others
 alias g=git
-# alias g='git add'
-# alias g='git commit'
-# alias g='git status'
-# alias g='git branch'
-# alias g='git checkout'
-# alias g='git diff'
-# alias g='git log'
-# alias g='git rm'
+if which vagrant > /dev/null 2>&1 ; then
+    alias v=vagrant
+fi
+if which docker > /dev/null 2>&1 ; then
+    alias d=docker
+    alias dc=docker-compose
+fi
+if which kubectl > /dev/null 2>&1 ; then
+    alias k=kubectl
+fi
 
 #---------------------------------------------------------------------------
 ### Memo
 # a=apvlv
 # b=
 # c=curl
-# d=diff
+# d=docker
 # e=emacs
 # f=
 # g=git
 # h=history
 # i
 # j
-# k=
+# k=kubectl
 # l=less
 # m=
 # n=
@@ -339,10 +333,10 @@ alias g=git
 # p=ping
 # q=
 # r
-# s=screen
+# s=
 # t=tmux
 # u=
-# v=vim
+# v=vagrant
 # w
 # x=
 # y=
